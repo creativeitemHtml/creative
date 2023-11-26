@@ -1,0 +1,79 @@
+/* Solution For Training Css Start */
+/* Common */
+.overflow-x-hidden{
+    overflow-x: hidden;
+}
+.signup-btn-1{
+    color: #FFF;
+    font-family: Manrope;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 12px 23px;
+    border-radius: 10px;
+    background: #0A7EFB;
+    transition: .3s;
+}
+.signup-btn-1:hover{
+    background: #005ab9;
+    color: #FFF;
+}
+
+/* Banner */
+.training-solution-banner{
+    column-gap: 24px;
+    padding: 60px 0 80px 0;
+}
+.training--banner-content{
+    max-width: 585px;
+    width: 100%;
+}
+.training--banner-content .light{
+    color: #0072EF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.training--banner-content .title{
+    color: #181A1E;
+    font-family: Manrope;
+    font-size: 58px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px;
+    margin-bottom: 30px;
+}
+.training--banner-content .title .highlight{
+    color: #0072EF;
+}
+.training--banner-content .info{
+    color: #3D4053;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 30px;
+}
+.training-banner-image{
+    max-width: 608px;
+    width: 100%;
+    margin-right: -77px;
+}
+/* About Creative LMS */
+.about-lms-section{
+    background: #FCFBF3;
+    padding: 80px 0;
+}
+/* Solution For Training Css End */
+
+/* Responsive */
+@media screen and (max-width: 1224px){
+    .training-banner-image{
+        margin-right: -25px;
+    }
+}
