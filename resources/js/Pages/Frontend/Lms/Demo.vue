@@ -29,7 +29,8 @@ const submit = () => {
 const setCookie = () => {
   // document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"
   // cookies.set("userhash","user-abc-4500",null, null, ".creativeitem.com");
-  document.cookie = "userhash="+ page.props.auth.auth_token + ";domain=.creativeitem.com";
+  // document.cookie = "userhash="+ page.props.auth.auth_token + ";domain=.creativeitem.com";
+  document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"
   console.log( document.cookie )
 };
 
