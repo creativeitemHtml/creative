@@ -314,15 +314,15 @@ const props = defineProps({
               <div class="lms-topic-wrap">
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-1.svg'" alt="">
-                  <p>Budget Friendly</p>
+                  <p>Efficient Training</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-2.svg'" alt="">
-                  <p>Easy Payment Options</p>
+                  <p>Simple User Interface</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-3.svg'" alt="">
-                  <p>Integration & Compatibility</p>
+                  <p>Customization Options</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-4.svg'" alt="">
