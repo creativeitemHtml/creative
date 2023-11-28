@@ -29,7 +29,7 @@ const submit = () => {
 const setCookie = () => {
   // document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"
   // cookies.set("userhash","user-abc-4500",null, null, ".creativeitem.com");
-  document.cookie = `userhash=${page.props.auth.auth_token}; domain=.creativeitem.com`;
+  document.cookie = "userhash="+ page.props.auth.auth_token + ";domain=.creativeitem.com";
   console.log( document.cookie )
 };
 
@@ -70,7 +70,7 @@ const setCookie = () => {
               </ul>
               <!-- Buttons -->
               <div v-if="$page.props.auth.user" class="buttons d-flex align-items-center">
-                <a :href="`https://demo.creativeitem.com/website/cookie`" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
+                <a href="https://demo.creativeitem.com/website/cookie" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
               </div>
             </div>
           </div>
