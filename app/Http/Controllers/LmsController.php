@@ -92,15 +92,4 @@ class LmsController extends Controller
             // }
         }
     }
-
-    public function cookie()
-    {
-        // Set the cookie
-        Cookie::queue('userhash', 'user-abc-4500', 60 * 24 * 7, null, '.creativeitem.com/website');
-
-        // Perform any other logic as needed
-
-        // Return a response (optional)
-        // return response()->json(['message' => 'Cookie set successfully']);
-    }
 }

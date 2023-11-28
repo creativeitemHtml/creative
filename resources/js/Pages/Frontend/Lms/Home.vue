@@ -326,23 +326,31 @@ const props = defineProps({
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-4.svg'" alt="">
-                  <p>Online Certification & Badges</p>
+                  <p>Advanced Features and Functionality</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-5.svg'" alt="">
-                  <p>Trendy</p>
+                  <p>Earning Passive Income</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-6.svg'" alt="">
-                  <p>Advanced Features & Functionality</p>
+                  <p>Simplified Course Selling</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-7.svg'" alt="">
-                  <p>Free Customization & Flexibility</p>
+                  <p>Solution Focused Approach</p>
                 </div>
                 <div class="single-advice-topic">
                   <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-8.svg'" alt="">
-                  <p>User’s Feedbacks Evaluation</p>
+                  <p>Accurate Analytics</p>
+                </div>
+                <div class="single-advice-topic">
+                  <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-8.svg'" alt="">
+                  <p>Continual Updates</p>
+                </div>
+                <div class="single-advice-topic">
+                  <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/topic-8.svg'" alt="">
+                  <p>Globally Accessible</p>
                 </div>
               </div>
             </div>
@@ -426,7 +434,7 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/factor-new-1.svg'" alt="">
                 <h3 class="text-24">Innovation</h3>
               </div>
-              <p>Our commitment to innovation has made us an industry-leading company. A dedicated R&D (Research and Development ) team constantly pushes the boundaries of what is possible, relentlessly seeking new and better ways to serve our customers.</p>
+              <p>To serve our consumers better, our R&D team constantly innovates and pushes the bounds of what is possible. We never stop looking for fresh, better methods to improve the E-Learning experience.</p>
             </div>
           </div>
           <!-- Single -->
@@ -436,7 +444,7 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/factor-new-2.svg'" alt="">
                 <h3 class="text-24">Quality</h3>
               </div>
-              <p>Creative LMS ensures the best service and top-notch products. Sound technology with a flawless operating system provides the best customer experience.</p>
+              <p>To offer excellent goods and services, we guarantee the very best client experience through the use of a faultless operating system and reliable technologies.</p>
             </div>
           </div>
           <!-- Single -->
@@ -446,7 +454,7 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/factor-new-3.svg'" alt="">
                 <h3 class="text-24">Expertise</h3>
               </div>
-              <p>Our team of experts is the backbone of our industry-leading status. The unique combination of fresh talents and experienced professionals can efficiently tackle complicated challenges and deliver smart solutions. Our trendy yet updated specialization enables all our users to be one step ahead in the E-Learning platform.</p>
+              <p>To effectively handle difficult problems, our team blends experience and potential. We offer clever solutions and keep all of our users one step ahead on the E-Learning platform because of this combination of expertise.</p>
             </div>
           </div>
         </div>
@@ -554,7 +562,7 @@ const props = defineProps({
                   </defs>
                 </svg>                  
               </div>
-              <p class="info">Use digital content to improve learning and make challenging subjects more approachable.</p>
+              <p class="info">Develop, manage, and deliver compelling online courses to satisfy varied training requirements.</p>
             </div>
           </div>
           <!-- Single LMS Functionality -->
@@ -576,7 +584,7 @@ const props = defineProps({
                   <path d="M45.5767 62.3517C44.4131 62.3517 43.4434 61.479 43.4434 60.3154C43.4434 56.0487 46.8373 54.7881 51.104 54.7881C55.3706 54.7881 58.7646 56.1457 58.7646 60.3154C58.7646 61.479 57.7949 62.3517 56.6312 62.3517H45.5767Z" stroke="#3D4053" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>                                   
               </div>
-              <p class="info">Offer private or group coaching sessions for individualized learning.</p>
+              <p class="info">Use digital content to improve learning and make challenging subjects more approachable.</p>
             </div>
           </div>
           <!-- Single LMS Functionality -->
@@ -588,7 +596,7 @@ const props = defineProps({
                   <path d="M31.3027 5.20605C15.5184 5.20605 2.72266 16.5777 2.72266 30.6054C2.72266 38.5957 6.87553 45.7228 13.3664 50.3789L11.4332 58.7943L20.3223 54.0612C23.7032 55.3127 27.4118 56.0048 31.3028 56.0048C47.0872 56.0048 59.8828 44.6332 59.8828 30.6054C59.8828 16.5777 47.087 5.20605 31.3027 5.20605Z" stroke="#3D4053" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>            
               </div>
-              <p class="info">Encourage participation with interactive features like debates, quizzes, and assignments.</p>
+              <p class="info">Offer private or group coaching sessions for individualized learning.</p>
             </div>
           </div>
           <!-- Single LMS Functionality -->
@@ -609,7 +617,7 @@ const props = defineProps({
                   </defs>
                 </svg>                                   
               </div>
-              <p class="info">Make data-driven decisions, track student development, and determine learners' strengths and shortcomings.</p>
+              <p class="info">Encourage participation with interactive features like debates, quizzes, and assignments.</p>
             </div>
           </div>
         </div>
