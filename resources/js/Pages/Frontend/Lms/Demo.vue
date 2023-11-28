@@ -34,6 +34,11 @@ const setCookie = () => {
   console.log( document.cookie )
 };
 
+function test() {
+  document.cookie = "user_token=user-abc-5500;domain=.creativeitem.com"
+  console.log( document.cookie )
+}
+
 </script>
 
 <template>
@@ -69,6 +74,7 @@ const setCookie = () => {
                   <p>Customer Satisfaction</p>
                 </li>
               </ul>
+              <button type="button" @click="test">Test cookie</button>
               <!-- Buttons -->
               <div v-if="$page.props.auth.user" class="buttons d-flex align-items-center">
                 <a href="https://demo.creativeitem.com/website/cookie" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
