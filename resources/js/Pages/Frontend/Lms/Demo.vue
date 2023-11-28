@@ -29,7 +29,7 @@ const submit = () => {
 const setCookie = () => {
   // document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"
   // cookies.set("userhash","user-abc-4500",null, null, ".creativeitem.com");
-  document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com";
+  document.cookie = "vue_token="+ page.props.auth.auth_token + ";domain=.creativeitem.com/website";
   console.log( document.cookie )
 };
 
