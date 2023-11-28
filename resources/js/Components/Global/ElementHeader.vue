@@ -82,7 +82,7 @@ $(document).ready(function() {
                         <div class="menu-search-antry">
                           <form @submit.prevent="submitForm" class="d-flex align-items-center">
                             <select v-model="slug" @change="handleCategoryChange" class="nice-select">
-                              <option v-for="category in elementCategories" :key="category.id" :value="category.slug">{{ category.name }}</option>
+                              <option v-for="category in $page.props.element.categories" :key="category.id" :value="category.slug">{{ category.name }}</option>
                             </select>
                             <div class="search-input-after">
                               <input v-model="form.search" type="search" id="search" name="search" class="form-control form-control-2">
