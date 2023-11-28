@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::name('lms.')->prefix('creative-lms')->controller(LmsController::class)->group(function () {
 
-    Route::get('/home', 'index')->name('home');
+    Route::get('/', 'index')->name('home');
     Route::get('/features', 'features')->name('features');
     Route::get('/pricing', 'pricing')->name('pricing');
     Route::get('/solution-for-course-selling', 'solution_course_selling')->name('solution_course_selling');
     Route::get('/solution-training', 'solution_training')->name('solution_training');
+    Route::get('/demo', 'demo')->name('demo');
+    Route::post('/register-company-lms', 'register_company_lms')->name('register_company_lms');
+
+    Route::post('/cookie', 'cookie')->name('cookie');
 });

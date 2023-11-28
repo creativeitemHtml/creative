@@ -228,7 +228,7 @@ const props = defineProps({
           <div class="col-lg-6 col-md-8">
             <div class="how-to-details">
               <div class="how-to-title">
-                <h2 class="text-42">How Creative LMS works to make you <span>Successful</span></h2>
+                <h2 class="text-42">Empower Your Teaching Process And Foster Your Success With <span>Creative LMS</span></h2>
               </div>
               <!-- Accordion -->
               <div class="course-accordion">
@@ -241,7 +241,7 @@ const props = defineProps({
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <p>We’ve made it easier than ever to create, manage, and grow a profitable coaching business that achieves.</p>
+                        <p>Easily design engaging online courses using all of the features that Creative LMS Offer.</p>
                       </div>
                     </div>
                   </div>
@@ -253,7 +253,7 @@ const props = defineProps({
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <p>We’ve made it easier than ever to create, manage, and grow a profitable coaching business that achieves.</p>
+                        <p>Students can access your courses anywhere in the world at any time with ease.</p>
                       </div>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ const props = defineProps({
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <p>We’ve made it easier than ever to create, manage, and grow a profitable coaching business that achieves.</p>
+                        <p>With our feature-rich LMS platform, you can effectively manage your content, users, and training.</p>
                       </div>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ const props = defineProps({
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <p>We’ve made it easier than ever to create, manage, and grow a profitable coaching business that achieves.</p>
+                        <p>With our flexible solutions, you can easily monetize your knowledge and earn a consistent flow of passive income.</p>
                       </div>
                     </div>
                   </div>
@@ -772,8 +772,8 @@ const props = defineProps({
           <!-- Left -->
           <div class="col-md-7 order-2 order-md-1">
             <div class="customer-support-details">
-              <h4 class="light-text">24/7 Customer Support</h4>
-              <h2 class="text-36">Customer support and technical assistance – available worldwide, completely <span>free forever.</span></h2>
+              <h4 class="light-text">Need Help? Contact Our Customer Support</h4>
+              <h2 class="text-36">Your success is our first priority, and our customer service reflects this commitment. Feel free to get in touch with our <span>support</span> staff whenever you need help.</h2>
               <div class="success-signup-form">
                 <form action="">
                   <input type="email" class="form-control" id="" placeholder="Enter your email address">

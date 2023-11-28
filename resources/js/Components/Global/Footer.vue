@@ -1,5 +1,12 @@
 <script setup>
 import { Link } from '@inertiajs/vue3'
+
+const support = () => {
+  zE(function() {
+    zE.activate();
+  });
+};
+
 </script>
 <template>
    <!-- Start Footer -->
@@ -55,7 +62,7 @@ import { Link } from '@inertiajs/vue3'
                     <li>
                       <a href="https://m.me/creativeitemApps" target="_blank">Live chat</a>
                     </li>
-                    <li><a href="#">Submit ticket</a></li>
+                    <li><a href="javascript:;" @click="support">Submit ticket</a></li>
                   </ul>
                 </div>
               </div>

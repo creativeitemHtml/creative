@@ -30,14 +30,27 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $input = $request->all();
+        $recaptcha_secret = "6LdAAcInAAAAALjRCRULi4EMF-0wiRFGRYqbU3x5";
 
-        $request->session()->regenerate();
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret."&response=".$input['captcha_token']);
 
-        if(auth()->user()->role_id == 1) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+        $response = json_decode($response, true);
+
+        if($response['success'] === true){
+
+            $request->authenticate();
+
+            $request->session()->regenerate();
+
+            if(auth()->user()->role_id == 1) {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            } else {
+
+                return redirect()->intended(RouteServiceProvider::HOME_TWO);
+            }
         } else {
-            return redirect()->intended(RouteServiceProvider::HOME_TWO);
+            return redirect('/login')->with('error', 'You have to provide captcha');
         }
     }
 

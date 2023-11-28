@@ -23,8 +23,10 @@ import '../../public/assets/css/promotion.css';
 import '../../public/assets/css/element-pricing.css';
 import '../../public/assets/css/lms-main.css';
 import '../../public/assets/css/custom.css';
+import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Creativeitem';
+const captcheKey = '6LdAAcInAAAAAHLH_eG-CZ_COygmBCgWvY2rayUg';
 
 createInertiaApp({
     // title: (title) => `${title} - ${appName}`,
@@ -33,6 +35,13 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VueReCaptcha, { 
+                siteKey: captcheKey, 
+                loaderOptions: {
+                    useRecaptchaNet: true,
+                    autoHideBadge: true
+                } 
+            })
             .mount(el);
     },
     progress: {

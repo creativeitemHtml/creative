@@ -41,6 +41,7 @@
         <link href="{{ asset('public/assets/css/promotion.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/element-pricing.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/lms-main.css') }}" rel="stylesheet" />
+        <link href="{{ asset('public/assets/css/custom.css') }}" rel="stylesheet" />
         <!-- Recaptcha -->
         <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
         <script src="{{ asset('assets/vendors/recaptcha/api.js') }}" async defer></script>

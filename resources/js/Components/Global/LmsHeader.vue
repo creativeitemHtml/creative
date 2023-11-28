@@ -34,7 +34,7 @@ import '../../../../public/assets/css/element-header.css';
                           <li><Link :href="route('lms.solution_training')">Training</Link></li>
                         </ul>
                       </li>
-                      <li><a href="#">Demo</a></li>
+                      <li><Link :href="route('lms.demo')">Demo</Link></li>
                     </ul>
                   </nav>
                 </div>

@@ -3,6 +3,9 @@ import Header from '@/Components/Global/Header.vue';
 import Footer from '@/Components/Global/Footer.vue';
 import InputError from '@/Components/InputError.vue';
 import { Link, useForm } from '@inertiajs/vue3';
+import { useReCaptcha } from "vue-recaptcha-v3";
+import { onMounted, onBeforeUnmount } from 'vue'
+
 
 defineProps({
     canResetPassword: {
@@ -17,7 +20,27 @@ const form = useForm({
     email: '',
     password: '',
     remember: false,
+    captcha_token: null, // Add captcha_token to the form
 });
+
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
+
+const recaptchaIns = useReCaptcha().instance
+
+onMounted(() => {
+    setTimeout(() => {
+        recaptchaIns.value.showBadge()
+    }, 1000)
+}),
+onBeforeUnmount(() => {
+    recaptchaIns.value.hideBadge()
+}) 
+
+const recaptcha = async () => {
+    await recaptchaLoaded();
+    form.captcha_token = await executeRecaptcha('login');
+    submit();
+};
 
 const submit = () => {
     form.post(route('login'), {
@@ -44,7 +67,7 @@ const submit = () => {
                   <h1 class="title">Welcome Back!</h1>
                   <p class="info">We’re a team that Guides Each Other</p>
                 </div>
-                <form class="main-form-area" @submit.prevent="submit">
+                <form class="main-form-area" @submit.prevent="recaptcha">
                   <div class="d-flex flex-column main-form-wrap">
                     <div class="input-wrap">
                       <label for="email" class="form-label">Email<span>*</span></label>
@@ -63,7 +86,7 @@ const submit = () => {
                       </div>
                     </div>
                   </div>
-                  <Link v-if="canResetPassword" :href="route('password.request')" class="forget">Forget your password?</Link>
+                  <Link v-if="canResetPassword" href="#" class="forget">Forget your password?</Link>
                   <button type="submit" class="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Log In</button>
                 </form>
                 <div class="form-footer">

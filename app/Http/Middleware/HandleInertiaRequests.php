@@ -7,6 +7,8 @@ use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 use Illuminate\Support\Facades\Route;
 use App\Models\ElementCategory;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,6 +38,18 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'auth_token' => function() {
+                    if(Auth::check()) {
+                        auth()->user()->tokens->each(function ($token, $key) {
+                            $token->delete();
+                        });
+                        $token = auth()->user()->createToken('auth-token')->plainTextToken;
+
+                        return $token ;
+                    } else {
+                        return null;
+                    }
+                },
             ],
             'base' => [
                 'url' => url('/'),
