@@ -29,7 +29,7 @@ const submit = () => {
 const setCookie = () => {
   // document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"
   // cookies.set("userhash","user-abc-4500",null, null, ".creativeitem.com");
-  document.cookie = "zohan=106-MCgepH1xfwLHGrK7g5KgKhH9aWzFCf9tOQpv0NS34fa0fc62;domain=.creativeitem.com";
+  document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com";
   console.log( document.cookie )
 };
 
