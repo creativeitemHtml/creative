@@ -57,7 +57,7 @@ const props = defineProps({
                 </svg>                  
               </div>
               <h3 class="title">Employee Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info"> Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize chances for professional advancement, skill development, and career growth. Create a successful team by offering flexible employee training using Creative LMS...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -70,7 +70,7 @@ const props = defineProps({
                 </svg>                  
               </div>
               <h3 class="title">Compliance Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Training for compliance doesn't have to feel like a chore. With an easy-to-use learning platform for compliance, you can make learning fun for your workforce. Automate compliance training to improve student engagement and create a seamless learning environment...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -87,7 +87,7 @@ const props = defineProps({
                 </svg>                  
               </div>
               <h3 class="title">Customer Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Customer training is as crucial as internal training. Create training programs that promote healthier customer interactions, lower support costs, and improve retention rates. Plan and include your customers right now with Creative LMS...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -104,7 +104,7 @@ const props = defineProps({
                 </svg>                  
               </div>
               <h3 class="title">Corporate Network Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Utilizing Creative LMS for network training will improve your company's network skills. Our platform offers you the resources you require to design and present training courses that enhance network administration, security, and effectiveness...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -117,7 +117,7 @@ const props = defineProps({
                 </svg>                 
               </div>
               <h3 class="title">Employee Development</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Create courses and online seminars, then use a single system to monitor employee success. Using Creative LMS, create training programs that staff members can access at any time, from anywhere in the globe...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -130,7 +130,7 @@ const props = defineProps({
                 </svg>   
               </div>
               <h3 class="title">Employee Onboarding</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Utilize segmentation, automated workflows, continuing training, and real-time analytics to simplify onboarding for new hires. By guiding new team members through crucial training, such as adherence to automated routines, you can make the onboarding process simple for them...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -142,7 +142,7 @@ const props = defineProps({
                 </svg>                        
               </div>
               <h3 class="title">Continuous Training Programs</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">With on-demand courses and live virtual training, you can assist your teams in keeping their knowledge and training updated. On our user-friendly online platform, train experts from various industries and then oversee learner progress in one location...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -155,7 +155,7 @@ const props = defineProps({
                 </svg>                                         
               </div>
               <h3 class="title">Information Security Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info">Give your staff the knowledge and abilities to protect your company's information assets to protect sensitive data and lower security threats.Secure the future of your business with cybersecurity training with Creative LMS...</p>
             </div>
           </div>
           <!-- single-card  -->
@@ -170,7 +170,77 @@ const props = defineProps({
                 </svg>                         
               </div>
               <h3 class="title">Marketing Skill Training</h3>
-              <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize...</p>
+              <p class="info"> Improve the knowledge and abilities of your marketing staff with Creative LMS. With the help of our platform, you can create and present marketing skill-development courses on a variety of subjects, such as content production, analytics, and digital marketing tactic...</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-lms-different">
+              <div class="different-img">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                  <path d="M0 0 C5.6357215 3.75293561 9.85106502 8.42115617 11.53125 15.1171875 C12.16748165 19.06471567 12.26777285 20.59834073 10 24 C6.9609375 24.51171875 6.9609375 24.51171875 3.375 24.6875 C2.18648437 24.75324219 0.99796875 24.81898437 -0.2265625 24.88671875 C-1.14179688 24.92410156 -2.05703125 24.96148437 -3 25 C-2.62746094 25.51949219 -2.25492188 26.03898437 -1.87109375 26.57421875 C2.04116638 32.34133791 2.04116638 32.34133791 1.8125 36 C1 38 1 38 -0.6875 38.8125 C-3 39 -3 39 -5.5 36.875 C-8 34 -8 34 -10 31.1875 C-10.99 30.1046875 -10.99 30.1046875 -12 29 C-12.825 29 -13.65 29 -14.5 29 C-17 29 -17 29 -19.375 26.8125 C-21 24 -21 24 -21.0625 21.4375 C-20 19 -20 19 -17.6953125 17.328125 C-14.29352414 14.38976868 -12.76009579 11.30260366 -10.8125 7.3125 C-6.16021268 -2.05340423 -6.16021268 -2.05340423 0 0 Z M-4 2 C-5.27108062 3.0719919 -5.27108062 3.0719919 -5.375 5.5625 C-4.86415229 10.24527071 -2.68591506 13.22053381 0 17 C0.99 16.01 1.98 15.02 3 14 C2.20882096 12.00016466 2.20882096 12.00016466 1 10 C0.01 9.67 -0.98 9.34 -2 9 C-0.35 8.67 1.3 8.34 3 8 C2.27731765 4.7014861 2.27731765 4.7014861 -1.0625 3.3125 C-2.031875 2.879375 -3.00125 2.44625 -4 2 Z M-9 10 C-10.3079635 12.15429283 -11.05130331 13.45276464 -10.8125 16 C-9.7620561 18.58570807 -9.10137222 20.10198638 -7 22 C-4.24606963 22.34832321 -1.79393891 22.18320911 1 22 C0.59007812 21.46890625 0.18015625 20.9378125 -0.2421875 20.390625 C-0.78101563 19.68421875 -1.31984375 18.9778125 -1.875 18.25 C-2.40867187 17.55390625 -2.94234375 16.8578125 -3.4921875 16.140625 C-4.89238914 14.15277397 -5.97855265 12.20156614 -7 10 C-7.66 10 -8.32 10 -9 10 Z M6 12 C4.68 14.31 3.36 16.62 2 19 C4.71549154 21.30671915 4.71549154 21.30671915 7.1875 20.625 C7.785625 20.41875 8.38375 20.2125 9 20 C8.55296014 15.52116304 8.55296014 15.52116304 6 12 Z M-14 18 C-15.32 19.32 -16.64 20.64 -18 22 C-17.34 23.32 -16.68 24.64 -16 26 C-13.52733235 25.65555119 -13.52733235 25.65555119 -11 25 C-10.67 24.34 -10.34 23.68 -10 23 C-11.32 21.35 -12.64 19.7 -14 18 Z M-9 26 C-7.35 28.97 -5.7 31.94 -4 35 C-3.01 35 -2.02 35 -1 35 C-2.65 32.03 -4.3 29.06 -6 26 C-6.99 26 -7.98 26 -9 26 Z " fill="#17191D" transform="translate(23,8)"/>
+                  <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.65117186 5.04648443 -0.34826069 5.95502599 -4 8 C-4.99 7.67 -5.98 7.34 -7 7 C-5.65117186 2.95351557 -3.65173931 2.04497401 0 0 Z " fill="#16181C" transform="translate(41,7)"/>
+                  <path d="M0 0 C3.3 0.66 6.6 1.32 10 2 C9.67 2.99 9.34 3.98 9 5 C5.7 4.34 2.4 3.68 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#16171C" transform="translate(36,17)"/>
+                  <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C1.67 3.64 1.34 6.28 1 9 C0.01 9 -0.98 9 -2 9 C-1.125 1.125 -1.125 1.125 0 0 Z " fill="#16181D" transform="translate(32,1)"/>
+                </svg>                         
+              </div>
+              <h3 class="title">Partner Training</h3>
+              <p class="info">Design, scale, and evaluate your partner's training programs using our modern learning platform. From resellers to consultants, partner training is a crucial step in familiarizing all of your partners with your offering, best practices, and general principles, and Creative LMS can provide you with every possible tool you need...</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-lms-different">
+              <div class="different-img">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                  <path d="M0 0 C5.6357215 3.75293561 9.85106502 8.42115617 11.53125 15.1171875 C12.16748165 19.06471567 12.26777285 20.59834073 10 24 C6.9609375 24.51171875 6.9609375 24.51171875 3.375 24.6875 C2.18648437 24.75324219 0.99796875 24.81898437 -0.2265625 24.88671875 C-1.14179688 24.92410156 -2.05703125 24.96148437 -3 25 C-2.62746094 25.51949219 -2.25492188 26.03898437 -1.87109375 26.57421875 C2.04116638 32.34133791 2.04116638 32.34133791 1.8125 36 C1 38 1 38 -0.6875 38.8125 C-3 39 -3 39 -5.5 36.875 C-8 34 -8 34 -10 31.1875 C-10.99 30.1046875 -10.99 30.1046875 -12 29 C-12.825 29 -13.65 29 -14.5 29 C-17 29 -17 29 -19.375 26.8125 C-21 24 -21 24 -21.0625 21.4375 C-20 19 -20 19 -17.6953125 17.328125 C-14.29352414 14.38976868 -12.76009579 11.30260366 -10.8125 7.3125 C-6.16021268 -2.05340423 -6.16021268 -2.05340423 0 0 Z M-4 2 C-5.27108062 3.0719919 -5.27108062 3.0719919 -5.375 5.5625 C-4.86415229 10.24527071 -2.68591506 13.22053381 0 17 C0.99 16.01 1.98 15.02 3 14 C2.20882096 12.00016466 2.20882096 12.00016466 1 10 C0.01 9.67 -0.98 9.34 -2 9 C-0.35 8.67 1.3 8.34 3 8 C2.27731765 4.7014861 2.27731765 4.7014861 -1.0625 3.3125 C-2.031875 2.879375 -3.00125 2.44625 -4 2 Z M-9 10 C-10.3079635 12.15429283 -11.05130331 13.45276464 -10.8125 16 C-9.7620561 18.58570807 -9.10137222 20.10198638 -7 22 C-4.24606963 22.34832321 -1.79393891 22.18320911 1 22 C0.59007812 21.46890625 0.18015625 20.9378125 -0.2421875 20.390625 C-0.78101563 19.68421875 -1.31984375 18.9778125 -1.875 18.25 C-2.40867187 17.55390625 -2.94234375 16.8578125 -3.4921875 16.140625 C-4.89238914 14.15277397 -5.97855265 12.20156614 -7 10 C-7.66 10 -8.32 10 -9 10 Z M6 12 C4.68 14.31 3.36 16.62 2 19 C4.71549154 21.30671915 4.71549154 21.30671915 7.1875 20.625 C7.785625 20.41875 8.38375 20.2125 9 20 C8.55296014 15.52116304 8.55296014 15.52116304 6 12 Z M-14 18 C-15.32 19.32 -16.64 20.64 -18 22 C-17.34 23.32 -16.68 24.64 -16 26 C-13.52733235 25.65555119 -13.52733235 25.65555119 -11 25 C-10.67 24.34 -10.34 23.68 -10 23 C-11.32 21.35 -12.64 19.7 -14 18 Z M-9 26 C-7.35 28.97 -5.7 31.94 -4 35 C-3.01 35 -2.02 35 -1 35 C-2.65 32.03 -4.3 29.06 -6 26 C-6.99 26 -7.98 26 -9 26 Z " fill="#17191D" transform="translate(23,8)"/>
+                  <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.65117186 5.04648443 -0.34826069 5.95502599 -4 8 C-4.99 7.67 -5.98 7.34 -7 7 C-5.65117186 2.95351557 -3.65173931 2.04497401 0 0 Z " fill="#16181C" transform="translate(41,7)"/>
+                  <path d="M0 0 C3.3 0.66 6.6 1.32 10 2 C9.67 2.99 9.34 3.98 9 5 C5.7 4.34 2.4 3.68 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#16171C" transform="translate(36,17)"/>
+                  <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C1.67 3.64 1.34 6.28 1 9 C0.01 9 -0.98 9 -2 9 C-1.125 1.125 -1.125 1.125 0 0 Z " fill="#16181D" transform="translate(32,1)"/>
+                </svg>                         
+              </div>
+              <h3 class="title">Remote Training Programs</h3>
+              <p class="info">Your users can learn anytime, anyplace, on an airline, abroad, or in the field using Creative LMS' mobile learning software. Learners can access courses instantly and on the go using mobile learning, which fosters greater engagement and memory retention...</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-lms-different">
+              <div class="different-img">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                  <path d="M0 0 C5.6357215 3.75293561 9.85106502 8.42115617 11.53125 15.1171875 C12.16748165 19.06471567 12.26777285 20.59834073 10 24 C6.9609375 24.51171875 6.9609375 24.51171875 3.375 24.6875 C2.18648437 24.75324219 0.99796875 24.81898437 -0.2265625 24.88671875 C-1.14179688 24.92410156 -2.05703125 24.96148437 -3 25 C-2.62746094 25.51949219 -2.25492188 26.03898437 -1.87109375 26.57421875 C2.04116638 32.34133791 2.04116638 32.34133791 1.8125 36 C1 38 1 38 -0.6875 38.8125 C-3 39 -3 39 -5.5 36.875 C-8 34 -8 34 -10 31.1875 C-10.99 30.1046875 -10.99 30.1046875 -12 29 C-12.825 29 -13.65 29 -14.5 29 C-17 29 -17 29 -19.375 26.8125 C-21 24 -21 24 -21.0625 21.4375 C-20 19 -20 19 -17.6953125 17.328125 C-14.29352414 14.38976868 -12.76009579 11.30260366 -10.8125 7.3125 C-6.16021268 -2.05340423 -6.16021268 -2.05340423 0 0 Z M-4 2 C-5.27108062 3.0719919 -5.27108062 3.0719919 -5.375 5.5625 C-4.86415229 10.24527071 -2.68591506 13.22053381 0 17 C0.99 16.01 1.98 15.02 3 14 C2.20882096 12.00016466 2.20882096 12.00016466 1 10 C0.01 9.67 -0.98 9.34 -2 9 C-0.35 8.67 1.3 8.34 3 8 C2.27731765 4.7014861 2.27731765 4.7014861 -1.0625 3.3125 C-2.031875 2.879375 -3.00125 2.44625 -4 2 Z M-9 10 C-10.3079635 12.15429283 -11.05130331 13.45276464 -10.8125 16 C-9.7620561 18.58570807 -9.10137222 20.10198638 -7 22 C-4.24606963 22.34832321 -1.79393891 22.18320911 1 22 C0.59007812 21.46890625 0.18015625 20.9378125 -0.2421875 20.390625 C-0.78101563 19.68421875 -1.31984375 18.9778125 -1.875 18.25 C-2.40867187 17.55390625 -2.94234375 16.8578125 -3.4921875 16.140625 C-4.89238914 14.15277397 -5.97855265 12.20156614 -7 10 C-7.66 10 -8.32 10 -9 10 Z M6 12 C4.68 14.31 3.36 16.62 2 19 C4.71549154 21.30671915 4.71549154 21.30671915 7.1875 20.625 C7.785625 20.41875 8.38375 20.2125 9 20 C8.55296014 15.52116304 8.55296014 15.52116304 6 12 Z M-14 18 C-15.32 19.32 -16.64 20.64 -18 22 C-17.34 23.32 -16.68 24.64 -16 26 C-13.52733235 25.65555119 -13.52733235 25.65555119 -11 25 C-10.67 24.34 -10.34 23.68 -10 23 C-11.32 21.35 -12.64 19.7 -14 18 Z M-9 26 C-7.35 28.97 -5.7 31.94 -4 35 C-3.01 35 -2.02 35 -1 35 C-2.65 32.03 -4.3 29.06 -6 26 C-6.99 26 -7.98 26 -9 26 Z " fill="#17191D" transform="translate(23,8)"/>
+                  <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.65117186 5.04648443 -0.34826069 5.95502599 -4 8 C-4.99 7.67 -5.98 7.34 -7 7 C-5.65117186 2.95351557 -3.65173931 2.04497401 0 0 Z " fill="#16181C" transform="translate(41,7)"/>
+                  <path d="M0 0 C3.3 0.66 6.6 1.32 10 2 C9.67 2.99 9.34 3.98 9 5 C5.7 4.34 2.4 3.68 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#16171C" transform="translate(36,17)"/>
+                  <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C1.67 3.64 1.34 6.28 1 9 C0.01 9 -0.98 9 -2 9 C-1.125 1.125 -1.125 1.125 0 0 Z " fill="#16181D" transform="translate(32,1)"/>
+                </svg>                         
+              </div>
+              <h3 class="title">Salesforce Training</h3>
+              <p class="info">Create courses for sales training, gather learning resources, and track progress in real-time with the aid of Creative LMS. Sales teams are responsible for generating the majority of company revenue; therefore, the quicker your team ramps up and closes deals, the better it is for your overall business objectives...</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-lms-different">
+              <div class="different-img">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                  <path d="M0 0 C5.6357215 3.75293561 9.85106502 8.42115617 11.53125 15.1171875 C12.16748165 19.06471567 12.26777285 20.59834073 10 24 C6.9609375 24.51171875 6.9609375 24.51171875 3.375 24.6875 C2.18648437 24.75324219 0.99796875 24.81898437 -0.2265625 24.88671875 C-1.14179688 24.92410156 -2.05703125 24.96148437 -3 25 C-2.62746094 25.51949219 -2.25492188 26.03898437 -1.87109375 26.57421875 C2.04116638 32.34133791 2.04116638 32.34133791 1.8125 36 C1 38 1 38 -0.6875 38.8125 C-3 39 -3 39 -5.5 36.875 C-8 34 -8 34 -10 31.1875 C-10.99 30.1046875 -10.99 30.1046875 -12 29 C-12.825 29 -13.65 29 -14.5 29 C-17 29 -17 29 -19.375 26.8125 C-21 24 -21 24 -21.0625 21.4375 C-20 19 -20 19 -17.6953125 17.328125 C-14.29352414 14.38976868 -12.76009579 11.30260366 -10.8125 7.3125 C-6.16021268 -2.05340423 -6.16021268 -2.05340423 0 0 Z M-4 2 C-5.27108062 3.0719919 -5.27108062 3.0719919 -5.375 5.5625 C-4.86415229 10.24527071 -2.68591506 13.22053381 0 17 C0.99 16.01 1.98 15.02 3 14 C2.20882096 12.00016466 2.20882096 12.00016466 1 10 C0.01 9.67 -0.98 9.34 -2 9 C-0.35 8.67 1.3 8.34 3 8 C2.27731765 4.7014861 2.27731765 4.7014861 -1.0625 3.3125 C-2.031875 2.879375 -3.00125 2.44625 -4 2 Z M-9 10 C-10.3079635 12.15429283 -11.05130331 13.45276464 -10.8125 16 C-9.7620561 18.58570807 -9.10137222 20.10198638 -7 22 C-4.24606963 22.34832321 -1.79393891 22.18320911 1 22 C0.59007812 21.46890625 0.18015625 20.9378125 -0.2421875 20.390625 C-0.78101563 19.68421875 -1.31984375 18.9778125 -1.875 18.25 C-2.40867187 17.55390625 -2.94234375 16.8578125 -3.4921875 16.140625 C-4.89238914 14.15277397 -5.97855265 12.20156614 -7 10 C-7.66 10 -8.32 10 -9 10 Z M6 12 C4.68 14.31 3.36 16.62 2 19 C4.71549154 21.30671915 4.71549154 21.30671915 7.1875 20.625 C7.785625 20.41875 8.38375 20.2125 9 20 C8.55296014 15.52116304 8.55296014 15.52116304 6 12 Z M-14 18 C-15.32 19.32 -16.64 20.64 -18 22 C-17.34 23.32 -16.68 24.64 -16 26 C-13.52733235 25.65555119 -13.52733235 25.65555119 -11 25 C-10.67 24.34 -10.34 23.68 -10 23 C-11.32 21.35 -12.64 19.7 -14 18 Z M-9 26 C-7.35 28.97 -5.7 31.94 -4 35 C-3.01 35 -2.02 35 -1 35 C-2.65 32.03 -4.3 29.06 -6 26 C-6.99 26 -7.98 26 -9 26 Z " fill="#17191D" transform="translate(23,8)"/>
+                  <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.65117186 5.04648443 -0.34826069 5.95502599 -4 8 C-4.99 7.67 -5.98 7.34 -7 7 C-5.65117186 2.95351557 -3.65173931 2.04497401 0 0 Z " fill="#16181C" transform="translate(41,7)"/>
+                  <path d="M0 0 C3.3 0.66 6.6 1.32 10 2 C9.67 2.99 9.34 3.98 9 5 C5.7 4.34 2.4 3.68 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#16171C" transform="translate(36,17)"/>
+                  <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C1.67 3.64 1.34 6.28 1 9 C0.01 9 -0.98 9 -2 9 C-1.125 1.125 -1.125 1.125 0 0 Z " fill="#16181D" transform="translate(32,1)"/>
+                </svg>                         
+              </div>
+              <h3 class="title">B2B training</h3>
+              <p class="info">Utilize a user-friendly platform to manage and scale your B2B training. With Creative LMS, you can enroll, simultaneously train several businesses, manage courses, and conduct instructor-led training. For both small and large enterprises, our LMS is an effective option...</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-lms-different">
+              <div class="different-img">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                  <path d="M0 0 C5.6357215 3.75293561 9.85106502 8.42115617 11.53125 15.1171875 C12.16748165 19.06471567 12.26777285 20.59834073 10 24 C6.9609375 24.51171875 6.9609375 24.51171875 3.375 24.6875 C2.18648437 24.75324219 0.99796875 24.81898437 -0.2265625 24.88671875 C-1.14179688 24.92410156 -2.05703125 24.96148437 -3 25 C-2.62746094 25.51949219 -2.25492188 26.03898437 -1.87109375 26.57421875 C2.04116638 32.34133791 2.04116638 32.34133791 1.8125 36 C1 38 1 38 -0.6875 38.8125 C-3 39 -3 39 -5.5 36.875 C-8 34 -8 34 -10 31.1875 C-10.99 30.1046875 -10.99 30.1046875 -12 29 C-12.825 29 -13.65 29 -14.5 29 C-17 29 -17 29 -19.375 26.8125 C-21 24 -21 24 -21.0625 21.4375 C-20 19 -20 19 -17.6953125 17.328125 C-14.29352414 14.38976868 -12.76009579 11.30260366 -10.8125 7.3125 C-6.16021268 -2.05340423 -6.16021268 -2.05340423 0 0 Z M-4 2 C-5.27108062 3.0719919 -5.27108062 3.0719919 -5.375 5.5625 C-4.86415229 10.24527071 -2.68591506 13.22053381 0 17 C0.99 16.01 1.98 15.02 3 14 C2.20882096 12.00016466 2.20882096 12.00016466 1 10 C0.01 9.67 -0.98 9.34 -2 9 C-0.35 8.67 1.3 8.34 3 8 C2.27731765 4.7014861 2.27731765 4.7014861 -1.0625 3.3125 C-2.031875 2.879375 -3.00125 2.44625 -4 2 Z M-9 10 C-10.3079635 12.15429283 -11.05130331 13.45276464 -10.8125 16 C-9.7620561 18.58570807 -9.10137222 20.10198638 -7 22 C-4.24606963 22.34832321 -1.79393891 22.18320911 1 22 C0.59007812 21.46890625 0.18015625 20.9378125 -0.2421875 20.390625 C-0.78101563 19.68421875 -1.31984375 18.9778125 -1.875 18.25 C-2.40867187 17.55390625 -2.94234375 16.8578125 -3.4921875 16.140625 C-4.89238914 14.15277397 -5.97855265 12.20156614 -7 10 C-7.66 10 -8.32 10 -9 10 Z M6 12 C4.68 14.31 3.36 16.62 2 19 C4.71549154 21.30671915 4.71549154 21.30671915 7.1875 20.625 C7.785625 20.41875 8.38375 20.2125 9 20 C8.55296014 15.52116304 8.55296014 15.52116304 6 12 Z M-14 18 C-15.32 19.32 -16.64 20.64 -18 22 C-17.34 23.32 -16.68 24.64 -16 26 C-13.52733235 25.65555119 -13.52733235 25.65555119 -11 25 C-10.67 24.34 -10.34 23.68 -10 23 C-11.32 21.35 -12.64 19.7 -14 18 Z M-9 26 C-7.35 28.97 -5.7 31.94 -4 35 C-3.01 35 -2.02 35 -1 35 C-2.65 32.03 -4.3 29.06 -6 26 C-6.99 26 -7.98 26 -9 26 Z " fill="#17191D" transform="translate(23,8)"/>
+                  <path d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.65117186 5.04648443 -0.34826069 5.95502599 -4 8 C-4.99 7.67 -5.98 7.34 -7 7 C-5.65117186 2.95351557 -3.65173931 2.04497401 0 0 Z " fill="#16181C" transform="translate(41,7)"/>
+                  <path d="M0 0 C3.3 0.66 6.6 1.32 10 2 C9.67 2.99 9.34 3.98 9 5 C5.7 4.34 2.4 3.68 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z " fill="#16171C" transform="translate(36,17)"/>
+                  <path d="M0 0 C0.66 0.33 1.32 0.66 2 1 C1.67 3.64 1.34 6.28 1 9 C0.01 9 -0.98 9 -2 9 C-1.125 1.125 -1.125 1.125 0 0 Z " fill="#16181D" transform="translate(32,1)"/>
+                </svg>                         
+              </div>
+              <h3 class="title">Membership Training Initiatives</h3>
+              <p class="info">Design and offer training programs using our platform that will improve your members' abilities, knowledge, and experiences.  Your membership programs will gain significantly from dedicated training initiatives that utilize Creative LMS...</p>
             </div>
           </div>
           <!-- Button  -->
@@ -202,8 +272,8 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/lms/problem-solver-1.png'" alt="">
               </div>
               <div class="problem-solver-details">
-                <h4 class="title">Learn Interactively</h4>
-                <p class="info">Our approach includes interactive elements, real-world scenarios, and hands-on experiences that resonate with your trainees. We believe that effective training goes beyond imparting knowledge—it's about making learning meaningful. This step ensures that the training doesn't just tick boxes but truly adds value to your organization.</p>
+                <h4 class="title">Create Training Programs</h4>
+                <p class="info">In this initial phase, we collaborate closely with your organization to craft tailored industrial training programs. We identify your specific goals, assess your workforce's needs, and brainstorm innovative solutions. Our experts work hand in hand with your team to create a training blueprint that aligns with your objectives and industry requirements.</p>
               </div>
             </div>
           </div>
@@ -214,8 +284,8 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/lms/problem-solver-2.svg'" alt="">
               </div>
               <div class="problem-solver-details">
-                <h4 class="title">Create Training Programs</h4>
-                <p class="info">Our approach includes interactive elements, real-world scenarios, and hands-on experiences that resonate with your trainees. We believe that effective training goes beyond imparting knowledge—it's about making learning meaningful. This step ensures that the training doesn't just tick boxes but truly adds value to your organization.</p>
+                <h4 class="title">Get Easy Access to Materials</h4>
+                <p class="info">Once the training plan is in place, we seamlessly transition to the delivery phase. Our state-of-the-art Learning Management System (LMS) ensures that your employees, whether they are from business organizations, companies, or government agencies, have access to the training content when and where they need it. Our delivery methods are designed to be engaging, informative, and flexible, ensuring that your workforce can easily absorb and apply the knowledge.</p>
               </div>
             </div>
           </div>
@@ -226,7 +296,7 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/lms/problem-solver-3.svg'" alt="">
               </div>
               <div class="problem-solver-details">
-                <h4 class="title">Monitor Your Progress</h4>
+                <h4 class="title">MLearn Interactively</h4>
                 <p class="info">Our approach includes interactive elements, real-world scenarios, and hands-on experiences that resonate with your trainees. We believe that effective training goes beyond imparting knowledge—it's about making learning meaningful. This step ensures that the training doesn't just tick boxes but truly adds value to your organization.</p>
               </div>
             </div>
@@ -238,8 +308,8 @@ const props = defineProps({
                 <img :src=" $page.props.base.url + '/public/assets/img/lms/problem-solver-4.png'" alt="">
               </div>
               <div class="problem-solver-details">
-                <h4 class="title">Get Easy Access to Materials</h4>
-                <p class="info">Our approach includes interactive elements, real-world scenarios, and hands-on experiences that resonate with your trainees. We believe that effective training goes beyond imparting knowledge—it's about making learning meaningful. This step ensures that the training doesn't just tick boxes but truly adds value to your organization.</p>
+                <h4 class="title">Monitor Your Progress</h4>
+                <p class="info">Our LMS provides robust tracking and assessment tools that empower you to monitor the progress of your workforce in real time. You'll have access to comprehensive data, allowing you to identify strengths, address weaknesses, and make informed decisions. Whether you're an entrepreneur, consultant, or part of a large corporation, our tracking system ensures that training outcomes align with your expectations.</p>
               </div>
             </div>
           </div>
@@ -251,7 +321,7 @@ const props = defineProps({
               </div>
               <div class="problem-solver-details">
                 <h4 class="title">See Your Performance Improvement</h4>
-                <p class="info">Our approach includes interactive elements, real-world scenarios, and hands-on experiences that resonate with your trainees. We believe that effective training goes beyond imparting knowledge—it's about making learning meaningful. This step ensures that the training doesn't just tick boxes but truly adds value to your organization.</p>
+                <p class="info">Beyond the initial training, our commitment to your organization extends to ongoing performance improvement. We work collaboratively with your team to analyze the training's impact and make necessary adjustments. Whether you're in the business sector, government, or a consultancy firm, we aim to continually enhance the effectiveness of your workforce, ensuring long-term success.</p>
               </div>
             </div>
           </div>
@@ -274,72 +344,120 @@ const props = defineProps({
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      What is membership management software?
+                      What industries can benefit from Creative LMS for Internal Training?
                     </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Creative LMS is versatile and suitable for a wide range of industries, including regulatory compliance, client services, corporate networks, marketing, and many more. It caters to organizations seeking tailored training solutions.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      What are the benefit of a  membership site?
+                      How does Creative LMS assist in crafting customized training programs?
                     </button>
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>In the planning and development phase, we collaborate closely with your organization to identify goals, assess workforce needs, and create a tailored training blueprint aligned with your industry requirements.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      What is membership management software?
+                      What sets Creative LMS apart in terms of easy execution of training programs?
                     </button>
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Our Learning Management System ensures convenient access to training content for employees from various organizations. We prioritize engagement, flexibility, and knowledge application, making learning accessible and effective.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      What is membership management software?
+                      How does Creative LMS make training interactive and meaningful?
                     </button>
                   </h2>
                   <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>We believe in hands-on learning, incorporating interactive elements and real-world scenarios to ensure that training goes beyond knowledge transfer, adding genuine value to your organization's workforce.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingFive">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      What is membership management software?
+                      Can organizations monitor the progress of their employees' training?
                     </button>
                   </h2>
                   <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Yes, Creative LMS provides robust tracking and assessment tools for real-time progress monitoring. You'll have access to comprehensive data to identify strengths, address weaknesses, and make informed decisions.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingSix">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                      What is membership management software?
+                      What happens after the initial training?
                     </button>
                   </h2>
                   <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Creative LMS is committed to ongoing performance improvement. We collaborate with your organization to analyze training impact and make necessary adjustments, ensuring long-term success and continuous improvement.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      Is Creative LMS suitable for large corporations, government agencies, and consultancy firms?
+                    </button>
+                  </h2>
+                  <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Absolutely, Creative LMS caters to organizations of all sizes and industries, offering customized internal training solutions to meet specific needs and objectives.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      How can I get started with Creative LMS for Internal Training?
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Getting started is simple. With just a few easy steps, you can register, set up your company, customize your training portal, upload training materials, create trainee accounts, and begin the training procedure.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      Does Creative LMS offer support and documentation for users?
+                    </button>
+                  </h2>
+                  <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Yes, we provide comprehensive support and documentation to assist users in maximizing the benefits of Creative LMS for internal training.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                      Can Creative LMS be integrated with existing systems or software used by our organization?
+                    </button>
+                  </h2>
+                  <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Yes, our platform offers flexibility for integration with existing systems to ensure a seamless training experience for your workforce.</p>
                     </div>
                   </div>
                 </div>

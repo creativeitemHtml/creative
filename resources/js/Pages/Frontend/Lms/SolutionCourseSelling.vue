@@ -49,7 +49,7 @@ const props = defineProps({
                   <div class="through-white-card">
                     <div class="through-white-details">
                       <h4 class="title">E-Learning Courses</h4>
-                      <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize chances for ......</p>
+                      <p class="info">Explore and create online courses based on your skills and knowledge according to your niche and share it to your learners all around the world......</p>
                     </div>
                     <div class="through-white-img">
                       <img :src=" $page.props.base.url + '/public/assets/img/lms/through-learning-1.webp'" alt="">
@@ -59,7 +59,7 @@ const props = defineProps({
                   <div class="throught-black-card-1">
                     <div class="through-black-details-1">
                       <h4 class="title">Webinars and Training Session</h4>
-                      <p class="info">Host live webinars and training sessions for your students to provide more insightful knowledge and demonstrate your skills in real-time.</p>
+                      <p class="info"> Host live webinars and training sessions for your students to provide more insightful knowledge and demonstrate your skills in real-time.</p>
                     </div>
                     <div class="through-black-img-1">
                       <img :src=" $page.props.base.url + '/public/assets/img/lms/through-learning-2.webp'" alt="">
@@ -97,7 +97,7 @@ const props = defineProps({
                     </div>
                     <div class="through-black-details-1 through-black-details-2">
                       <h4 class="title">Digital Content</h4>
-                      <p class="info">Improve staff training to help workers advance more quickly. You can create effective learning programs that emphasize chances for ......</p>
+                      <p class="info">Access an abundance of online tools, including manuals you can download and multimedia content, that will help you advance your knowledge and abilities......</p>
                     </div>
                   </div>
                   <!-- Single Card -->
@@ -147,7 +147,7 @@ const props = defineProps({
           <div class="col-md-12">
             <div class="section-title-course-selling">
               <h2 class="title-42">Unlock Your Expertise with <span>Creative LMS</span></h2>
-              <p class="info">Discover how Creative LMS empowers skilled individuals from various fields to effortlessly transform their knowledge into profitable online courses, benefiting both learners and educators.</p>
+              <p class="info">Discover why Creative LMS is the first choice for every skilled individual to monetize his/her unique knowledge and expertise into profitable online courses and empower both the educators and learners.</p>
             </div>
           </div>
         </div>
@@ -272,16 +272,16 @@ const props = defineProps({
                   <img :src=" $page.props.base.url + '/public/assets/img/lms/one-place-1.svg'" alt="">
                 </div>
                 <h4 class="title">Curriculum Creation</h4>
-                <p class="info">Create engaging and helpful course material with our curriculum development tools. To ensure thorough and worthwhile learning experiences, design courses that are individually customized.</p>
+                <p class="info">Create engaging and helpful course material with our curriculum development tools. To ensure thorough and worthwhile learning experiences, design courses that are individually customized to the needs of your students.</p>
               </div>
               <div class="one-place-title-wrap one-place-title-right-wrap">
                 <div class="one-place-title">
                   <h4 class="title">Promotion and Outreach</h4>
-                  <p class="info">Create engaging and helpful course material with our curriculum development tools to ensure thorough.</p>
+                  <p class="info">Increase your audience and your reach with ease. Your web presence will be  enhanced, and your course marketing will be assisted by our outreach and promotion tools.</p>
                 </div>
                 <div class="one-place-title">
                   <h4 class="title">Automated Email Campaigns</h4>
-                  <p class="info">Create engaging and helpful course material with our curriculum development tools to ensure thorough.</p>
+                  <p class="info">Automated email campaigns can make communicating with students simpler. Keep them informed, involved, and motivated as they advance through their learning process.</p>
                 </div>
               </div>
             </div>
@@ -289,11 +289,11 @@ const props = defineProps({
               <div class="one-place-title-wrap one-place-title-left-wrap">
                 <div class="one-place-title">
                   <h4 class="title">Page Customization</h4>
-                  <p class="info">Create engaging and helpful course material with our curriculum development tools to ensure thorough.</p>
+                  <p class="info">With simple page modification, create a distinctive and branded learning environment. Make a strong impact on your students by customizing the course pages to match your personality.</p>
                 </div>
                 <div class="one-place-title">
                   <h4 class="title">Real-Time Instruction, Interactive Webinars, and Live Streaming</h4>
-                  <p class="info">Create engaging and helpful course material with our curriculum development tools to ensure thorough.</p>
+                  <p class="info">For an interactive and engaging learning experience, provide real-time instruction, host live streaming sessions, and include your students in interactive webinars.</p>
                 </div>
               </div>
               <div class="one-place-icon-card one-place-right-card">
@@ -301,7 +301,7 @@ const props = defineProps({
                   <img :src=" $page.props.base.url + '/public/assets/img/lms/one-place-2.svg'" alt="">
                 </div>
                 <h4 class="title">Online Community</h4>
-                <p class="info">Create engaging and helpful course material with our curriculum development tools. To ensure thorough and worthwhile learning experiences, design courses that are individually customized.</p>
+                <p class="info">With the help of an online community, promote a sense of community and cooperation. Create a community directly on your website where visitors can follow, ask questions, participate in debates, like, and share information.</p>
               </div>
             </div>
           </div>
@@ -324,72 +324,120 @@ const props = defineProps({
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      What is membership management software?
+                      Why should I sell online courses on Creative LMS?
                     </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Selling your online courses through Creative LMS provides a user-friendly, feature-rich platform built to increase your reach. A large audience, multiple price options, and the opportunity to modify your courses to fit your brand and teaching style all work to your advantage.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      What are the benefit of a  membership site?
+                      How do I create and sell an online course?
                     </button>
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Online course creation and monetization are easier than you might imagine. All you need to get started teaching is some knowledge or a passion to share, a desire to do so, some basic technology (like a computer and internet), and a platform like Creative LMSi that makes it simple to create courses and sell them.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      What is membership management software?
+                      What type of online courses can I sell?
                     </button>
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>You can sell a variety of online courses using Creative LMS, including those that are related to academic disciplines, professional skills, hobbies, and more. You have the freedom to select the course specialization that best suits you.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      What is membership management software?
+                      What features are available on a free plan?
                     </button>
                   </h2>
                   <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>You can sign up for up to 20 students on our free plan to get started. By doing this, you can use the platform's features for free at first so you can learn more about its potential.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingFive">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      What is membership management software?
+                      What if this is the first time I've sold something online?
                     </button>
                   </h2>
                   <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Both inexperienced and seasoned online course developers can use Creative LMS. Even if you're new to online selling, we make the process simple and accessible by providing tools, instructions, and customer assistance.</p>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingSix">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                      What is membership management software?
+                      Does Creative LMS Integrate with other tools?
                     </button>
                   </h2>
                   <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                      <p>Yes, Creative LMS offers choices for tool and platform integration. To improve your experience selling courses and expedite your workflow, you can link with well-known payment gateways, marketing tools, and more.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      What Languages and Currencies does Creative LMS support?
+                    </button>
+                  </h2>
+                  <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Creative LMS is designed to be inclusive and supports multiple languages and currencies. Our platform makes it simpler for you to market your courses abroad because it enables you to access a global audience and serve a variety of learners.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      Is creating online courses profitable?
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Yes, making online classes can be quite successful. Offering worthwhile and interesting courses that are tailored to particular target audiences allows many course producers to make a sizable living.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      Can I cancel my Creative LMS subscription anytime?
+                    </button>
+                  </h2>
+                  <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Yes, you are free to cancel your Creative LMS subscription at any time. You can choose the subscription plan that is suitable for you from our selection of monthly and yearly options.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                      Is the Creative LMS software secure?
+                    </button>
+                  </h2>
+                  <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Yes, Creative LMS places a high priority on security. For the protection of your data and to provide a secure learning environment for your organization, we use advanced security measures and encryption techniques.</p>
                     </div>
                   </div>
                 </div>

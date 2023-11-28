@@ -22,19 +22,19 @@ onMounted(() => {
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
 
-  console.log( getCookie('userhash') )
-  
+  // console.log( getCookie('userhash') )
+
 });
 
-function getCookie(name){
-    var pattern = RegExp(name + "=.[^;]*")
-    var matched = document.cookie.match(pattern)
-    if(matched){
-        var cookie = matched[0].split('=')
-        return cookie[1]
-    }
-    return false
-}
+// function getCookie(name){
+//     var pattern = RegExp(name + "=.[^;]*")
+//     var matched = document.cookie.match(pattern)
+//     if(matched){
+//         var cookie = matched[0].split('=')
+//         return cookie[1]
+//     }
+//     return false
+// }
 
 
 </script>

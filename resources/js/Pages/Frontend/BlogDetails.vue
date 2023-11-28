@@ -52,12 +52,12 @@ onMounted(() => {
         <div class="blog-snf-title-wrap">
           <!-- Back -->
           <div class="blog-snf-back">
-            <a href="#">
+            <Link :href="$page.props.urlPrev">
               <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.31659 7.71112C5.56477 7.46176 5.56381 7.05845 5.31446 6.81027L3.07981 4.58639L16.57 4.58639C16.9218 4.58639 17.207 4.3012 17.207 3.94939C17.207 3.59757 16.9218 3.31239 16.57 3.31239L3.07978 3.31239L5.31449 1.0885C5.56384 0.840326 5.5648 0.43701 5.31662 0.187657C5.06842 -0.0617274 4.6651 -0.0626508 4.41575 0.185492L1.08731 3.49788C1.08751 3.49769 1.08709 3.49807 1.08731 3.49788C0.8386 3.74606 0.837231 4.15128 1.08671 4.40029C1.08652 4.40009 1.08693 4.40048 1.08671 4.40029L4.41572 7.71328C4.66504 7.96139 5.06839 7.96053 5.31659 7.71112Z" fill="#212534"/>
               </svg>                
               Back
-            </a>
+            </Link>
           </div>
           <!-- Title -->
           <div class="row">
@@ -170,7 +170,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-8" v-for="related in related_blogs" :key="related.id">
-            <a href="#" class="featured-single-link">
+            <Link :href="route('blog_details', { slug: related.slug})" class="featured-single-link">
               <div class="featured-single">
                 <div class="featured-single-banner">
                   <img :src=" $page.props.base.url + '/public/uploads/blog/thumbnail_image/' + related.thumbnail" alt="banner">
@@ -184,7 +184,7 @@ onMounted(() => {
                   <p class="blog-p">{{ related.excerpt }}....</p>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
 
           <div class="col-md-12">
