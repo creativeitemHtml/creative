@@ -82,7 +82,7 @@ onMounted(() => {
                 </ul>
               </div>
               <Link v-if="$page.props.auth.user" :href="route('purchase_subscription', { package_id: props.package.id })" class="pricing-n-btn text-18">Upgrade Plan</Link>
-              <Link v-else :href="route('login')" class="pricing-n-btn text-18">Upgrade L</Link>
+              <Link v-else :href="route('login')" class="pricing-n-btn text-18">Upgrade Plan</Link>
             </div>
           </div>
         </div>
