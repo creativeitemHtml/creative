@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3'
 import { ref, onMounted, onUnmounted, onBeforeUnmount } from 'vue';
 
 const currentTime = ref(new Date());
-const targetTime = new Date('2023-11-28T23:59:59');
+const targetTime = new Date('2023-12-03T23:59:59');
 const timeDifference = ref({
   hours: 0,
   minutes: 0,
