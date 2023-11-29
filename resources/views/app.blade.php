@@ -6,14 +6,10 @@
         
         @include('seo')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{ asset('public/assets/img/favicon.png') }}" type="image/x-icon" />
         <!-- Bootstrap CSS -->
-        <link href="{{ asset('public/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}" />
         <!-- Swiper -->
         <link rel="stylesheet" href="{{ asset('public/assets/vendors/swiper/swiper-bundle.min.css') }}" />
         <!-- Nice select -->
@@ -36,7 +32,6 @@
 
         <link href="{{ asset('public/assets/css/element-header.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/element-details.css') }}" rel="stylesheet" />
-        <link href="{{ asset('public/assets/css/element-home.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/element-user.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/promotion.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/css/element-pricing.css') }}" rel="stylesheet" />

@@ -1,4 +1,4 @@
-import './bootstrap';
+// import './bootstrap';
 // import '../css/app.css';
 
 import { createApp, h } from 'vue';
@@ -6,6 +6,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
+import '../../public/assets/css/bootstrap.min.css';
 import '../../public/assets/css/global-style.css';
 import '../../public/assets/css/home.css';
 import '../../public/assets/css/web-application.css';
@@ -17,7 +18,6 @@ import '../../public/assets/css/privacy.css';
 
 import '../../public/assets/css/element-header.css';
 import '../../public/assets/css/element-details.css';
-import '../../public/assets/css/element-home.css';
 import '../../public/assets/css/element-user.css';
 import '../../public/assets/css/promotion.css';
 import '../../public/assets/css/element-pricing.css';

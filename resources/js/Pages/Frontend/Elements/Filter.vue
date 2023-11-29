@@ -1,6 +1,7 @@
 <script setup>
 import Header from '../../../Components/Global/Header.vue';
 import ElementHeader from '../../../Components/Global/ElementHeader.vue';
+import '../../../../../public/assets/css/element-home.css';
 import Footer from '../../../Components/Global/Footer.vue'
 import { Link, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
