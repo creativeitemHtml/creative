@@ -2,28 +2,48 @@
 import Header from '../../../Components/Global/Header.vue'
 import Footer from '../../../Components/Global/Footer.vue'
 import LmsHeader from '../../../Components/Global/LmsHeader.vue'
-import {Link, useForm, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
-
-const page = usePage()
+import {Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    company_lms: '',
+    name: '',
     email: '',
     password: '',
-    company_lms_lower: '',// Add captcha_token to the form
 });
 
-const domain = ref('https://creativeitem.com/');
 
-const handleCompanyInputChange = () => {
-    form.company_lms_lower = form.company_lms.replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
-};
+// const submit = () => {
+//     form.post(route('lms.register_company_lms'), {
+//         onFinish: () => form.reset('password'),
+//     });
+// };
 
-const submit = () => {
-    form.post(route('lms.register_company_lms'), {
-        onFinish: () => form.reset('password'),
+const submit = async () => {
+  try {
+    const response = await fetch(route('lms.register_company_lms'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form.value),
     });
+
+    if (!response.ok) {
+      throw new Error('Form submission failed');
+    }
+
+    const data = await response.json();
+    // Assuming the response contains authentication information
+    const token = data.token;
+
+    // You may want to update authentication state in your application
+    // $store.commit('auth/setUser', user);
+
+    // Remove the form and display the onboarding link
+    $emit('successful-submission', user);
+  } catch (error) {
+    console.error('Form submission failed:', error);
+    // Handle errors if necessary
+  }
 };
 
 const setCookie = () => {
@@ -77,19 +97,19 @@ const setCookie = () => {
               <!-- <button type="button" @click="test">Test cookie</button> -->
               <!-- Buttons -->
               <div v-if="$page.props.auth.user" class="buttons d-flex align-items-center">
-                <a href="https://demo.creativeitem.com/website/cookie" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
+                <a :href="`https://lms.creativeitem.com?user_id=${$page.props.auth.auth_token}`" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
               </div>
             </div>
           </div>
           <!-- Submit project -->
-          <div v-if="!($page.props.auth.user)" class="col-lg-5">
+          <div class="hire-us-content col-lg-5">
             <div class="submit-project">
               <h4 class="title">Get Started With LMS</h4>
               <!-- Form -->
-              <form class="project-form" @submit.prevent="submit">
+              <form v-if="!($page.props.auth.user)" class="project-form" @submit.prevent="submit">
                 <div class="project-form-wrap">
                   <div class="pForm-wrap">
-                    <input type="text" class="form-control eForm-control" id="company_lms" name="company_lms" placeholder="Your Company Name" aria-label="Your Company Name" v-model="form.company_lms" @input="handleCompanyInputChange" />
+                    <input type="text" class="form-control eForm-control" id="name" name="name" placeholder="Your Name" aria-label="Your Name" v-model="form.name" />
                   </div>
                   <div class="pForm-wrap">
                     <input type="email" class="form-control  eForm-control" id="email" placeholder="username@gmail.com" v-model="form.email">
@@ -97,16 +117,19 @@ const setCookie = () => {
                   <div class="pForm-wrap">
                     <input type="password" class="form-control eForm-control" id="password" placeholder="Enter password" v-model="form.password">
                   </div>
-                  <div class="pForm-wrap">
-                    Domain:
-                    {{ domain + form.company_lms_lower }}
-                  </div>
                 </div>
                 <button type="submit" class="project-submit">
                   Submit
                   <img :src=" $page.props.base.url + '/public/assets/img/icon/right-white-arrow.svg'" alt="">
                 </button>
               </form>
+
+              <div v-else class="hire-us-content">
+                <p class="info">Turn Your Vision Into Reality With Our Custom Projects</p>
+                <div class="buttons align-items-center">
+                  <a :href="`https://lms.creativeitem.com?user_id=${$page.props.auth.auth_token}`" target="_blank" class="bookMeeting" @click="setCookie">Onbording Stage</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\{User, Setting, ElementCategory};
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Auth\Events\Registered;
+use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmail;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class LmsController extends Controller
 {
@@ -66,30 +71,57 @@ class LmsController extends Controller
     {
         if(!empty($request->all()))
         {
-            // if (Auth::user())
-            // {
-            //     $user = User::where('id', $auth()->user()->id)->update([
-            //         'company_lms' => $request->company_lms_lower,
-            //     ]);
+            $username = $request->name;
 
-            //     return redirect()->route('lms.demo');
+            $user = User::create([
+                'name' => $username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => '6',
+            ]);
 
-            // } else {
-
-                $username = strtok($request->email, '@');
-
-                $user = User::create([
-                    'name' => $username,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'role_id' => '6',
-                    'company_lms' => $request->company_lms_lower,
+            if ($user) {
+                $verify2 =  DB::table('password_resets')->where([
+                    ['email', $user->email]
                 ]);
+        
+                if ($verify2->exists()) {
+                    $verify2->delete();
+                }
+                $pin = rand(100000, 999999);
+                DB::table('password_resets')
+                    ->insert(
+                        [
+                            'email' => $user->email, 
+                            'token' => $pin
+                        ]
+                    );
 
-                relogin_user($user->id);
+                Mail::to($user->email)->send(new VerifyEmail($pin, $user));
+        
+                $token = $user->createToken('myapptoken')->plainTextToken;
 
-                return redirect()->route('lms.demo');
-            // }
+                session()->flash('message', 'Registration done! Please verify your email address.');
+
+                event(new Registered($user));
+
+                // return view('custom_auth.verify_email', ['email' => $user->email]);
+                
+                // Automatically log in the user
+                Auth::login($user);
+
+                if(Auth::check()) {
+                    auth()->user()->tokens->each(function ($token, $key) {
+                        $token->delete();
+                    });
+                    $token = auth()->user()->createToken('auth-token')->plainTextToken;
+                } else {
+                    $token = '';
+                }
+                return new JsonResponse(['status' => 'success', 'token' => $token], 200);
+            }
+
+            return redirect()->route('lms.demo');
         }
     }
 }

@@ -2,15 +2,25 @@
 import Header from '../../../Components/Global/Header.vue';
 import ElementHeader from '../../../Components/Global/ElementHeader.vue';
 import Footer from '../../../Components/Global/Footer.vue'
-import { Link } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 
 // Define props using the defineProps() function
 const props = defineProps({
-    packages: Array,
-    element_categories: Array,
+    package: Array,
     seo: Object,
 });
+
+const user = usePage().props.auth.user;
+
+const form = useForm({
+    name: user ? user.name : '',
+    email: user ? user.email : '',
+});
+
+const submit = () => {
+    form.post(route('purchase_subscription', { package_id: props.package.id }));
+};
 
 onMounted(() => {
   $(document).prop('title', props.seo.meta_title);
@@ -27,7 +37,7 @@ onMounted(() => {
 
 <template>
     <Header/>
-    <ElementHeader :elementCategories="element_categories"/>
+    <ElementHeader/>
 
     <!-- Start Breadcrumb -->
     <section class="breadcrumb-section pricing-breadcrumb">
@@ -47,32 +57,32 @@ onMounted(() => {
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="pricing-n-title">
-              <h1 class="text-52">Our Pricing is simple with no hidden fees</h1>
+              <h1 class="text-52">Our Special Pricing</h1>
               <p class="text-22">We provide you with clarity in pricing with our transparent cost approach</p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6" v-for="pack in packages" :key="pack.id">
-            <div class="single-n-pricing" :class="{ active: pack.name === 'Pro' }">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-n-pricing active">
               <div class="pricing-n-popular d-flex align-items-center justify-content-between">
-                <h4 class="text-22">{{ pack.name }}</h4>
-                <a href="#" class="text-15" v-if="pack.name === 'Basic'">Popular</a>
+                <h4 class="text-22">{{ props.package.name }}</h4>
               </div>
               <div class="pricing-n-price d-flex">
-                <h2 class="pricing-price-l d-flex"><span>$</span><span>{{ pack.discounted_price }}</span></h2>
+                <h2 class="pricing-price-l d-flex"><span>$</span><span>{{ props.package.discounted_price }}</span></h2>
                 <h3 class="pricing-price-r d-flex">
-                  <span v-if="pack.discounted_price != 0">${{ pack.price }}</span>
-                  <span>/ {{ pack.int_val }}</span>
+                  <span v-if="props.package.discounted_price != 0">${{ props.package.price }}</span>
+                  <span>/ {{ props.package.int_val }}</span>
                 </h3>
               </div>
-              <p class="text-15 pricing-n-batch">{{ pack.interval_period_text }}</p>
+              <p class="text-15 pricing-n-batch">{{ props.package.interval_period_text }}</p>
               <div class="pricing-n-list">
                 <ul>
-                    <li v-for="packages_feature in pack.packages_features" :key="packages_feature.id">
-                        {{ packages_feature }}
+                    <li v-for="package_feature in props.package.package_features" :key="package_feature.id">
+                        {{ package_feature }}
                     </li>
                 </ul>
               </div>
-              <Link :href="route('element_checkout', { id: pack.id })" class="pricing-n-btn text-18">Upgrade Plan</Link>
+              <Link v-if="$page.props.auth.user" :href="route('purchase_subscription', { package_id: props.package.id })" class="pricing-n-btn text-18">Upgrade Plan</Link>
+              <Link v-else :href="route('login')" class="pricing-n-btn text-18">Upgrade L</Link>
             </div>
           </div>
         </div>
@@ -161,5 +171,5 @@ onMounted(() => {
     </section>
     <!-- End Ask Questions -->
 
-    <Footer :elementCategories="element_categories"/>
+    <Footer"/>
 </template>

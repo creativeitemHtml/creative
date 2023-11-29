@@ -97,8 +97,6 @@ class RegisteredUserController extends Controller
 
                 // Redirect the user to the 'customer.projects' route
                 return redirect()->route('customer.subscription_details');
-
-                event(new Registered($user));
                 
             } else {
                 return redirect()->route('rigistration')->with('message', 'Registration failed');

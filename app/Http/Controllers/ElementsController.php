@@ -137,7 +137,52 @@ class ElementsController extends Controller
         ])->withViewData(['seo' => $seo]);
     }
 
+    public function elements_special_pricing($param1 = "") 
+    {
+        $strArray = explode('-',$param1);
+        $lastElement = end($strArray);
 
+        if(is_numeric($lastElement)) {
+            $package = Package::where('id', $lastElement)->where('visibility', 0)->first();
+        }
+
+        $seo = seo();
+
+        $res['id'] = $package->id;
+        $res['name'] = $package->name;
+        $res['price'] = $package->price;
+        $res['discounted_price'] = $package->discounted_price != null ? $package->discounted_price : 0;
+        $res['interval'] = $package->interval;
+        $res['interval_period'] = $package->interval_period;
+
+        $package_features = json_decode($package->feature_list); 
+        $res['package_features'] = $package_features;
+
+
+        if($package->interval == 'monthly'){
+            $res['int_val'] = 'month';
+    
+            if($package->interval_period == 6){
+                $interval_period_text = 'Billed 1/2 yearly';
+            } else if($package->interval_period == 12){
+                $interval_period_text = 'Billed yearly';
+            } else {
+                $interval_period_text = 'Access for'.' '.$package->interval_period.' '.$interval;
+            }
+
+            $res['interval_period_text'] = $interval_period_text;
+        } else {
+            $res['int_val'] = 'one time';
+            $res['interval_period_text'] = 'Lifetime access';
+        }
+
+        $package = $res;
+
+        return Inertia::render('Frontend/Elements/PricingSpecial', [
+            'package' => $package,
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
+    }
 
 
     public function search_element_products(Request $request, $slug = "", $tag = "")

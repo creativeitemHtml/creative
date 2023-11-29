@@ -4,6 +4,7 @@ import ElementHeader from '../../../Components/Global/ElementHeader.vue';
 import Footer from '../../../Components/Global/Footer.vue'
 import { Link, useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
+import { ref } from 'vue';
 
 // Define props using the defineProps() function
 const props = defineProps({
@@ -19,8 +20,25 @@ const form = useForm({
     email: user ? user.email : '',
 });
 
+const selectedPackageId = ref(props.selected_package.id);
+
+const updateSelectedPackage = (pack) => {
+    selectedPackageId.value = pack.id;
+};
+
+const calculateTotalPrice = () => {
+    const selectedPackage = props.packages.find(pack => pack.id === selectedPackageId.value);
+    if (selectedPackage && selectedPackage.interval_period !== null) {
+        return selectedPackage.discounted_price * selectedPackage.interval_period;
+    } else if (selectedPackage) {
+        return selectedPackage.discounted_price;
+    } else {
+        return 0;
+    }
+};
+
 const submit = () => {
-    form.post(route('purchase_subscription', { package_id: props.selected_package.id }));
+    form.post(route('purchase_subscription', { package_id: selectedPackageId.value }));
 };
 
 $(document).ready(function () {
@@ -118,6 +136,7 @@ $(document).ready(function () {
                                                 role="tab"
                                                 aria-controls="v-pills-{{ pack.name }}"
                                                 :aria-selected="pack.id === selected_package.id ? 'true' : 'false'"
+                                                @click="updateSelectedPackage(pack)"
                                             >
                                                 <div class="form-check">
                                                     <div class="col-auto">
@@ -137,7 +156,7 @@ $(document).ready(function () {
                                 <div class="ml-24 mr-25 py-20 d-flex justify-content-between align-items-center flex-wrap g-10">
                                     <h4 class="fz-18-sb-black">Total</h4>
                                     <h4 class="fz-18-sb-black" id="selected-package-price">
-                                        ${{ selected_package.discounted_price * selected_package.interval_period }}
+                                        ${{ calculateTotalPrice() }}
                                     </h4>
                                 </div>
                                 <div class="bd-all bd-r-10 pt-16 pb-20 ml-24 mr-25">

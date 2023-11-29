@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(ElementsController::class)->middleware('cors')->group(function () {
     Route::get('/elements', 'index')->name('elements');
     Route::get('/elements/pricing', 'elements_package_pricing')->name('elements_package_pricing');
+    Route::get('/elements/pricing/special-{id}', 'elements_special_pricing')->name('elements_special_pricing');
     Route::get('/elements/{slug?}', 'search_element_products')->name('search_element_products');
     Route::get('/elements/{slug}/tag/{tag?}', 'search_element_products')->name('search_element_products_by_tag');
     Route::get('/elements/product/{title}', 'element_product_details')->name('element_product_details');
