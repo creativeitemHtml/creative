@@ -171,5 +171,5 @@ onMounted(() => {
     </section>
     <!-- End Ask Questions -->
 
-    <Footer"/>
+    <Footer/>
 </template>
