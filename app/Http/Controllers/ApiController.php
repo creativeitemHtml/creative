@@ -23,6 +23,7 @@ class ApiController extends Controller
             $res[$key]['title'] = $element->title;
             $res[$key]['price_type'] = $element->price_type;
             $res[$key]['price'] = $element->price;
+            $res[$key]['like'] = $element->like;
             $res[$key]['thumbnail'] = element_server_url($element->product_id, $element->product_to_elementCategory->slug).$element->thumbnail;
             
         }

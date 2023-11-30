@@ -51,6 +51,8 @@ $(document).ready(function() {
       }
     }
   });
+
+  $('.menu-search-antry select').niceSelect();
 });
 
 </script>

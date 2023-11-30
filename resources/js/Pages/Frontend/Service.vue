@@ -18,6 +18,9 @@ onMounted(() => {
   $("meta[property='og:title']").attr("content", props.seo.og_title);
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
+
+  $('.service-select select').niceSelect();
+  
 });
 
 </script>

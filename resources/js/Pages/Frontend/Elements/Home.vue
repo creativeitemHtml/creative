@@ -52,6 +52,7 @@ onMounted(() => {
   $("meta[property='og:title']").attr("content", props.seo.og_title);
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
+  
 });
 
 
@@ -99,6 +100,9 @@ const fetchData = async (slug) => {
       const data = await response.json();
       if (data.status === 'success') {
         elements.value = data.data;
+
+        initializeState()
+
       } else {
         console.error('API request failed');
       }
@@ -108,6 +112,7 @@ const fetchData = async (slug) => {
   } catch (error) {
     console.error('Error fetching data:', error);
   }
+
 };
 
 const slugify = (text) => {
@@ -150,6 +155,55 @@ const handleLike = async (element_product) => {
     }
   } catch (error) {
     console.log(error)
+  }
+};
+
+const toggleWishlist = (element_product) => {
+  handleWishlist(element_product)
+};
+
+const handleWishlist = async (element_product) => {
+  const product_id = element_product.id;
+  
+  const url = `${page.props.base.url}/handleWishList/${product_id}`;
+
+  try {
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    if (!data) {
+      window.location.replace("/login");
+    } else {
+      if (data.status === 200) {
+        element_product.iswishlisted = !element_product.iswishlisted;
+        console.log(data.message)
+      } else if (data.status === 403) {
+        console.log(data.message)
+      }
+    }
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+const initializeState = () => {
+  if (page.props.auth.user) {
+    const userId = page.props.auth.user.id;
+    const wishlists = page.props.auth.user.wishlists;
+    
+    elements.value.forEach(element_product => {
+      // console.log(element_product.like.includes(userId))
+      if(element_product.like !== null && element_product.like !== '') {
+        if(element_product.like.includes(userId)) {
+          element_product.isActive = !element_product.isActive;
+        }
+      }
+
+      if(wishlists.includes(element_product.id)) {
+        element_product.iswishlisted = !element_product.iswishlisted;
+      }
+    });
   }
 };
 
@@ -318,7 +372,7 @@ const handleLike = async (element_product) => {
                         </span>
                       </li>
                       <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Bookmark">
-                        <span href="#">
+                        <span :class="{ active: element.iswishlisted }" @click="toggleWishlist(element)" href="#">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 14.7263L6.93652 15.8993C6.48141 16.0726 6.04487 16.0222 5.62692 15.7484C5.20897 15.4745 5 15.1033 5 14.6348V4.34683C5 3.96121 5.13458 3.64033 5.40375 3.3842C5.67292 3.12807 6.01012 3 6.41537 3H13.5846C13.9899 3 14.3271 3.12807 14.5962 3.3842C14.8654 3.64033 15 3.96121 15 4.34683V14.6348C15 15.1033 14.791 15.4745 14.3731 15.7484C13.9551 16.0222 13.5186 16.0726 13.0635 15.8993L10 14.7263ZM10 3.76126H5.8H14.2H10Z" fill="#0A7EFB"/>
                           </svg>

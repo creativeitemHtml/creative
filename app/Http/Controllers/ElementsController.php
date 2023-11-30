@@ -287,6 +287,7 @@ class ElementsController extends Controller
                 $res[$key]['title'] = $element->title;
                 $res[$key]['price_type'] = $element->price_type;
                 $res[$key]['price'] = $element->price;
+                $res[$key]['like'] = $element->like;
                 $res[$key]['thumbnail'] = element_server_url($element->product_id, $element->product_to_elementCategory->slug).$element->thumbnail;
                 
             }
@@ -596,6 +597,52 @@ class ElementsController extends Controller
                 $product_details->save();
 
 	            $response['status'] = 200;
+
+                return $response;
+            }
+        } elseif(Auth::check()) {
+            $response['message'] = 'You are not authorized!';
+	        $response['status'] = 403;
+            return $response;
+        } else {
+            $response['message'] = 'You are not logged in!';
+	        $response['status'] = 403;
+            return $response;;
+        }
+    }
+
+    public function handleWishList($course_id="")
+    {
+        if (Auth::check() && auth()->user()->role_id == 6) {
+            if (isset($course_id)) {
+
+                $wishlists = array();
+
+                if (auth()->user()->wishlists == "") {
+                    array_push($wishlists, $course_id);
+                    $response['message'] = 'Product added to wishlist';
+                } else {
+                    $wishlists = json_decode(auth()->user()->wishlists);
+                    if (in_array($course_id, $wishlists)) {
+                        $container = array();
+                        foreach ($wishlists as $key) {
+                            if ($key != $course_id) {
+                                array_push($container, $key);
+                            }
+                        }
+                        $wishlists = $container;
+                        $response['message'] = 'Product removed from wishlist';
+                    } else {
+                        array_push($wishlists, $course_id);
+                        $response['message'] = 'Product added to wishlist';
+                    }
+                }
+
+                $user = User::find(auth()->user()->id);
+                $user->wishlists = json_encode($wishlists);
+                $user->save();
+
+                $response['status'] = 200;
 
                 return $response;
             }
