@@ -2,7 +2,15 @@
 import Header from '../../../Components/Global/Header.vue'
 import Footer from '../../../Components/Global/Footer.vue'
 import LmsHeader from '../../../Components/Global/LmsHeader.vue'
-import {Link, useForm } from '@inertiajs/vue3';
+import {Link, useForm, usePage } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+
+const page = usePage()
+
+// Define props using the defineProps() function
+const props = defineProps({
+  lastPartOfUrl: Object,
+});
 
 const form = useForm({
     name: '',
@@ -11,40 +19,19 @@ const form = useForm({
 });
 
 
-// const submit = () => {
-//     form.post(route('lms.register_company_lms'), {
-//         onFinish: () => form.reset('password'),
-//     });
-// };
-
-const submit = async () => {
-  try {
-    const response = await fetch(route('lms.register_company_lms'), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form.value),
+const submit = () => {
+    form.post(route('lms.register_company_lms'), {
+        onFinish: () => form.reset('password'),
     });
-
-    if (!response.ok) {
-      throw new Error('Form submission failed');
-    }
-
-    const data = await response.json();
-    // Assuming the response contains authentication information
-    const token = data.token;
-
-    // You may want to update authentication state in your application
-    // $store.commit('auth/setUser', user);
-
-    // Remove the form and display the onboarding link
-    $emit('successful-submission', user);
-  } catch (error) {
-    console.error('Form submission failed:', error);
-    // Handle errors if necessary
-  }
 };
+
+onMounted(() => {
+  console.log(lastPartOfUrl);
+  if(props.lastPartOfUrl == 'register-company-lms') {
+    const url =  "https://lms.creativeitem.com?user_id=" + page.props.auth.auth_token
+    window.open(url, '_blank');
+  }
+});
 
 const setCookie = () => {
   // document.cookie = "userhash=user-abc-4500;domain=.creativeitem.com"

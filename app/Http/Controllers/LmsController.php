@@ -64,7 +64,13 @@ class LmsController extends Controller
 
     public function demo() 
     {
-        return Inertia::render('Frontend/Lms/Demo'); 
+        $url = url()->previous();
+        $urlParts = explode('/', $url);
+        $lastPartOfUrl = end($urlParts);
+        
+        return Inertia::render('Frontend/Lms/Demo', [
+            'lastPartOfUrl' => $lastPartOfUrl,
+        ]); 
     }
 
     public function register_company_lms(Request $request) 
@@ -110,15 +116,7 @@ class LmsController extends Controller
                 // Automatically log in the user
                 Auth::login($user);
 
-                if(Auth::check()) {
-                    auth()->user()->tokens->each(function ($token, $key) {
-                        $token->delete();
-                    });
-                    $token = auth()->user()->createToken('auth-token')->plainTextToken;
-                } else {
-                    $token = '';
-                }
-                return new JsonResponse(['status' => 'success', 'token' => $token], 200);
+                return redirect()->route('lms.demo');
             }
 
             return redirect()->route('lms.demo');

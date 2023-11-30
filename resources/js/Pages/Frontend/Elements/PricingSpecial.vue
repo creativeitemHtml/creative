@@ -18,10 +18,6 @@ const form = useForm({
     email: user ? user.email : '',
 });
 
-const submit = () => {
-    form.post(route('purchase_subscription', { package_id: props.package.id }));
-};
-
 onMounted(() => {
   $(document).prop('title', props.seo.meta_title);
   $("meta[name='description']").attr("content", props.seo.meta_description);
