@@ -742,4 +742,23 @@ class CustomerController extends Controller
             return redirect()->route('element_product_details', ['title' => $title])->with('error', 'Access denied!');
         }
     }
+
+    public function projects($param="")
+    {
+        if(empty($param)){
+            $param = "active";
+        }
+
+        $projects = Project::where('user_id', auth()->user()->id)->where('status', $param)->get();
+        // $page_data['page_title'] = 'Projects';
+        // $page_data['project'] = 'active';
+        // $page_data['tab'] = $param;
+        // $page_data['active'] = Project::where('user_id', auth()->user()->id)->where('status', 'active')->count();
+        // $page_data['pending'] = Project::where('user_id', auth()->user()->id)->where('status', 'pending')->count();
+        // $page_data['archive'] = Project::where('user_id', auth()->user()->id)->where('status', 'archive')->count();
+
+        return Inertia::render('Backend/Customer/Projects', [
+            'projects' => $projects,
+        ]);
+    }
 }

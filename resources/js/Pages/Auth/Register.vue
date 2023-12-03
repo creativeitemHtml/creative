@@ -10,6 +10,10 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { useReCaptcha } from "vue-recaptcha-v3";
 import { onMounted, onBeforeUnmount } from 'vue'
 
+const props = defineProps({
+  seo: Object,
+});
+
 const form = useForm({
     name: '',
     email: '',
@@ -23,10 +27,22 @@ const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
 const recaptchaIns = useReCaptcha().instance
 
 onMounted(() => {
-    setTimeout(() => {
-        recaptchaIns.value.showBadge()
-    }, 1000)
+  setTimeout(() => {
+    recaptchaIns.value.showBadge()
+  }, 1000)
+
+  $(document).prop('title', props.seo.meta_title);
+  $("meta[name='description']").attr("content", props.seo.meta_description);
+  $("meta[name='keywords']").attr("content", props.seo.meta_keywords);
+  $("meta[name='robot']").attr("content", props.seo.meta_robot);
+  $("link[rel='canonical']").attr("href", props.seo.canonical_url);
+  $("link[rel='custom']").attr("href", props.seo.custom_url);
+  $("meta[property='og:title']").attr("content", props.seo.og_title);
+  $("meta[property='og:description']").attr("content", props.seo.og_description);
+  $("meta[property='og:image']").attr("content", props.seo.og_image);
+
 }),
+
 onBeforeUnmount(() => {
     recaptchaIns.value.hideBadge()
 }) 

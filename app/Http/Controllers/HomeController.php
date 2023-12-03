@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\{Product,Topic, Article, Documentation, Blog, BlogCategory, User, Project, Setting, ElementCategory, ElementProduct};
+use App\Models\{Product,Topic, Article, Documentation, Blog, BlogCategory, User, Project, Setting, ElementCategory, ElementProduct, Subscription};
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmailWithPassword;
+use DB;
+use File;
 
 
 class HomeController extends Controller
@@ -201,32 +207,178 @@ class HomeController extends Controller
     public function terms_and_condition()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
+        $seo = seo();
+        
         return Inertia::render('Frontend/TermsAndCondition', [
             'element_categories' => $element_categories,
-        ]);
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
     }
 
     public function privacy_policy()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
+        $seo = seo();
+
         return Inertia::render('Frontend/PrivacyPolicy', [
             'element_categories' => $element_categories,
-        ]);
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
     }
 
     public function refund_policy()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
+        $seo = seo();
+
         return Inertia::render('Frontend/RefundPolicy', [
             'element_categories' => $element_categories,
-        ]);
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
     }
 
     public function support_policy()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
+        $seo = seo();
+
         return Inertia::render('Frontend/SupportPolicy', [
             'element_categories' => $element_categories,
-        ]);
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
+    }
+
+    public function project_submit(Request $request) 
+    {
+        // $isDuplicate = User::where('email', $request->email)->exists();
+        // print_r($isDuplicate);
+        // die();
+
+        $page_data = array();
+        $attachments_name = array();
+        $attachements = array();
+
+        $name = strstr($request->email, '@', true);
+
+        $check_email = User::where('email', $request->email)->first();
+
+        if(Auth::check()){
+
+            $data = $request->all();
+
+            $page_data['title'] = $data['title'];
+            $page_data['description'] = $data['description'];
+            $page_data['budget_estimation'] = $data['budget_estimation'];
+            $page_data['timeline'] = $data['timeline'];
+            $page_data['user_id'] = auth()->user()->id;
+            $page_data['status'] = 'pending';
+            $page_data['completion_progress'] = 0;
+            $page_data['paid_amount'] = 0;
+
+            // print_r($data['attachment']);
+            // die();
+
+            if(!empty($data['attachment']))
+            {
+                array_push($attachments_name, $data['attachment']->getClientOriginalName());
+                $page_data['attachment_name'] = json_encode($attachments_name);
+
+                if (!File::exists(public_path('uploads/projects'))) {
+                    File::makeDirectory(public_path('uploads/projects'));
+                }
+
+                $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+    
+                $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+    
+                array_push($attachements, $attachment);
+                $page_data['attachment'] = json_encode($attachements);
+            } else {
+                $page_data['attachment_name'] = json_encode(array());
+                $page_data['attachment'] = json_encode(array());
+            }
+
+            Project::create($page_data);
+
+            return redirect()->route('customer.projects')->with('message', 'Project created successfully');
+        } else if(!empty($check_email)){
+            // $user = $check_email;
+            return redirect()->back()->with('info', 'This email already exists. Please login or provide new email address');
+        } else {
+            $password = random(8);
+
+            $user = User::create([
+                'name' => $name,
+                'email' => $request->email,
+                'role_id' => '6',
+                'password' => Hash::make($password)
+            ]);
+
+            Subscription::create([
+                'user_id' => $user->id,
+                'package_id' => 5,
+                'paid_amount' => 0,
+                'payment_method' => 'None',
+                'transaction_keys' => '',
+                'date_added' => strtotime(date('d-M-Y H:i:s')),
+            ]);
+
+            $pin = rand(100000, 999999);
+
+            $check_entry = DB::table('password_resets')->where('email', $request->email)->first();
+
+            if(empty($check_entry))
+            {
+                DB::table('password_resets')->insert([
+                    'email' => $request->email, 
+                    'token' => $pin
+                ]);
+            } 
+            else {
+                DB::table('password_resets')->where('email', $request->email)->update([
+                    'token' => $pin
+                ]);
+            }
+
+            Mail::to($request->email)->send(new VerifyEmailWithPassword($pin, $user, $password));
+
+            relogin_user($user->id);
+
+            $data = $request->all();
+
+            $page_data['title'] = $data['title'];
+            $page_data['description'] = $data['description'];
+            $page_data['budget_estimation'] = $data['budget_estimation'];
+            $page_data['timeline'] = $data['timeline'];
+            $page_data['user_id'] = auth()->user()->id;
+            $page_data['status'] = 'pending';
+            $page_data['completion_progress'] = 0;
+            $page_data['paid_amount'] = 0;
+
+            if(!empty($data['attachment']))
+            {
+                array_push($attachments_name, $data['attachment']->getClientOriginalName());
+                $page_data['attachment_name'] = json_encode($attachments_name);
+
+                if (!File::exists(public_path('uploads/projects'))) {
+                    File::makeDirectory(public_path('uploads/projects'));
+                }
+
+                $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+    
+                $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+    
+                array_push($attachements, $attachment);
+                $page_data['attachment'] = json_encode($attachements);
+            } else {
+                $page_data['attachment_name'] = json_encode(array());
+                $page_data['attachment'] = json_encode(array());
+            }
+
+            Project::create($page_data);
+
+            return redirect()->route('customer.projects')->with('message', 'Project created successfully');
+        }
+
     }
 }

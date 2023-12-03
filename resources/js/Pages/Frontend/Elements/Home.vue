@@ -506,11 +506,12 @@ const initializeState = () => {
             <div class="single-n-pricing" :class="{ active: pack.name === 'Pro' }">
               <div class="pricing-n-popular d-flex align-items-center justify-content-between">
                 <h4 class="text-22">{{ pack.name }}</h4>
+                <a href="#" class="text-15" v-if="pack.name === 'Pro'">Popular</a>
               </div>
               <div class="pricing-n-price d-flex">
                 <h2 class="pricing-price-l d-flex"><span>$</span><span>{{ pack.discounted_price }}</span></h2>
                 <h3 class="pricing-price-r d-flex">
-                  <span v-if="pack.discounted_price != 0">$</span><span>{{ pack.price }}</span>
+                  <span v-if="pack.discounted_price != 0">${{ pack.price }}</span>
                   <span>/ {{ pack.int_val }}</span></h3>
               </div>
               <p class="text-15 pricing-n-batch">{{ pack.interval_period_text }}</p>

@@ -435,7 +435,13 @@ if(!function_exists('seo'))
             $current_route == 'docs' ||
             $current_route == 'blog' ||
             $current_route == 'services' ||
-            $current_route == 'elements_package_pricing')
+            $current_route == 'elements_package_pricing' ||
+            $current_route == 'terms_and_condition' ||
+            $current_route == 'privacy_policy' ||
+            $current_route == 'refund_policy' ||
+            $current_route == 'support_policy' ||
+            $current_route == 'login' ||
+            $current_route == 'register')
         {
             $seo['meta_title'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_title ?? '';
             $seo['meta_description'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_description ?? '';
@@ -466,6 +472,20 @@ if(!function_exists('seo'))
             $seo['og_title'] = $data->title;
             $seo['og_description'] = $data->summary;
             $seo['og_image'] = element_server_url($data->product_id, $data->product_to_elementCategory->slug).$data->thumbnail;
+        } else if(($current_route == 'search_element_products' || $current_route == 'search_element_products_by_tag') && $folder == 'slug') {
+
+            $current_route = $current_route.'_'.$data;
+
+            $seo['meta_title'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_title ?? '';
+            $seo['meta_description'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_description ?? '';
+            $seo['meta_keywords'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_keywords ?? '';
+            $seo['canonical_url'] = App\Models\SeoField::firstWhere('route', $current_route)->canonical_url ?? '';
+            $seo['custom_url'] = App\Models\SeoField::firstWhere('route', $current_route)->custom_url ?? '';
+            $seo['meta_robot'] = App\Models\SeoField::firstWhere('route', $current_route)->meta_robot ?? '';
+            $seo['og_title'] = App\Models\SeoField::firstWhere('route', $current_route)->og_title ?? '';
+            $seo['og_description'] = App\Models\SeoField::firstWhere('route', $current_route)->og_description ?? '';
+            $seo['og_image'] = url('public/uploads/og-image/'.App\Models\SeoField::firstWhere('route', $current_route)->og_image  ?? '');
+            $seo['json_ld'] = App\Models\SeoField::firstWhere('route', $current_route)->json_ld ?? '';
         }
 
         return $seo;

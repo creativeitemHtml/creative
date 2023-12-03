@@ -1,9 +1,23 @@
 <script setup>
 import Header from '../../Components/Global/Header.vue'
 import Footer from '../../Components/Global/Footer.vue'
+import { onMounted } from 'vue';
 
 const props = defineProps({
-    element_categories: Array,
+  element_categories: Array,
+  seo: Object,
+});
+
+onMounted(() => {
+  $(document).prop('title', props.seo.meta_title);
+  $("meta[name='description']").attr("content", props.seo.meta_description);
+  $("meta[name='keywords']").attr("content", props.seo.meta_keywords);
+  $("meta[name='robot']").attr("content", props.seo.meta_robot);
+  $("link[rel='canonical']").attr("href", props.seo.canonical_url);
+  $("link[rel='custom']").attr("href", props.seo.custom_url);
+  $("meta[property='og:title']").attr("content", props.seo.og_title);
+  $("meta[property='og:description']").attr("content", props.seo.og_description);
+  $("meta[property='og:image']").attr("content", props.seo.og_image);
 });
 
 </script>

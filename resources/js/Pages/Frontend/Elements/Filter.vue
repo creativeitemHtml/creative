@@ -10,12 +10,13 @@ import { usePage } from '@inertiajs/vue3'
 // Define props using the defineProps() function
 const props = defineProps({
     selected_category_details: Object,
-    selected_category: Object,
+    selected_category: String,
     element_categories: Array,
     element_products: Array,
-    selected_license: Object,
-    selected_tag: Object,
+    selected_license: String,
+    selected_tag: String,
     tags: Array,
+    seo: Object,
 });
 
 const page = usePage()
@@ -113,6 +114,16 @@ const handleWishlist = async (element_product) => {
 };
 
 onMounted(() => {
+
+  $(document).prop('title', props.seo.meta_title);
+  $("meta[name='description']").attr("content", props.seo.meta_description);
+  $("meta[name='keywords']").attr("content", props.seo.meta_keywords);
+  $("meta[name='robot']").attr("content", props.seo.meta_robot);
+  $("link[rel='canonical']").attr("href", props.seo.canonical_url);
+  $("link[rel='custom']").attr("href", props.seo.custom_url);
+  $("meta[property='og:title']").attr("content", props.seo.og_title);
+  $("meta[property='og:description']").attr("content", props.seo.og_description);
+  $("meta[property='og:image']").attr("content", props.seo.og_image);
 
   initializeState();
 

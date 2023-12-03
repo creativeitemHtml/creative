@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::controller(CustomerController::class)->middleware('auth', 'customer', 'cors')->group(function () {
 
+    Route::get('/customer/projects/{param?}', 'projects')->name('customer.projects');
+
     Route::get('/customer/creative-elements/subscription', 'subscription_details')->name('customer.subscription_details');
 
     Route::get('/customer/purchase-history', 'purchase_history')->name('customer.purchase_history');

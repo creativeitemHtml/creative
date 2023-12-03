@@ -297,6 +297,15 @@ class ElementsController extends Controller
             $element_products = [];
         }
 
+        if(!empty($slug) && $slug != 'free-items'){
+            if($slug == 'figma-components') {
+                $slug = 'components';
+            }
+            $seo = seo($slug, 'slug');
+        } else {
+            $seo = seo();
+        }
+
         return Inertia::render('Frontend/Elements/Filter', [
             'element_categories' => $element_categories,
             'selected_category_details' => $selected_category_details,
@@ -305,7 +314,8 @@ class ElementsController extends Controller
             'element_products' => $element_products,
             'selected_tag' => $selected_tag,
             'tags' => $tags,
-        ]);
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
     }
 
     public function element_product_details($title="")

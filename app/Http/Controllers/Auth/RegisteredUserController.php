@@ -24,7 +24,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        $seo = seo();
+        return Inertia::render('Auth/Register', [
+            'seo' => $seo,
+        ])->withViewData(['seo' => $seo]);
     }
 
     /**

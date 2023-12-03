@@ -2,11 +2,32 @@
 import Header from '../../Components/Global/Header.vue'
 import Footer from '../../Components/Global/Footer.vue'
 import { onMounted } from 'vue';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
-    element_categories: Array,
-    seo: Object,
+  element_categories: Array,
+  seo: Object,
 });
+
+const user = usePage().props.auth.user;
+
+const form = useForm({
+  title: '',
+  description: '',
+  email: user ? user.email : '',
+  budget_estimation: '',
+  timeline: '',
+  attachment: '',
+});
+
+const handleThumbnailChange = (event) => {
+    // Update the form.attachment value when a file is selected
+    form.attachment = event.target.files[0];
+};
+
+// const submit = () => {
+//   form.post(route('project_submit'));
+// };
 
 onMounted(() => {
   $(document).prop('title', props.seo.meta_title);
@@ -18,9 +39,11 @@ onMounted(() => {
   $("meta[property='og:title']").attr("content", props.seo.og_title);
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
-
-  $('.service-select select').niceSelect();
   
+});
+
+$(document).ready(function () {
+  $('.service-select select').niceSelect();
 });
 
 </script>
@@ -72,35 +95,41 @@ onMounted(() => {
             <div class="submit-project">
               <h4 class="title">Submit Your Porject</h4>
               <!-- Form -->
-              <form action="#" class="project-form">
+              <form @submit.prevent="submit" class="project-form">
                 <div class="project-form-wrap">
                   <div class="pForm-wrap">
-                    <input type="text" class="form-control eForm-control" id="yourProjectTitle" placeholder="Your Project Title" aria-label="Your Project Title" />
+                    <input type="text" class="form-control eForm-control" id="title" name="title" placeholder="Your Project Title" aria-label="Your Project Title" v-model="form.title" />
                   </div>
                   <div class="pForm-wrap">
-                    <textarea class="form-control eForm-control" id="yourDescription" placeholder="About your project"></textarea>
+                    <textarea class="form-control eForm-control" id="description" name="description" placeholder="About your project" v-model="form.description"></textarea>
                   </div>
-                  <div class="pForm-wrap">
-                    <input type="email" class="form-control eForm-control" id="email" placeholder="Your Project Title" aria-label="Your Project Title" />
+                  <div v-if="$page.props.auth.user" class="pForm-wrap">
+                    <input type="email" class="form-control eForm-control" id="email" name="email" v-model="form.email" disabled />
+                  </div>
+                  <div v-else class="pForm-wrap">
+                    <input type="email" class="form-control eForm-control" id="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" v-model="form.email" />
                   </div>
                   <div class="pForm-wrap service-select">
-                    <select class="nice-select">
-                      <option selected>Select Budget</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="nice-select" id="budget_estimation" name="budget_estimation" v-model="form.budget_estimation">
+                      <option value="">Select Budget</option>
+                      <option value="$500 - $1000">$500 - $1000</option>
+                      <option value="$1000 - $3000">$1000 - $3000</option>
+                      <option value="$3000 - $10000">$3000 - $10000</option>
+                      <option value="over $10000">Over $10000</option>
                     </select>
                   </div>
                   <div class="pForm-wrap service-select">
-                    <select class="nice-select">
-                      <option selected>Slect Title</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="nice-select" id="timeline" name="timeline" v-model="form.timeline">
+                      <option value="">Select Title</option>
+                      <option value="2 Weeks">2 Weeks</option>
+                      <option value="4 Weeks">4 Weeks</option>
+                      <option value="8 Weeks">8 Weeks</option>
+                      <option value="12 Weeks">12 Weeks</option>
+                      <option value="continuos">Continuos development</option>
                     </select>
                   </div>
                   <div class="pForm-wrap">
-                    <input class="form-control eForm-control-file" type="file" name="attachment" id="attachment">
+                    <input class="form-control eForm-control-file" type="file" name="attachment" id="attachment" @change="handleThumbnailChange">
                   </div>
                 </div>
                 <button type="submit" class="project-submit">

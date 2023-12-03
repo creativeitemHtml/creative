@@ -26,6 +26,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/docs/{product_slug}/{article_slug?}', 'documentation_details')->name('documentation_details');
 
     Route::get('/services', 'services')->name('services');
+    Route::post('/project-submit', 'project_submit')->name('project_submit');
+
     Route::get('/terms-and-condition', 'terms_and_condition')->name('terms_and_condition');
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');
     Route::get('/refund-policy', 'refund_policy')->name('refund_policy');
