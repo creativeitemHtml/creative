@@ -8,6 +8,10 @@ import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     projects: Array,
+    tab: String,
+    active: String,
+    pending: String,
+    archive: String,
 });
 
 </script>
@@ -29,9 +33,9 @@ const props = defineProps({
                 <div class="subscription-main-wrap l_col_main">
                     <div class="title-btn-menu-wrap d-flex justify-content-between align-items-center flex-wrap g-10 pb-30 mb-20">
                         <h4 class="fz-20-sb-black">Projects</h4>
-                        <a href="#" class="new-project-btn new-project-btn-desktop">
+                        <Link :href="route('customer.project_create')" class="new-project-btn new-project-btn-desktop">
                             Submit new projects
-                        </a>
+                        </Link>
                         <button class="d-lg-none mobile-menu-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <img :src=" $page.props.base.url + '/public/assets/img/new-icons-images/menu-icon.svg'" alt="menu">
                         </button>
@@ -39,16 +43,22 @@ const props = defineProps({
                     <!-- Table -->
                     <ul class="nav nav-pills pb-20">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Active</a>
+                            <Link class="nav-link" :class="{ 'active': tab == 'active' }" aria-current="page" :href="route('customer.projects', { param: 'active'})">
+                                Active ({{ active }})
+                            </Link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Pending</a>
+                            <Link class="nav-link" :class="{ 'active': tab == 'pending' }" aria-current="page" :href="route('customer.projects', { param: 'pending'})">
+                                Pending ({{ pending }})
+                            </Link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Archive</a>
+                            <Link class="nav-link" :class="{ 'active': tab == 'archive' }" aria-current="page" :href="route('customer.projects', { param: 'archive'})">
+                                Archive ({{ archive }})
+                            </Link>
                         </li>
                     </ul>
-                    <div class="table-responsive">
+                    <div v-if="projects.length > 0" class="table-responsive">
                         <table class="table eTable">
                             <!-- Table Head -->
                             <thead>
@@ -75,13 +85,15 @@ const props = defineProps({
                                     </td>
                                     <td>
                                         <div class="min-w-100">
-                                            <p class="status-btn status-up">{{ project.status }}</p>
+                                            <p class="status-btn" :class="project.status == 'active' ? 'status-up' : 'status-down'">{{ project.status }}</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="min-w-100">
-                                            <p class="status-btn status-down">
-                                                <i class="fa-solid fa-arrow-down"></i> {{ project.completion_progress }}%
+                                            <p class="status-btn" :class="project.status == 'active' ? 'status-up' : 'status-down'">
+                                                <svg v-if="project.status == 'active'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
+                                                <svg v-else xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                                                {{ project.completion_progress }}%
                                             </p>
                                         </div>
                                     </td>
@@ -96,13 +108,15 @@ const props = defineProps({
                                                 <button type="button"  class="dropdown-btn dropdown-toggle"  data-bs-toggle="dropdown"  aria-expanded="false">Actions</button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
                                                     <li>
-                                                        <a class="dropdown-item" href="#">View Details</a>
+                                                        <Link class="dropdown-item" :href="route('customer.project_details', { id: project.id })">
+                                                            View Details
+                                                        </Link>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <Link class="dropdown-item" :href="route('customer.project_edit', { 'id': project.id })">Edit</Link>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="javascript:;">Delete</a>
+                                                        <Link class="dropdown-item" :href="route('customer.project_remove', { 'id': project.id })">Delete</Link>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -111,6 +125,10 @@ const props = defineProps({
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div v-else class="no-subscription arrow-right mt-60">
+                        <img :src=" $page.props.base.url + '/public/assets/img/admin-customer/subscription-status.png'" alt="">
+                        <h4 class="title"> No project found. Create A New Project!</h4>
                     </div>
                 </div>
             </div>

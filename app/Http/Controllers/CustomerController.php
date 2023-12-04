@@ -749,16 +749,368 @@ class CustomerController extends Controller
             $param = "active";
         }
 
+        $projects = [];
+
         $projects = Project::where('user_id', auth()->user()->id)->where('status', $param)->get();
-        // $page_data['page_title'] = 'Projects';
-        // $page_data['project'] = 'active';
-        // $page_data['tab'] = $param;
-        // $page_data['active'] = Project::where('user_id', auth()->user()->id)->where('status', 'active')->count();
-        // $page_data['pending'] = Project::where('user_id', auth()->user()->id)->where('status', 'pending')->count();
-        // $page_data['archive'] = Project::where('user_id', auth()->user()->id)->where('status', 'archive')->count();
+        $tab = $param;
+        $active = Project::where('user_id', auth()->user()->id)->where('status', 'active')->count();
+        $pending = Project::where('user_id', auth()->user()->id)->where('status', 'pending')->count();
+        $archive = Project::where('user_id', auth()->user()->id)->where('status', 'archive')->count();
 
         return Inertia::render('Backend/Customer/Projects', [
             'projects' => $projects,
+            'tab' => $param,
+            'active' => $active,
+            'pending' => $pending,
+            'archive' => $archive,
         ]);
+    }
+
+    public function project_details($id = "")
+    {
+        $project_details = Project::find($id);
+        $online_meetings = OnlineMeeting::where('project_id', $id)->orderBy('timestamp', 'asc')->get();
+        $payment_milestones = PaymentMilestone::where('project_id', $id)->orderBy('id', 'desc')->get();
+
+        $attachments = json_decode($project_details->attachment_name);
+
+        return Inertia::render('Backend/Customer/ProjectDetails', [
+            'project_details' => $project_details,
+            'online_meetings' => $online_meetings,
+            'payment_milestones' => $payment_milestones,
+            'attachments' => $attachments,
+        ]);
+    }
+
+    public function project_create(Request $request)
+    {
+        $page_data = array();
+        $attachments_name = array();
+        $attachements = array();
+
+        if(!empty($request->all())) {
+            $validated = $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'budget_estimation' => 'required',
+                'timeline' => 'required'
+            ]);
+
+            $data = $request->all();
+
+            $page_data['title'] = $data['title'];
+            $page_data['description'] = $data['description'];
+            $page_data['budget_estimation'] = $data['budget_estimation'];
+            $page_data['timeline'] = $data['timeline'];
+            $page_data['user_id'] = auth()->user()->id;
+            $page_data['status'] = 'pending';
+            $page_data['completion_progress'] = 0;
+            $page_data['paid_amount'] = 0;
+            
+            if(!empty($data['attachment']))
+            {
+                array_push($attachments_name, $data['attachment']->getClientOriginalName());
+                $page_data['attachment_name'] = json_encode($attachments_name);
+
+                if (!File::exists(public_path('uploads/projects'))) {
+                    File::makeDirectory(public_path('uploads/projects'));
+                }
+
+                $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+    
+                $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+    
+                array_push($attachements, $attachment);
+                $page_data['attachment'] = json_encode($attachements);
+            } else {
+                $page_data['attachment_name'] = json_encode(array());
+                $page_data['attachment'] = json_encode(array());
+            }
+
+            Project::create($page_data);
+
+            return redirect()->route('customer.projects')->with('message', 'Project created successfully');
+
+        }
+
+        return Inertia::render('Backend/Customer/ProjectAdd');
+    }
+
+    public function project_edit(Request $request, $id = "")
+    {
+        $page_data = array();
+
+        $project_details = Project::find($id);
+
+        $attachments = json_decode($project_details->attachment);
+        $attachments_name = json_decode($project_details->attachment_name);
+
+        if(!empty($request->all())) {
+            $validated = $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'budget_estimation' => 'required',
+                'timeline' => 'required'
+            ]);
+
+            $data = $request->all();
+
+            $page_data['title'] = $data['title'];
+            $page_data['description'] = $data['description'];
+            $page_data['budget_estimation'] = $data['budget_estimation'];
+            $page_data['timeline'] = $data['timeline'];
+            $page_data['user_id'] = auth()->user()->id;
+            $page_data['status'] = $project_details->status;
+            $page_data['completion_progress'] = $project_details->completion_progress;
+            $page_data['paid_amount'] = $project_details->paid_amount;
+            
+            if(!empty($data['attachment']))
+            {
+                array_push($attachments_name, $data['attachment']->getClientOriginalName());
+                $page_data['attachment_name'] = json_encode($attachments_name);
+
+                if (!File::exists(public_path('uploads/projects'))) {
+                    File::makeDirectory(public_path('uploads/projects'));
+                }
+
+                $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+    
+                $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+    
+                array_push($attachments, $attachment);
+                $page_data['attachment'] = json_encode($attachments);
+
+            } else {
+                $page_data['attachment_name'] = $project_details->attachment_name;
+                $page_data['attachment'] = $project_details->attachment;
+            }
+
+            Project::where('id', $id)->update($page_data);
+
+            return redirect('/customer/project_details/'.$id)->with('message', 'Project updated successfully');
+
+        }
+
+        return Inertia::render('Backend/Customer/ProjectEdit', [
+            'project_details' => $project_details,
+        ]);
+    }
+
+    public function project_remove($id="")
+    {
+        $meeting = Project::where('user_id', auth()->user()->id)->where('id', $id)->first();
+        $meeting->delete();
+
+        return redirect()->back()->with('message', 'Project removed successfully');
+    }
+
+    public function project_payment($milestone_id = "")
+    {
+        $global_system_currency = get_settings('system_currency');
+
+        $stripe = get_settings('stripe');
+        $stripe_keys = json_decode($stripe);
+
+        $STRIPE_KEY;
+        $STRIPE_SECRET;
+
+        if ($stripe_keys->mode == "test") {
+            $STRIPE_KEY = $stripe_keys->test_key;
+            $STRIPE_SECRET = $stripe_keys->test_secret_key;
+        } elseif ($stripe_keys->mode == "live") {
+            $STRIPE_KEY = $stripe_keys->public_live_key;
+            $STRIPE_SECRET = $stripe_keys->secret_live_key;
+        }
+
+        $payment_details = PaymentMilestone::find($milestone_id);
+
+        $payment_data['user_id'] = auth()->user()->id;
+        $payment_data['milestone_id'] = $milestone_id;
+        $payment_data['amount'] = $payment_details->amount;
+        $payment_data['payment_method'] = 'stripe';
+        $payment_data['success_url'] = 'milestone_success_payment';
+        $payment_data['cancel_url'] = 'milestone_fail_payment';
+
+        $payment_data = implode(' ', array_map(function ($key, $value) {
+            return "$key:$value";
+        }, array_keys($payment_data), $payment_data));
+
+        $success_url = 'milestone_success_payment';
+        $cancel_url = 'milestone_fail_payment';
+
+        try {
+
+            Stripe\Stripe::setApiKey($STRIPE_SECRET);
+
+            $session = \Stripe\Checkout\Session::create([
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => $global_system_currency,
+                        'product_data' => [
+                            'name' => $payment_details->PaymentMilestone_to_project->title,
+                        ],
+                        'unit_amount' => $payment_details->amount * 100,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route($success_url, ['payment_data' => $payment_data, 'response' => 'check $milestone_id to get the response ']) . '?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => route($cancel_url, ['payment_data' => $payment_data, 'response' => 'check $milestone_id to get the response ']) . '?session_id={CHECKOUT_SESSION_ID}',
+            ]);
+
+            return Inertia::location($session->url);
+
+        } catch (\Exception$e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    public function milestone_success_payment(Request $request, $payment_data, $response)
+    {
+        $payment_data = $this->string_to_array($payment_data);
+
+        if ($payment_data['payment_method'] == 'stripe') {
+            $stripe = get_settings('stripe');
+            $stripe_keys = json_decode($stripe);
+            $STRIPE_KEY;
+            $STRIPE_SECRET;
+
+            if ($stripe_keys->mode == "test") {
+                $STRIPE_KEY = $stripe_keys->test_key;
+                $STRIPE_SECRET = $stripe_keys->test_secret_key;
+            } elseif ($stripe_keys->mode == "live") {
+                $STRIPE_KEY = $stripe_keys->public_live_key;
+                $STRIPE_SECRET = $stripe_keys->secret_live_key;
+            }
+
+            $stripe_api_response_session_id = $request->all();
+            $stripe = new \Stripe\StripeClient($STRIPE_SECRET);
+            $session_response = $stripe->checkout->sessions->retrieve($stripe_api_response_session_id['session_id'], []);
+            
+            $stripe_payment_intent = $session_response['payment_intent'];
+            $stripe_session_id = $stripe_api_response_session_id['session_id'];
+
+            $stripe_transaction_keys = array();
+            $stripe_response['payment_intent'] = $stripe_payment_intent;
+            $stripe_response['session_id'] = $stripe_session_id;
+            $stripe_transaction_keys = $stripe_response;
+            $stripe_payment_response = json_encode($stripe_transaction_keys);
+
+            $status = PaymentMilestone::where('id', $payment_data['milestone_id'])->update([
+                'payment_method' => 'stripe',
+                'transaction_keys' => $stripe_payment_response,
+                'status' => 1,
+            ]);
+
+            $payment_details = PaymentMilestone::find($payment_data['milestone_id']);
+
+            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Payment successfully');
+        }
+    }
+
+    public function milestone_fail_payment(Request $request, $payment_data, $response)
+    {
+        $payment_data = $this->string_to_array($payment_data);
+
+        $payment_details = PaymentMilestone::find($payment_data['milestone_id']);
+
+        return redirect('customer/project_details/'.$payment_details->project_id)->with('error', 'Payment canceled.');
+    }
+
+    public function milestone_invoice($milestone_id="")
+    {
+        $milestone_details = PaymentMilestone::find($milestone_id);
+
+        if(isset($milestone_details)) {
+
+            $res = $milestone_details;
+            $res['paymentMilestone_to_user'] = $milestone_details->paymentMilestone_to_user;
+            $res['PaymentMilestone_to_project'] = $milestone_details->PaymentMilestone_to_project;
+
+            $milestone_details = $res;
+
+        }
+
+        return Inertia::render('Backend/Customer/ProjectMilestoneInvoice', [
+            'milestone_details' => $milestone_details,
+        ]);
+    }
+
+    public function download_attachment($project_id="", $key="")
+    {
+        $project_details = Project::find($project_id);
+        // print_r($key);
+        // die();
+
+        $attachments = json_decode($project_details->attachment);
+        $attachments_name = json_decode($project_details->attachment_name);
+
+        $filepath = public_path('uploads/projects/'.$attachments[$key]);
+        return response()->download($filepath, $attachments_name[$key], array('content-description'=> 'description'));
+    }
+
+    public function remove_attachment($project_id="", $key="")
+    {
+        $project_details = Project::find($project_id);
+
+        $attachments = json_decode($project_details->attachment);
+        $attachments_name = json_decode($project_details->attachment_name);
+
+        $filePath = 'public/uploads/projects/' . $attachments[$key];
+
+        if(file_exists($filePath)){
+            unlink($filePath);
+        }
+
+        unset($attachments[$key]); 
+        unset($attachments_name[$key]);
+
+        $page_data['attachment'] = json_encode($attachments);
+        $page_data['attachment_name'] = json_encode($attachments_name);
+
+        Project::where('id', $project_id)->update($page_data);
+
+        return redirect('/customer/project_details/'.$project_id)->with('message', 'Attachment removed successfully');
+
+    }
+
+    public function upload_attachment(Request $request, $project_id="")
+    {
+        $page_data = array();
+
+        $project_details = Project::find($project_id);
+
+        $attachments = json_decode($project_details->attachment);
+        $attachments_name = json_decode($project_details->attachment_name);
+
+        if(!empty($request->all()))
+        {
+            $data = $request->all();
+
+            array_push($attachments_name, $data['attachment']->getClientOriginalName());
+            $page_data['attachment_name'] = json_encode($attachments_name);
+
+            if (!File::exists(public_path('uploads/projects'))) {
+                File::makeDirectory(public_path('uploads/projects'));
+            }
+
+            $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+
+            $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+
+            array_push($attachments, $attachment);
+            $page_data['attachment'] = json_encode($attachments);
+        } else {
+            $page_data['attachment_name'] = $project_details->attachment_name;
+            $page_data['attachment'] = $project_details->attachment;
+        }
+
+        // print_r($page_data);
+        // die();
+
+        Project::where('id', $project_id)->update($page_data);
+
+        return redirect('/customer/project_details/'.$project_id)->with('message', 'Attachment updated successfully');
     }
 }

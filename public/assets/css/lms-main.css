@@ -2249,6 +2249,7 @@ a.black-btn-lms{
 .grid-item-5-4 .expertise-title-img img{
     margin-top: -4px;
     margin-right: -4px;
+    max-width: 128px;
 }
 .grid-item-3-4 .expertise-title-img img{
     max-width: 100px;
@@ -2258,8 +2259,14 @@ a.black-btn-lms{
 .expertise-4-8-img{
     margin: 20px 0 16px 0;
 }
+.expertise-4-8-img img{
+    max-width: 211px;
+}
 .expertise-4-8-img-2{
     margin: 30px 0 36px 0;
+}
+.expertise-4-8-img-2 img{
+    max-width: 320px;
 }
 .unlock-expertise-single .title{
     color: #181A1E;
@@ -2442,8 +2449,9 @@ a.black-btn-lms{
     margin-top: -41px;
 }
 .getting-started-nav ul{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 }
 .getting-started-nav ul li a{
@@ -2461,6 +2469,8 @@ a.black-btn-lms{
     width: 100%;
     transition: .3s;
     border: 1px solid transparent;
+    min-width: 165px;
+    max-width: 170px;
 }
 .getting-started-nav ul li a:hover{
     border: 1px solid #0072EF;
@@ -2815,6 +2825,20 @@ a.black-btn-lms{
         padding-top: 25px;
     }
 
+    /* Getting Started Page */
+    .organize-with-departments-wrap {
+        max-width: 750px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .organize-fixed-area {
+        padding: 0;
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        opacity: 0;
+    }
 
     
 }
@@ -2991,6 +3015,13 @@ a.black-btn-lms{
         max-width: 550px;
         margin: auto;
     }
+
+    /* Getting Started Page */
+    .getting-started-top-title .title {
+        font-size: 45px;
+        line-height: 58px;
+    }
+    
 
 }
 
@@ -3174,6 +3205,26 @@ a.black-btn-lms{
     }
     .through-black-details-2 {
         padding: 0 30px 30px 30px;
+    }
+
+    /* Getting Started Page */
+    .getting-started-top-title .title {
+        font-size: 37px;
+        line-height: 50px;
+    }
+    .organize-title-icon {
+        min-width: 43px;
+        height: 43px;
+    }
+    .organize-title-icon img{
+        max-width: 30px;
+    }
+    .organize-title-all .title {
+        font-size: 28px;
+        line-height: 42px;
+    }
+    .organize-list li {
+        font-size: 18px;
     }
 
 

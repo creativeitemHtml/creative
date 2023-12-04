@@ -2,6 +2,8 @@
 
 
 $(document).ready(function () {
+    
+
     // For Mega Menu 
     $(".main-mega-menu").hover(function () {
         $(this).toggleClass("mega-hover");
@@ -156,6 +158,20 @@ $(document).ready(function () {
             input.attr("type", "password");
         }
     });
+
+    // Variable
+    var $tagifyTags = $('.enTags'),
+    $chosenSelect = $('.chzn-select');
+    // Tagify for tag
+    if ($tagifyTags.length > 0){
+        $('.enTags').tagify();
+    }
+    // Chosen for Select Search
+    if ($chosenSelect.length > 0){
+        $(".chzn-select").chosen();
+    }
+
+   
 
 
 
@@ -407,28 +423,54 @@ $(document).ready(function() {
     });
 });
 
-// Table of Content, Social Share Hide Show 
+
 $(document).ready(function() {
-    var blogsection = $('.blog-details-max').height();
-    var tablecontent = $('.table-content-wrap').height();
-    var blogsectionpos = $('.blog-details-max').position();
-    var detailssectionpos = $('.details-table-of-content').position();
-    $(window).scroll(function () {
-        var scroll = $(this).scrollTop();
-        if(scroll >= blogsectionpos.top && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-            $('.blog-socila-share').fadeIn();
-        }
-        else{
-            $('.blog-socila-share').fadeOut();
-        }
-        if(scroll >= (detailssectionpos.top - 50) && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-            $('.table-content-wrap').fadeIn();
-        }
-        else{
-            $('.table-content-wrap').fadeOut();
-        }
-    });
+    // Variable
+    var $organizeFixedArea = $('.organize-fixed-area'),
+    $tableContentWrap = $('.table-content-wrap');
+
+    // Getting Started fixed section
+    if ($organizeFixedArea.length > 0) {
+        var organizeheight = $('.main-organize-details-section').height();
+        var organizepos = $('.main-organize-details-section').position();
+        var navcontent = $('.organize-fixed-area').height();
+        $(window).scroll(function () {
+            var scrollN = $(this).scrollTop();
+            if(scrollN >= organizepos.top && scrollN <= (organizeheight + organizepos.top - navcontent - 135)){
+                $('.organize-fixed-area').fadeIn();
+            }
+            else{
+                $('.organize-fixed-area').fadeOut();
+            }
+        });
+    };
+
+    // Table of Content, Social Share Hide Show 
+    if ($tableContentWrap.length > 0) {
+        var blogsection = $('.blog-details-max').height();
+        var tablecontent = $('.table-content-wrap').height();
+        var blogsectionpos = $('.blog-details-max').position();
+        var detailssectionpos = $('.details-table-of-content').position();
+        $(window).scroll(function () {
+            var scroll = $(this).scrollTop();
+            if(scroll >= blogsectionpos.top && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
+                $('.blog-socila-share').fadeIn();
+            }
+            else{
+                $('.blog-socila-share').fadeOut();
+            }
+            if(scroll >= (detailssectionpos.top - 50) && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
+                $('.table-content-wrap').fadeIn();
+            }
+            else{
+                $('.table-content-wrap').fadeOut();
+            }
+        });
+    }
 });
+
+
+
 
 
 
@@ -479,13 +521,16 @@ $(document).ready(function () {
         $(".planCheck-input").prop("checked", false);
         $(this).find(".planCheck-input").prop("checked", true);
       });
-  });
-// Select2 js for checkout
-$(document).ready(function () {
-    $(".eChoice-multiple-without-remove").select2({
-    //   placeholder: "Select a state",
-    });
 });
+// Select2 js 
+$(document).ready(function () {
+    // Select2 js for checkout
+    $(".eChoice-multiple-without-remove").select2({
+    });
+    // Select2 multiple js for Component 
+    $(".eChoice-multiple-with-remove").select2();
+});
+
 
 // Country Select for checkout
 (function ($) {
@@ -497,7 +542,6 @@ $(document).ready(function () {
       Basic: {
         init: function () {
           this.SelectTwoCountry();
-          this.GettingFixed();
         },
         SelectTwoCountry: function () {
           // For country select
@@ -532,24 +576,6 @@ $(document).ready(function () {
               },
             });
           });
-        },
-        GettingFixed: function (){
-            // Getting Started fixed section
-            // $(document).ready(function() {
-                
-            // });
-            var organizeheight = $('.main-organize-details-section').height();
-                var organizepos = $('.main-organize-details-section').position();
-                var navcontent = $('.organize-fixed-area').height();
-                $(window).scroll(function () {
-                    var scroll = $(this).scrollTop();
-                    if(scroll >= organizepos.top && scroll <= (organizeheight + organizepos.top - navcontent - 135)){
-                        $('.organize-fixed-area').fadeIn();
-                    }
-                    else{
-                        $('.organize-fixed-area').fadeOut();
-                    }
-                });
         },
       },
     };

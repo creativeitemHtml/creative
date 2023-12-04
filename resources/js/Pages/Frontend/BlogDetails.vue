@@ -83,7 +83,7 @@ onMounted(() => {
                   </div>
                   <div class="blog-snf-date d-flex align-items-center">
                     <img :src=" $page.props.base.url + '/public/assets/img/icon/calendar-month.svg'" alt="">
-                    <h4 class="text-16">21 August 2023</h4>
+                    <h4 class="text-16">{{ formatDate(blog_details.created_at) }}</h4>
                   </div>
                   <div class="blog-snf-time d-flex align-items-center">
                     <img :src=" $page.props.base.url + '/public/assets/img/icon/schedule.svg'" alt="">

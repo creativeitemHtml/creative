@@ -17,6 +17,7 @@
     font-weight: 800;
     line-height: 68px; 
 }
+
 /* Title */
 .pricing-st-top{
     padding-top: 80px;
@@ -211,6 +212,9 @@
     background: #FCFBF3;
     margin-bottom: 110px;
 }
+.frequently-section-2{
+    margin-bottom: 0;
+}
 .frequently-title{
     padding-bottom: 50px;
     text-align: center;
@@ -393,6 +397,7 @@
 
 /* Responsive Css */
 @media screen and (max-width: 991px){
+    /* LMS Pricing */
     .title-58 {
         font-size: 53px;
         line-height: 63px;
@@ -403,6 +408,7 @@
     }
 }
 @media screen and (max-width: 767px){
+    /* LMS Pricing */
     .title-58 {
         font-size: 45px;
         line-height: 58px;
@@ -416,6 +422,7 @@
     }
 }
 @media screen and (max-width: 575px){
+    /* LMS Pricing */
     .title-58 {
         font-size: 37px;
         line-height: 50px;
@@ -460,6 +467,7 @@
     }
 }
 @media screen and (max-width: 450px){
+    /* LMS Pricing */
     .pricing-tab-btn .nav-link {
         padding: 12px 25px;
     }

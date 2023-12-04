@@ -1,4 +1,4 @@
-/* LMS Landing 2 Css Start */
+/* LMS Landing Css Start */
 /* Common */
 .text-18 {
     color: #676C7D;
@@ -178,7 +178,6 @@ a.video-sign-up:hover {
     width: 100%;
     object-fit: contain;
 }
-
 
 /* LMS Problem Solve */
 .title-42{
@@ -888,17 +887,18 @@ a.learn-btn{
     stroke: #fff;
     fill: none;
 }
-/* LMS Landing 2 Css End */
+/* LMS Landing Css End */
 
 
 /* Responsive Css */
 @media screen and (max-width: 991px){
+    /* LMS Landing */
     .text-58 {
         font-size: 45px;
         line-height: 60px;
     }
 
-    /* LMS Landing 2 */
+    /* LMS Landing */
     .success-counter-wrap{
         flex-wrap: wrap;
         justify-content: center;
@@ -948,6 +948,7 @@ a.learn-btn{
 }
 
 @media screen and (max-width: 767px){
+    /* LMS Landing */
     .text-42 {
         font-size: 37px;
         line-height: 52px;
@@ -956,7 +957,7 @@ a.learn-btn{
         font-size: 32px;
         line-height: 45px;
     }
-    /* LMS Landing 2 */
+    /* LMS Landing */
     /* Video Area */
     .title-42 {
         font-size: 37px;
@@ -1009,6 +1010,7 @@ a.learn-btn{
 }
 
 @media screen and (max-width: 575px){
+    /* LMS Landing */
     .text-58 {
         font-size: 43px;
     }
@@ -1021,7 +1023,7 @@ a.learn-btn{
         line-height: 38px;
     }
 
-    /* LMS Landing 2 */
+    /* LMS Landing */
     .title-42 {
         font-size: 35px;
         line-height: 48px;
@@ -1115,7 +1117,7 @@ a.learn-btn{
 
 
 @media screen and (max-width: 450px){
-    /* LMS Landing 2 */
+    /* LMS Landing */
     .success-signup-form form {
         flex-direction: column;
         row-gap: 20px;

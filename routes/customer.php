@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::controller(CustomerController::class)->middleware('auth', 'customer', 'cors')->group(function () {
 
     Route::get('/customer/projects/{param?}', 'projects')->name('customer.projects');
+    Route::get('/customer/project_details/{id}', 'project_details')->name('customer.project_details');
+    Route::any('/customer/project_create', 'project_create')->name('customer.project_create');
+    Route::any('/customer/project_edit/{id}', 'project_edit')->name('customer.project_edit');
+    Route::any('/customer/project_remove/{id}', 'project_remove')->name('customer.project_remove');
+    Route::get('/customer/download/attachment/{project_id}/{key}', 'download_attachment')->name('customer.download_attachment');
+    Route::get('/customer/remove/attachment/{project_id}/{key}', 'remove_attachment')->name('customer.remove_attachment');
+    Route::any('/customer/upload/attachment/{project_id}', 'upload_attachment')->name('customer.upload_attachment');
+
+    //Milestone Payment by customer
+    Route::any('/customer/project_payment/{id}', 'project_payment')->name('customer.project_payment');
+    Route::get('/customer/project_payment/success/{payment_data}/{response}', 'milestone_success_payment')->name('milestone_success_payment');
+    Route::get('/customer/project_payment/fail/{payment_data}/{response}', 'milestone_fail_payment')->name('milestone_fail_payment');
+    Route::get('/customer/milestone_invoice/{milestone_id}', 'milestone_invoice')->name('customer.milestone_invoice');
 
     Route::get('/customer/creative-elements/subscription', 'subscription_details')->name('customer.subscription_details');
 
