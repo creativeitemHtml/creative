@@ -25,9 +25,9 @@ const handleThumbnailChange = (event) => {
     form.attachment = event.target.files[0];
 };
 
-// const submit = () => {
-//   form.post(route('project_submit'));
-// };
+const submit = () => {
+  form.post(route('project_submit'));
+};
 
 onMounted(() => {
   $(document).prop('title', props.seo.meta_title);
@@ -42,9 +42,9 @@ onMounted(() => {
   
 });
 
-$(document).ready(function () {
-  $('.service-select select').niceSelect();
-});
+// $(document).ready(function () {
+//   $('.service-select select').niceSelect();
+// });
 
 </script>
 

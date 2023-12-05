@@ -462,6 +462,15 @@ class ElementsController extends Controller
                         'password' => Hash::make($password)
                     ]);
 
+                    Subscription::create([
+                        'user_id' => $user->id,
+                        'package_id' => 5,
+                        'paid_amount' => 0,
+                        'payment_method' => 'None',
+                        'transaction_keys' => '',
+                        'date_added' => strtotime(date('d-M-Y H:i:s')),
+                    ]);
+
                     $pin = rand(100000, 999999);
 
                     $check_entry = DB::table('password_resets')->where('email', $request->email)->first();

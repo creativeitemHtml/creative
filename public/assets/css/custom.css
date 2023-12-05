@@ -311,3 +311,8 @@ form :where(i, p) {
     font-weight: 500;
     line-height: 24px;
 }
+/* Elements Css */
+.menu-search-antry .nice-select .option.selected,
+.menu-search-antry .nice-select .option {
+    border-radius: 5px;
+}
