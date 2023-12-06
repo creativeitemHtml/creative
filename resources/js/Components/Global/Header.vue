@@ -2,49 +2,49 @@
 import { Link } from '@inertiajs/vue3'
 import { ref, onMounted, onUnmounted, onBeforeUnmount } from 'vue';
 
-const currentTime = ref(new Date());
-const targetTime = new Date('2023-12-10T23:59:59');
-const timeDifference = ref({
-  hours: 0,
-  minutes: 0,
-  seconds: 0
-});
+// const currentTime = ref(new Date());
+// const targetTime = new Date('2023-12-10T23:59:59');
+// const timeDifference = ref({
+//   hours: 0,
+//   minutes: 0,
+//   seconds: 0
+// });
 
 // Function to calculate the time difference
-const calculateTimeDifference = () => {
-  const difference = Math.floor((targetTime - currentTime.value) / 1000); // Convert milliseconds to seconds
-  timeDifference.value.hours = Math.floor(difference / 3600); // 1 hour = 3600 seconds
-  timeDifference.value.minutes = Math.floor((difference % 3600) / 60); // 1 minute = 60 seconds
-  timeDifference.value.seconds = difference % 60;
-};
+// const calculateTimeDifference = () => {
+//   const difference = Math.floor((targetTime - currentTime.value) / 1000); // Convert milliseconds to seconds
+//   timeDifference.value.hours = Math.floor(difference / 3600); // 1 hour = 3600 seconds
+//   timeDifference.value.minutes = Math.floor((difference % 3600) / 60); // 1 minute = 60 seconds
+//   timeDifference.value.seconds = difference % 60;
+// };
 
 // Update the time difference every second
-const updateTimeInterval = setInterval(() => {
-  currentTime.value = new Date();
-  calculateTimeDifference();
-}, 1000);
+// const updateTimeInterval = setInterval(() => {
+//   currentTime.value = new Date();
+//   calculateTimeDifference();
+// }, 1000);
 
 // Call the calculateTimeDifference function when the component is mounted
-onMounted(() => {
-  calculateTimeDifference();
+// onMounted(() => {
+//   calculateTimeDifference();
 
-  // Set a timeout to show modals after 8 seconds
-  const timeoutId = setTimeout(() => {
-    $('#promotionalModal').modal('show');
-    $('#promotionalModal-2').modal('show');
-  }, 12000);
+//   // Set a timeout to show modals after 8 seconds
+//   const timeoutId = setTimeout(() => {
+//     $('#promotionalModal').modal('show');
+//     $('#promotionalModal-2').modal('show');
+//   }, 12000);
 
-  // Clear the timeout when the component is unmounted
-  onBeforeUnmount(() => {
-    clearTimeout(timeoutId);
-  });
+//   // Clear the timeout when the component is unmounted
+//   onBeforeUnmount(() => {
+//     clearTimeout(timeoutId);
+//   });
   
-});
+// });
 
 // Cleanup the interval when the component is unmounted
-onUnmounted(() => {
-  clearInterval(updateTimeInterval);
-});
+// onUnmounted(() => {
+//   clearInterval(updateTimeInterval);
+// });
 
 
 // Main Menu
@@ -74,7 +74,7 @@ const support = () => {
 <template>
 
   <!-- Start Promotion Topbar -->
-  <section class="promotion-top-section">
+  <!-- <section class="promotion-top-section">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -85,13 +85,12 @@ const support = () => {
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- End Promotion Topbar -->
 
   <!-- Start Promotion Modal -->
-  <div id="promotionalModal-2" class="modal fade promotional-modal promotional-modal-2" role="dialog">
+  <!-- <div id="promotionalModal-2" class="modal fade promotional-modal promotional-modal-2" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <div class="header-logo">
@@ -127,7 +126,7 @@ const support = () => {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- End Promotion Modal -->
 
     <!-- Start Main Header -->

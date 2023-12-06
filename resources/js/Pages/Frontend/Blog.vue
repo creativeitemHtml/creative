@@ -40,6 +40,10 @@ onMounted(() => {
   $("meta[property='og:image']").attr("content", props.seo.og_image);
 });
 
+const displayExcerpt = (excerpt) => {
+  return excerpt.length < 130 ? excerpt : excerpt.slice(0, 130)+'...';
+};
+
 </script>
 
 <template>
@@ -89,8 +93,8 @@ onMounted(() => {
                   <p class="text-15">{{ formatDate(latest_blog.created_at) }}</p>
                 </div>
                 <div class="trending-top-details">
-                  <h1 class="text-24">{{ latest_blog.title }}</h1>
-                  <p class="blog-p">{{ latest_blog.excerpt }}....</p>
+                  <h1 class="text-24">{{ latest_blog.title.length < 80 ? latest_blog.title : latest_blog.title.slice(0, 80)+'...' }}</h1>
+                  <p class="blog-p">{{ latest_blog.excerpt.length < 230 ? latest_blog.excerpt : latest_blog.excerpt.slice(0, 230)+'...' }}</p>
                 </div>
                 <div class="blog-read-more">
                   <h3 class="d-flex align-items-center text-15">
@@ -114,7 +118,7 @@ onMounted(() => {
                   </div>
                   <div class="trending-child-details">
                     <p class="text-15">{{ formatDate(latest.created_at) }}</p>
-                    <h2 class="text-20">{{ latest.title }}</h2>
+                    <h2 class="text-20">{{ latest.title.length < 65 ? latest.title : latest.title.slice(0, 65)+'...' }}</h2>
                     <div class="blog-read-more">
                       <h4 class="d-flex align-items-center text-15">
                         <span>Read More</span>
@@ -153,8 +157,8 @@ onMounted(() => {
                     <p class="text-15">{{ formatDate(featured.created_at) }}</p>
                     <p class="text-15">{{ featured.read_time }} Min read</p>
                   </div>
-                  <h2 class="text-20">{{ featured.title }}</h2>
-                  <p class="blog-p">{{ featured.excerpt }}....</p>
+                  <h2 class="text-20">{{ featured.title.length < 65 ? featured.title : featured.title.slice(0, 65)+'...' }}</h2>
+                  <p class="blog-p">{{ displayExcerpt(featured.excerpt) }}</p>
                 </div>
               </div>
             </Link>

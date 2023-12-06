@@ -280,6 +280,7 @@ form :where(i, p) {
     color: #212534 !important;
     font-size: 24px !important;
     font-weight: 700 !important;
+    line-height: 36px !important;
 }
 .details-third-bottom div span,
 .details-third-bottom div,
@@ -315,4 +316,26 @@ form :where(i, p) {
 .menu-search-antry .nice-select .option.selected,
 .menu-search-antry .nice-select .option {
     border-radius: 5px;
+}
+
+/* Blog title */
+
+.blog-snf-title .text-36 {
+    line-height: 42px;
+}
+.featured-single-details .text-20 {
+    display: -webkit-box!important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    min-height: 52px;
+}
+.trending-child-details .blog-read-more svg,
+.blog-read-more svg {
+    width: 18px;
+    height: 18px;
+    transform: rotate(45deg);
+    margin-top: 3px;
 }
