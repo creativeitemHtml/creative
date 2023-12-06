@@ -94,7 +94,7 @@ const displayExcerpt = (excerpt) => {
                 </div>
                 <div class="trending-top-details">
                   <h1 class="text-24">{{ latest_blog.title.length < 80 ? latest_blog.title : latest_blog.title.slice(0, 80)+'...' }}</h1>
-                  <p class="blog-p">{{ latest_blog.excerpt.length < 230 ? latest_blog.excerpt : latest_blog.excerpt.slice(0, 230)+'...' }}</p>
+                  <p class="blog-p">{{ latest_blog.excerpt.length < 200 ? latest_blog.excerpt : latest_blog.excerpt.slice(0, 200)+'...' }}</p>
                 </div>
                 <div class="blog-read-more">
                   <h3 class="d-flex align-items-center text-15">
@@ -118,7 +118,7 @@ const displayExcerpt = (excerpt) => {
                   </div>
                   <div class="trending-child-details">
                     <p class="text-15">{{ formatDate(latest.created_at) }}</p>
-                    <h2 class="text-20">{{ latest.title.length < 65 ? latest.title : latest.title.slice(0, 65)+'...' }}</h2>
+                    <h2 class="text-20">{{ latest.title.length < 62 ? latest.title : latest.title.slice(0, 62)+'...' }}</h2>
                     <div class="blog-read-more">
                       <h4 class="d-flex align-items-center text-15">
                         <span>Read More</span>
