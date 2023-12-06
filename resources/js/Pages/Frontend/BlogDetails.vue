@@ -86,6 +86,10 @@ $(document).ready(function() {
     }
 });
 
+const displayExcerpt = (excerpt) => {
+  return excerpt.length < 130 ? excerpt : excerpt.slice(0, 130)+'...';
+};
+
 </script>
 
 <template>
@@ -225,8 +229,8 @@ $(document).ready(function() {
                     <p class="text-15">{{ formatDate(related.created_at) }}</p>
                     <p class="text-15">{{ related.read_time }} Min read</p>
                   </div>
-                  <h2 class="text-20">{{ related.title }}</h2>
-                  <p class="blog-p">{{ related.excerpt }}....</p>
+                  <h2 class="text-20">{{ related.title.length < 65 ? related.title : related.title.slice(0, 65)+'...' }}</h2>
+                  <p class="blog-p">{{ displayExcerpt(related.excerpt) }}</p>
                 </div>
               </div>
             </Link>
