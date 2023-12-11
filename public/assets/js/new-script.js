@@ -426,8 +426,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     // Variable
-    var $organizeFixedArea = $('.organize-fixed-area'),
-    $tableContentWrap = $('.table-content-wrap');
+    var $organizeFixedArea = $('.organize-fixed-area');
 
     // Getting Started fixed section
     if ($organizeFixedArea.length > 0) {
@@ -445,28 +444,7 @@ $(document).ready(function() {
         });
     };
 
-    // Table of Content, Social Share Hide Show 
-    if ($tableContentWrap.length > 0) {
-        var blogsection = $('.blog-details-max').height();
-        var tablecontent = $('.table-content-wrap').height();
-        var blogsectionpos = $('.blog-details-max').position();
-        var detailssectionpos = $('.details-table-of-content').position();
-        $(window).scroll(function () {
-            var scroll = $(this).scrollTop();
-            if(scroll >= blogsectionpos.top && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-                $('.blog-socila-share').fadeIn();
-            }
-            else{
-                $('.blog-socila-share').fadeOut();
-            }
-            if(scroll >= (detailssectionpos.top - 50) && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-                $('.table-content-wrap').fadeIn();
-            }
-            else{
-                $('.table-content-wrap').fadeOut();
-            }
-        });
-    }
+
 });
 
 

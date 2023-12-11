@@ -18,6 +18,7 @@ const props = defineProps({
     keywords: Array,
     element_categories: Array,
     seo: Object,
+    h2Tags: Array,
 });
 
 const formatDate = (date) => {
@@ -42,48 +43,7 @@ onMounted(() => {
 });
 
 $(document).ready(function() {
-    // Variable
-    var $organizeFixedArea = $('.organize-fixed-area'),
-    $tableContentWrap = $('.table-content-wrap');
-
-    // Getting Started fixed section
-    if ($organizeFixedArea.length > 0) {
-        var organizeheight = $('.main-organize-details-section').height();
-        var organizepos = $('.main-organize-details-section').position();
-        var navcontent = $('.organize-fixed-area').height();
-        $(window).scroll(function () {
-            var scrollN = $(this).scrollTop();
-            if(scrollN >= organizepos.top && scrollN <= (organizeheight + organizepos.top - navcontent - 135)){
-                $('.organize-fixed-area').fadeIn();
-            }
-            else{
-                $('.organize-fixed-area').fadeOut();
-            }
-        });
-    };
-
-    // Table of Content, Social Share Hide Show 
-    if ($tableContentWrap.length > 0) {
-        var blogsection = $('.blog-details-max').height();
-        var tablecontent = $('.table-content-wrap').height();
-        var blogsectionpos = $('.blog-details-max').position();
-        var detailssectionpos = $('.details-table-of-content').position();
-        $(window).scroll(function () {
-            var scroll = $(this).scrollTop();
-            if(scroll >= blogsectionpos.top && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-                $('.blog-socila-share').fadeIn();
-            }
-            else{
-                $('.blog-socila-share').fadeOut();
-            }
-            if(scroll >= (detailssectionpos.top - 50) && scroll <= (blogsection + blogsectionpos.top - tablecontent - 180)){
-                $('.table-content-wrap').fadeIn();
-            }
-            else{
-                $('.table-content-wrap').fadeOut();
-            }
-        });
-    }
+  
 });
 
 const displayExcerpt = (excerpt) => {
@@ -101,7 +61,7 @@ const displayExcerpt = (excerpt) => {
         <div class="blog-snf-title-wrap">
           <!-- Back -->
           <div class="blog-snf-back">
-            <Link :href="$page.props.urlPrev">
+            <Link :href="route('blog')">
               <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.31659 7.71112C5.56477 7.46176 5.56381 7.05845 5.31446 6.81027L3.07981 4.58639L16.57 4.58639C16.9218 4.58639 17.207 4.3012 17.207 3.94939C17.207 3.59757 16.9218 3.31239 16.57 3.31239L3.07978 3.31239L5.31449 1.0885C5.56384 0.840326 5.5648 0.43701 5.31662 0.187657C5.06842 -0.0617274 4.6651 -0.0626508 4.41575 0.185492L1.08731 3.49788C1.08751 3.49769 1.08709 3.49807 1.08731 3.49788C0.8386 3.74606 0.837231 4.15128 1.08671 4.40029C1.08652 4.40009 1.08693 4.40048 1.08671 4.40029L4.41572 7.71328C4.66504 7.96139 5.06839 7.96053 5.31659 7.71112Z" fill="#212534"/>
               </svg>                
@@ -142,9 +102,18 @@ const displayExcerpt = (excerpt) => {
               </div>
             </div>
           </div>
+          <!-- Blog Thumbnail -->
+          <div class="row">
+            <div class="col-md-8 offset-md-2 col-sm-12">
+              <!-- banner -->
+              <div class="blog-details-banner">
+                <img :src=" $page.props.base.url + '/public/uploads/blog/banner_image/' + blog_details.banner" alt="banner">
+              </div>
+            </div>
+          </div>
           <!-- Blog Details -->
           <div class="row pb-44">  
-            <div class="col-md-8 offset-md-2 col-sm-12">
+            <div class="col-md-2 order-2 order-md-1">
               <!-- Socila Share Options -->
               <div class="blog-socila-share">
                 <h3 class="blog-share-title">Share Now</h3>
@@ -159,6 +128,22 @@ const displayExcerpt = (excerpt) => {
                   <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/twiter.svg'" alt=""></a></li>
                 </ul>
               </div>
+            </div>
+            <div class="col-md-8 col-sm-12 order-1 order-md-2">
+              <div class="blog-sn-details">
+                <div class="details-table-of-content">
+                  <div class="details-third-bottom"  v-html="blog_details.details"></div>
+                  <div class="blog-details-footer">
+                    <div class="blog-category-area">
+                      <ul class="d-flex flex-wrap">
+                        <li v-for="tag in keywords" :key="tag"><Link :href="route('blog', { type: 'tag', keyword: tag.trim()})">{{ capitalize(tag.trim()) }}</Link></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 order-3 order-md-3">
               <!-- Table of Contents -->
               <div class="table-content-wrap">
                 <div class="table-content-menu d-none content-menu">
@@ -175,31 +160,11 @@ const displayExcerpt = (excerpt) => {
                   </div>
                   <nav class="navbar content-nav">
                     <ul class="table-content-list nav-pills">
-                      <li class="nav-item"><a href="#list-item-1" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-2" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-3" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-4" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-5" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-6" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
-                      <li class="nav-item"><a href="#list-item-7" class="nav-link">Evolution of google analytics & How ga4 comes into the play</a></li>
+                      <li v-for="(tag, index) in h2Tags" :key="index" class="nav-item">
+                        <a :href="'#list-item-' + (index + 1)" class="nav-link">{{ tag }}</a>
+                      </li>
                     </ul>
                   </nav>
-                </div>
-              </div>
-              <!-- banner -->
-              <div class="blog-details-banner">
-                <img :src=" $page.props.base.url + '/public/uploads/blog/banner_image/' + blog_details.banner" alt="banner">
-              </div>
-              <div class="blog-sn-details">
-                <div class="details-table-of-content">
-                  <div class="details-third-bottom"  v-html="blog_details.details"></div>
-                </div>
-                <div class="blog-details-footer">
-                  <div class="blog-category-area">
-                    <ul class="d-flex flex-wrap">
-                      <li v-for="tag in keywords" :key="tag"><Link :href="route('blog', { type: 'tag', keyword: tag.trim()})">{{ capitalize(tag.trim()) }}</Link></li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>

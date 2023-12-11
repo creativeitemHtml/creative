@@ -318,7 +318,7 @@ form :where(i, p) {
     border-radius: 5px;
 }
 
-/* Blog title */
+/* Blog */
 
 .blog-snf-title .text-36 {
     line-height: 42px;
@@ -338,4 +338,8 @@ form :where(i, p) {
     height: 18px;
     transform: rotate(45deg);
     margin-top: 3px;
+}
+
+.blog-search form input {
+    max-width: 400px;
 }

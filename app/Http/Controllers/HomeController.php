@@ -115,6 +115,20 @@ class HomeController extends Controller
     public function blog_details($slug="")
     {
         $blog_details = Blog::where('slug', $slug)->first();
+        $htmlContent = $blog_details->details;
+    
+        // Parse HTML content to extract h2 tags
+        $dom = new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($htmlContent);
+        libxml_clear_errors();
+
+        $h2Tags = [];
+        $elements = $dom->getElementsByTagName('h2');
+        foreach ($elements as $element) {
+            $h2Tags[] = $element->nodeValue;
+        }
+
         $keywords = explode(', ', $blog_details->tags);
         $related_blogs = Blog::where('blog_category_id', $blog_details->blog_category_id)->get();
         $selected_blog_category = BlogCategory::find($blog_details->blog_category_id);
@@ -131,6 +145,7 @@ class HomeController extends Controller
             'writer_info' => $writer_info,
             'element_categories' => $element_categories,
             'seo' => $seo,
+            'h2Tags' => $h2Tags,
         ])->withViewData(['seo' => $seo]);
     }
 
