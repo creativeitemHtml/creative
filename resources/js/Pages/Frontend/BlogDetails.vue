@@ -43,7 +43,15 @@ onMounted(() => {
 });
 
 $(document).ready(function() {
-  
+  // Table of Content
+  $('.table-content-wrap .table-content-close').click(function (e) {
+    $('.table-of-contents').addClass('d-none');
+    $('.table-content-wrap .content-menu').removeClass('d-none');
+  });
+  $('.table-content-wrap .content-menu').click(function (e) {
+    $(this).addClass('d-none');
+    $('.table-of-contents').removeClass('d-none');
+  });
 });
 
 const displayExcerpt = (excerpt) => {
