@@ -823,7 +823,7 @@ class SuperadminController extends Controller
             foreach($image_file as $key => $image) {
                 $src_data = $image->getAttribute('src');
 
-                if (str_contains($src_data, 'http')) {
+                if (str_contains($src_data, 'uploads/blog/description_images')) {
                     continue;
                 }
 
@@ -834,6 +834,11 @@ class SuperadminController extends Controller
 
                 // Use the original file name and extension from the uploaded file
                 $original_name_with_extension = $image->getAttribute('data-filename');
+
+                if (!$original_name_with_extension) {
+                    // Generate a unique filename
+                    $original_name_with_extension = uniqid() . '.jpg';
+                }
                 $original_name = pathinfo($original_name_with_extension, PATHINFO_FILENAME);
                 $extension = pathinfo($original_name_with_extension, PATHINFO_EXTENSION);
 
