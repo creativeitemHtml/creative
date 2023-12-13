@@ -724,7 +724,7 @@ class SuperadminController extends Controller
             $blog->read_time            = $request->read_time;
             $blog->visibility           = !empty($request->visibility) ? '1' : '0';
             $blog->blog_category_id     = $request->blog_category_id;
-            $blog->blogger_id           = auth()->user()->id ;
+            $blog->blogger_id           = $request->blogger_id;
             $blog->ability_to_comment   = !empty($request->ability_to_comment) ? '1' : '0';
             $blog->is_featured          = !empty($request->is_featured) ? '1' : '0';
             $blog->tags                 = str_replace(',', ', ', $request->tags);
@@ -767,6 +767,7 @@ class SuperadminController extends Controller
             return redirect()->route('superadmin.blogs')->with('message', 'Blog created successfully');
         }
 
+        $page_data['blog_writers'] = User::where('role_id', 3)->get();
         $page_data['blog_categories'] = BlogCategory::all();
         $page_data['page_title'] = 'Blog Create';
         $page_data['blog'] ='active';
@@ -859,7 +860,7 @@ class SuperadminController extends Controller
                 'excerpt' => $request->excerpt,
                 'read_time' => $request->read_time,
                 'blog_category_id' => $request->blog_category_id,
-                'blogger_id' => auth()->user()->id,
+                'blogger_id' => $request->blogger_id,
                 'thumbnail' => $thumbnail,
                 'banner' => $banner,
                 'is_featured' => !empty($request->is_featured) ? '1' : '0',
@@ -881,7 +882,8 @@ class SuperadminController extends Controller
         }
 
         $page_data['blog_details'] = Blog::find($id);
-        
+
+        $page_data['blog_writers'] = User::where('role_id', 3)->get();
         $page_data['blog_categories'] = BlogCategory::all();
         $page_data['page_title'] = 'Blog Update';
         $page_data['blog'] ='active';

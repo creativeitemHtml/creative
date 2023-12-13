@@ -23,6 +23,19 @@
                 </select>
                 </div>
                 <div class="pForm-wrap">
+                    <label for="blogger_id" class="enForm-label">{{ get_phrase('Created By') }}</label>
+                    <select
+                        class="enForm-select enForm-nice-select"
+                        id="blogger_id"
+                        name="blogger_id"
+                    >
+                        <option value="">{{ get_phrase('Select a writer') }}</option>
+                        @foreach($blog_writers as $writer)
+                            <option value="{{ $writer->id }}" @if($writer->id == $blog_details->blogger_id) selected @endif>{{ $writer->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="pForm-wrap">
                     <label for="blog_title" class="enForm-label">{{ get_phrase('Blog Tittle') }}</label>
                     <input type="text" class="form-control enForm-control" id="blog_title" name="blog_title" placeholder="Blog Title" aria-label="Blog Title" value="{{ $blog_details->title }}" />
                 </div>

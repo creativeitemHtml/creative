@@ -8,6 +8,7 @@ import { ref, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3'
 
 const page = usePage()
+const currentPageUrl = ref('')
 
 // Define props using the defineProps() function
 const props = defineProps({
@@ -40,6 +41,9 @@ onMounted(() => {
   $("meta[property='og:title']").attr("content", props.seo.og_title);
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
+
+  currentPageUrl.value = window.location.href;
+  
 });
 
 $(document).ready(function() {
@@ -127,13 +131,20 @@ const displayExcerpt = (excerpt) => {
                 <h3 class="blog-share-title">Share Now</h3>
                 <ul class="blog-share-items">
                   <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/reddit.svg'" alt=""></a></li>
-                  <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/linkedin.svg'" alt=""></a></li>
+
+                  <li><a :href="`http://www.linkedin.com/shareArticle?mini=true&url=${currentPageUrl}`" target="_blank"><img :src=" $page.props.base.url + '/public/assets/img/icon/linkedin.svg'" alt=""></a></li>
+
                   <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp.svg'" alt=""></a></li>
-                  <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/facebook.svg'" alt=""></a></li>
+
+                  <li><a :href="`https://www.facebook.com/sharer/sharer.php?u=${currentPageUrl}&display=popup`" target="_blank"><img :src=" $page.props.base.url + '/public/assets/img/icon/facebook.svg'" alt=""></a></li>
+
                   <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/skype.svg'" alt=""></a></li>
-                  <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/pinterest.svg'" alt=""></a></li>
-                  <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-plane.svg'" alt=""></a></li>
-                  <li><a href="#"><img :src=" $page.props.base.url + '/public/assets/img/icon/twiter.svg'" alt=""></a></li>
+
+                  <li><a :href="`https://pinterest.com/pin/create/button/?url=${currentPageUrl}&media=${$page.props.base.url + '/' + blog_details.thumbnail}&description=${blog_details.title}`" target="_blank"><img :src=" $page.props.base.url + '/public/assets/img/icon/pinterest.svg'" alt=""></a></li>
+
+                  <li><a :href="`https://t.me/share/url?url=${encodeURIComponent(currentPageUrl)}`" target="_blank"><img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-plane.svg'" alt=""></a></li>
+
+                  <li><a :href="`http://twitter.com/share?url=${currentPageUrl}`" target="_blank"><img :src=" $page.props.base.url + '/public/assets/img/icon/twiter.svg'" alt=""></a></li>
                 </ul>
               </div>
             </div>

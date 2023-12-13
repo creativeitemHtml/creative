@@ -1,3 +1,9 @@
+<style>
+    .main-menu-header {
+        padding: 11px;
+    }
+</style>
+
 <!-- Start Main Header -->
 <header class="main-menu-header">
     <div class="container-xxl">

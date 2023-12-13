@@ -17,11 +17,24 @@
                 <div class="pForm-wrap">
                     <label for="blog_title" class="enForm-label">{{ get_phrase('Blog Category') }}</label>
                     <select class="enForm-select enForm-nice-select" name="blog_category_id" id="blog_category_id">
-                    <option value="">{{ get_phrase('Select a category') }}</option>
-                    @foreach ($blog_categories as $key => $blog_category)
-                        <option value="{{ $blog_category->id }}">{{ get_phrase($blog_category->name) }}</option>
-                    @endforeach
-                </select>
+                        <option value="">{{ get_phrase('Select a category') }}</option>
+                        @foreach ($blog_categories as $key => $blog_category)
+                            <option value="{{ $blog_category->id }}">{{ get_phrase($blog_category->name) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="pForm-wrap">
+                    <label for="blogger_id" class="enForm-label">{{ get_phrase('Created By') }}</label>
+                    <select
+                        class="enForm-select enForm-nice-select"
+                        id="blogger_id"
+                        name="blogger_id"
+                    >
+                        <option value="">{{ get_phrase('Select a writer') }}</option>
+                        @foreach($blog_writers as $writer)
+                            <option value="{{ $writer->id }}">{{ $writer->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="pForm-wrap">
                     <label for="blog_title" class="enForm-label">{{ get_phrase('Blog Tittle') }}</label>
