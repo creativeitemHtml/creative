@@ -558,21 +558,20 @@ class SuperadminController extends Controller
             $src_data = $image->getAttribute('src');
 
             if (str_contains($src_data, 'http')) {
-                continue;
+
+                list($type, $src_data) = explode(';', $src_data);
+                list(, $src_data) = explode(',', $src_data);
+
+                $img_data = base64_decode($src_data);
+                $image_name = 'uploads/documentation/' . $product . '/' . $topic . '/' . time().$key.'.png';
+                $src = url('public/'.$image_name);
+                
+                $path = public_path() . '/' . $image_name;
+                file_put_contents($path, $img_data);
+
+                $image->removeAttribute('src');
+                $image->setAttribute('src', $src);
             }
-
-            list($type, $src_data) = explode(';', $src_data);
-            list(, $src_data) = explode(',', $src_data);
-
-            $img_data = base64_decode($src_data);
-            $image_name = 'uploads/documentation/' . $product . '/' . $topic . '/' . time().$key.'.png';
-            $src = url('public/'.$image_name);
-            
-            $path = public_path() . '/' . $image_name;
-            file_put_contents($path, $img_data);
-
-            $image->removeAttribute('src');
-            $image->setAttribute('src', $src);
         }
 
         $dom->saveHTML();
