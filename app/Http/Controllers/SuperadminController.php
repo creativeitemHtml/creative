@@ -837,7 +837,7 @@ class SuperadminController extends Controller
 
                 if (!$original_name_with_extension) {
                     // Generate a unique filename
-                    $original_name_with_extension = uniqid() . '.jpg';
+                    $original_name_with_extension = uniqid() . '.svg';
                 }
                 $original_name = pathinfo($original_name_with_extension, PATHINFO_FILENAME);
                 $extension = pathinfo($original_name_with_extension, PATHINFO_EXTENSION);
@@ -847,6 +847,7 @@ class SuperadminController extends Controller
                 $src = url('public/'.$image_name);
                 
                 $path = public_path() . '/' . $image_name;
+                
                 file_put_contents($path, $img_data);
 
                 $image->removeAttribute('src');
