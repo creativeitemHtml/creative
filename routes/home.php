@@ -27,6 +27,8 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/services', 'services')->name('services');
     Route::post('/project-submit', 'project_submit')->name('project_submit');
+    Route::get('/services/service-checkout/{service_id}', 'service_buy_now')->name('service_buy_now');
+    Route::any('/services/purchase-service/{service_id}', 'purchase_service')->name('purchase_service');
 
     Route::get('/terms-and-condition', 'terms_and_condition')->name('terms_and_condition');
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');

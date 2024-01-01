@@ -47,6 +47,11 @@ Route::controller(SuperadminController::class)->middleware('auth', 'superadmin')
     Route::any('superadmin/blog/edit/{id}', 'edit_blog')->name('superadmin.edit_blog');
     Route::get('superadmin/blog/delete/{id}', 'blog_delete')->name('superadmin.blog.delete');
 
+    Route::get('superadmin/services', 'services')->name('superadmin.services');
+    Route::any('superadmin/service-create', 'service_create')->name('superadmin.service_create');
+    Route::any('superadmin/service-update/{id}', 'service_update')->name('superadmin.service_update');
+    Route::get('superadmin/service-remove/{id}', 'service_remove')->name('superadmin.service_remove');
+
     Route::get('superadmin/ad_network', 'ad_network')->name('superadmin.ad_network');
     Route::any('superadmin/ad_create', 'ad_create')->name('superadmin.ad_create');
     Route::any('superadmin/ad/edit/{id}', 'ad_edit')->name('superadmin.ad_edit');

@@ -7,6 +7,7 @@ import { Link, useForm, usePage } from '@inertiajs/vue3';
 const props = defineProps({
   element_categories: Array,
   seo: Object,
+  services: Array,
 });
 
 const user = usePage().props.auth.user;
@@ -283,6 +284,42 @@ onMounted(() => {
       </div>
     </section>
     <!-- End Technology -->
+
+    <!-- Start Pricing -->
+    <section class="pt-80 pb-110">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="pricing-n-title">
+              <h1 class="text-52">Explore Our Competitive Service Pricing Model</h1>
+              <p class="text-22">We provide you with clarity in pricing with our transparent cost approach</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" v-for="service in services" :key="service.id">
+            <div class="single-n-pricing" :class="{ active: service.name === 'Pro' }">
+              <div class="pricing-n-popular d-flex align-items-center justify-content-between">
+                <h4 class="text-22">{{ service.name }}</h4>
+                <a href="#" class="text-15" v-if="service.name === 'Pro'">Popular</a>
+              </div>
+              <div class="pricing-n-price d-flex">
+                <h2 class="pricing-price-l d-flex"><span>$</span><span>{{ service.discounted_price }}</span></h2>
+                <h3 class="pricing-price-r d-flex">
+                  <span v-if="service.discounted_price != 0">${{ service.price }}</span>
+                  <span>/ {{ service.int_val }}</span></h3>
+              </div>
+              <p class="text-15 pricing-n-batch">{{ service.interval_period_text }}</p>
+              <div class="pricing-n-list">
+                <ul>
+                  <li v-for="service_feature in service.service_features" :key="service_feature.id">{{ service_feature }}</li>
+                </ul>
+              </div>
+              <Link :href="route('service_buy_now', { id: service.id })" class="pricing-n-btn text-18">Buy Now</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Pricing -->
     
     <Footer :elementCategories="element_categories"/>
 </template>

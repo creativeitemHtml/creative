@@ -54,6 +54,11 @@ Route::controller(CustomerController::class)->middleware('auth', 'customer', 'co
     Route::get('/customer/single-purchase/success/{purchase_data}/{response}', 'single_purchase_success_payment')->name('single_purchase_success_payment');
     Route::get('/customer/single-purchase/fail/{purchase_data}/{response}', 'single_purchase_fail_payment')->name('single_purchase_fail_payment');
 
+    //Service payment
+    Route::get('/customer/service-purchase/{service_id}', 'service_purchase')->name('customer.service_purchase');
+    Route::get('/customer/service-purchase/success/{purchase_data}/{response}', 'service_purchase_success_payment')->name('service_purchase_success_payment');
+    Route::get('/customer/service-purchase/fail/{purchase_data}/{response}', 'service_purchase_fail_payment')->name('service_purchase_fail_payment');
+
     //Download
     Route::get('/customer/creative-elements/download-link/{product_id}', 'download_link_generate')->name('customer.download_link_generate');
     Route::get('/elements/download-file/{unique_identifier}', 'download_product')->name('customer.download_product');

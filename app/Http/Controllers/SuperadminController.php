@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
-use App\Models\{User, Product, ProductType, Topic, Article, Documentation, Blog, BlogCategory, Ad, AdDimension, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, SeoField, Package, Tag, Setting, ElementCategory, ElementProduct, Subscription, ElementDownload, ElementFileType};
+use App\Models\{User, Product, ProductType, Topic, Article, Documentation, Blog, BlogCategory, Ad, AdDimension, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, SeoField, Package, Tag, Setting, ElementCategory, ElementProduct, Subscription, ElementDownload, ElementFileType, Service};
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Response;
@@ -914,6 +914,86 @@ class SuperadminController extends Controller
 
         $blog->delete();
         return redirect()->back()->with('message','Blog deleted successfully.');
+    }
+
+    public function services($param = "")
+    {
+        $page_data = array();
+
+        if(empty($param)){
+            $service_details = Service::first();
+            $param = $service_details->service_to_product->slug;
+        }
+
+        $uniqueProductIds = Service::distinct()->pluck('product_id');
+        $page_data['products'] = Product::whereIn('id', $uniqueProductIds)->get();
+
+        $page_data['page_title'] = 'Service Manager';
+        $page_data['tab'] = $param;
+        $page_data['service'] ='active';
+        $page_data['file_name'] = 'services';
+        return view('superadmin.navigation', $page_data);
+    }
+
+    public function service_create(Request $request)
+    {
+        $page_data = array();
+
+        if(!empty($request->all()))
+        {
+            $data['product_id'] = $request->product_id;
+            $data['name'] = $request->name;
+            $data['price'] = $request->price;
+            $data['discounted_price'] = $request->discounted_price;
+            $data['visibility'] = $request->visibility;
+
+            $data['feature_list'] = json_encode(array_filter($request->features));
+
+            Service::create($data);
+
+            return redirect()->back()->with('message', 'Service created successfully.');
+        }
+
+        $page_data['products'] = Product::where('visibility', 1)->get();
+
+        return view('superadmin.service_add', $page_data);
+    }
+
+    public function service_update(Request $request, $id) {
+        $page_data = array();
+
+        if(!empty($request->all()))
+        {
+            $data['product_id'] = $request->product_id;
+            $data['name'] = $request->name;
+            $data['price'] = $request->price;
+            $data['discounted_price'] = $request->discounted_price;
+            $data['visibility'] = $request->visibility;
+
+            $data['feature_list'] = json_encode(array_filter($request->features));
+
+            Service::where('id', $id)->update($data);
+
+            return redirect()->back()->with('message', 'Service updated successfully.');
+        }
+
+        $service = Service::find($id);
+        $page_data['service_details'] = $service;
+        $page_data['products'] = Product::where('visibility', 1)->get();
+        
+        // Decode the feature_list JSON and pass it to the view
+        $featureList = json_decode($service->feature_list, true);
+        $page_data['feature_list'] = $featureList;
+
+        return view('superadmin.service_edit', $page_data);
+    }
+
+    public function service_remove($id = "") 
+    {
+        $service = Service::find($id);
+        $service->delete();
+
+        return redirect()->back()->with('message','Service deleted successfully.');
     }
 
     public function ad_network()

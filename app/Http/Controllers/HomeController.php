@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\{Product,Topic, Article, Documentation, Blog, BlogCategory, User, Project, Setting, ElementCategory, ElementProduct, Subscription};
+use App\Models\{Product,Topic, Article, Documentation, Blog, BlogCategory, User, Project, Setting, ElementCategory, ElementProduct, Subscription, Service};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -212,11 +212,93 @@ class HomeController extends Controller
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
         $seo = seo();
+        $services = Service::where('visibility', 1)->get();
+
+        foreach($services as $key => $service)
+        {
+            $res[$key]['id'] = $service->id;
+            $res[$key]['name'] = $service->name;
+            $res[$key]['price'] = $service->price;
+            $res[$key]['discounted_price'] = $service->discounted_price != null ? $service->discounted_price : 0;
+
+            $service_features = json_decode($service->feature_list); 
+            $res[$key]['service_features'] = $service_features;
+
+
+            $res[$key]['int_val'] = 'one time';
+            $res[$key]['interval_period_text'] = 'You will get the following';
+            
+        }
+
+        $services = $res;
 
         return Inertia::render('Frontend/Service', [
             'element_categories' => $element_categories,
             'seo' => $seo,
+            'services' => $services,
         ])->withViewData(['seo' => $seo]);
+    }
+
+    public function service_buy_now($service_id="")
+    {
+
+        $selected_service = Service::find($service_id);
+
+        return Inertia::render('Frontend/ServiceCheckout', [
+            'selected_service' => $selected_service,
+        ]);
+    }
+
+    public function purchase_service(Request $request, $service_id="")
+    {
+        if(auth()->user()) {
+            return redirect()->route('customer.service_purchase', ['service_id' => $service_id]);
+        } else {
+            $this->validate($request, [
+                'email' => 'required|email',
+            ]);
+
+            if(!empty($request->email)) {
+                $name = strstr($request->email, '@', true);
+
+                $check_email = User::where('email', $request->email)->first();
+
+                if(!empty($check_email)){
+                    // $user = $check_email;
+                    return redirect()->back()->with('info', 'This email already exists. Please login or provide new email address');
+                } else {
+                    $password = random(8);
+
+                    $user = User::create([
+                        'name' => $name,
+                        'email' => $request->email,
+                        'role_id' => '6',
+                        'password' => Hash::make($password)
+                    ]);
+
+                    $pin = rand(100000, 999999);
+
+                    DB::table('password_resets')
+                        ->insert(
+                            [
+                                'email' => $request->email, 
+                                'token' => $pin
+                            ]
+                        );
+
+                    Mail::to($request->email)->send(new VerifyEmailWithPassword($pin, $user, $password));
+
+                    // $token = $user->createToken('myapptoken')->plainTextToken;
+                }
+
+                relogin_user($user->id);
+
+                return redirect()->route('customer.service_purchase', ['service_id' => $service_id]);
+
+            } else {
+                return redirect()->back()->with('error', 'Fill all the required field');
+            }
+        }
     }
 
     public function terms_and_condition()
