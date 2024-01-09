@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/category_wise_elements/{slug}', [ApiController::class, 'category_wise_elements']);
+
+Route::get('/product_wise_packages/{slug}', [ApiController::class, 'product_wise_packages']);

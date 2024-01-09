@@ -1,36 +1,3 @@
-<style>
-.input-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.add-field {
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    border-radius: 5px;
-    font-size: 20px;
-    background: #0d6efd;
-    border-color: #0d6efd;
-    color: #fff !important;
-    border: none;
-}
-
-.remove-field {
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    border-radius: 5px;
-    font-size: 20px;
-    background: #ee406b;
-    border-color: #ee406b;
-    color: #fff !important;
-    border: none;
-}
-</style>
-
-
 <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('superadmin.service_create') }}">
 	@csrf
 
@@ -50,81 +17,21 @@
 
     <div class="pForm-wrap mt-2">
         <label for="name" class="enForm-label">{{ get_phrase('Name') }}</label>
-        <input type="text" class="form-control enForm-control" name="name" id="name" placeholder="Provide package name" required>
+        <input type="text" class="form-control enForm-control" name="name" id="name" placeholder="Provide service name" required>
     </div>
 
     <div class="pForm-wrap mt-2">
-        <label for="price" class="enForm-label">{{ get_phrase('Package price') }}</label>
-        <input type="number" class="form-control enForm-control" id="price" name="price" min="0" placeholder="Provide package price" required>
+        <label for="price" class="enForm-label">{{ get_phrase('Service price') }}</label>
+        <input type="number" class="form-control enForm-control" id="price" name="price" min="0" placeholder="Provide service price" required>
     </div>
 
     <div class="pForm-wrap mt-2">
-        <label for="discounted_price" class="enForm-label">{{ get_phrase('Discounted price') }}</label>
-        <input type="number" class="form-control enForm-control" id="discounted_price" name="discounted_price" min="0" placeholder="Provide package discounted price">
-    </div>
-
-    <div class="pForm-wrap mt-2">
-        <label for="visibility" class="enForm-label">{{ get_phrase('Visibility') }}</label>
-        <select name="visibility" id="visibility" class="enForm-select enForm-nice-select">
-            <option value="1">{{ get_phrase('Yes') }}</option>
-            <option value="0">{{ get_phrase('No') }}</option>
-        </select>
-    </div>
-
-    <!-- <div class="pForm-wrap mt-2" id="featureList">
-        <label>{{ get_phrase('Feature List') }}</label>
-        <div class="feature-list">
-            <input type="text" name="features[]" class="form-control" placeholder="Feature Value">
-            <button type="button" class="add-field">+</button>
-        </div>
-    </div> -->
-
-    <div class="pForm-wrap mt-2" id="featureList">
-        <label class="enForm-label">{{ get_phrase('Feature Fields') }}</label>
-        <div class="feature-list">
-            <div class="input-row">
-                <input type="text" name="features[]" class="form-control enForm-control" placeholder="Feature Value">
-                <button type="button" class="add-field">+</button>
-            </div>
-            <p id="warningText" class="text-warning"></p>
-        </div>
+        <label for="note" class="enForm-label">{{ get_phrase('Note') }}</label>
+        <input type="text" class="form-control enForm-control" name="note" id="note" placeholder="Service note" required>
     </div>
 
     <div class="text-center float-end mt-4">
         <button type="submit" class="btn btn-primary" name="button">{{ get_phrase('Submit') }}</button>
     </div>
 </form>
-
-<script>
-$(document).ready(function() {
-
-    $('#featureList').on('click', '.add-field', function() {
-        var inputValue = $(this).closest('.input-row').find('input').val();
-
-        if (inputValue.trim() === '') {
-            $('#warningText').text('Please enter a value before adding.');
-            return;
-        }
-
-        $('#warningText').text(''); // Clear the warning text
-
-        var fieldHTML = `
-            <div class="input-row mt-3">
-                <input type="text" name="features[]" class="form-control enForm-control" value="${inputValue}" readonly>
-                <button type="button" class="remove-field">-</button>
-            </div>
-        `;
-        $('.feature-list').append(fieldHTML);
-
-        // Clear the input field
-        $(this).closest('.input-row').find('input').val('');
-        // $(this).prop('disabled', true);
-    });
-
-    $('#featureList').on('click', '.remove-field', function() {
-        $(this).closest('.input-row').remove();
-    });
-
-});
-</script>
 

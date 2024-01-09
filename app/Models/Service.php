@@ -15,7 +15,7 @@ class Service extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'name', 'product_id', 'price', 'discounted_price', 'visibility', 'feature_list' ];
+    protected $fillable = [ 'id', 'name', 'product_id', 'price', 'note' ];
 
     public function service_to_product()
     {

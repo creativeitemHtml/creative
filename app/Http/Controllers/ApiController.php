@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Models\{ElementProduct, ElementCategory};
+use App\Models\{ElementProduct, ElementCategory, ServicePackage, Product, Service};
 
 class ApiController extends Controller
 {
@@ -35,5 +35,49 @@ class ApiController extends Controller
         }
 
         return new JsonResponse(['status' => 'success', 'data' => $elements], 200);
+    }
+
+    public function product_wise_packages($slug = "")
+    {
+        $product = Product::where('slug', $slug)->first();
+        $service_packages = ServicePackage::where('product_id', $product->id)->get();
+
+        foreach($service_packages as $key => $service)
+        {
+            $res[$key]['id'] = $service->id;
+            $res[$key]['name'] = $service->name;
+            $active_package['product_id'] = $service->product_id;
+            $active_package['product_slug'] = $service->servicePackage_to_product->slug;
+            $res[$key]['price'] = $service->price;
+            $res[$key]['discounted_price'] = $service->discounted_price != null ? $service->discounted_price : 0;
+
+            $service_features = json_decode($service->services); 
+            $res[$key]['service_features'] = $service_features;
+
+
+            $res[$key]['int_val'] = 'one time';
+            $res[$key]['interval_period_text'] = 'You will get the following';
+            
+        }
+
+        $service_packages = $res;
+
+        if (empty($service_packages)) {
+            return response()->json(['status' => 'failed', 'message' => 'No data found'], 404);
+        }
+
+        $services = Service::where('product_id', $service->product_id)->get();
+
+        // $oddServices = $services->filter(function ($value, $key) {
+        //     $key = $key +1;
+        //     return $key % 2 !== 0;
+        // });
+
+        // $evenServices = $services->filter(function ($value, $key) {
+        //     $key = $key +1;
+        //     return $key % 2 === 0;
+        // });
+
+        return new JsonResponse(['status' => 'success', 'data' => $service_packages, 'services' => $services], 200);
     }
 }

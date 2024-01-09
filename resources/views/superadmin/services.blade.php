@@ -26,10 +26,9 @@
                         <!-- Table Head -->
                         <thead>
                             <tr>
-                                <th scope="col">{{ get_phrase('Title') }}</th>
+                                <th scope="col">{{ get_phrase('Name') }}</th>
                                 <th scope="col">{{ get_phrase('Price') }}</th>
-                                <th scope="col">{{ get_phrase('Dis-price') }}</th>
-                                <th scope="col">{{ get_phrase('Visibility') }}</th>
+                                <th scope="col">{{ get_phrase('Note') }}</th>
                                 <th scope="col">{{ get_phrase('Action') }}</th>
                             </tr>
                         </thead>
@@ -45,14 +44,7 @@
                                     {{ currency((double)$service->price) }}
                                 </td>
                                 <td>
-                                    {{ currency((double)$service->discounted_price) }}
-                                </td>
-                                <td>
-                                    @if($service->visibility != '1'):
-                                        <span class="status-btn status-down">{{ get_phrase('Archive') }}</span>
-                                    @else
-                                        <span class="status-btn status-up">{{ get_phrase('Active') }}</span>
-                                    @endif
+                                    {{ $service->note }}
                                 </td>
                                 <td>
                                     <div class="adminTable-action">
@@ -60,7 +52,7 @@
                                             <button type="button" class="dropdown-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{ get_phrase('Actions') }}</button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a class="dropdown-item" href="javascript:;" onclick="largeModal('{{ route('superadmin.service_update', ['id' => $service->id]) }}', '{{ get_phrase("Update pacakge") }}')">{{ get_phrase('Edit') }}</a>
+                                                    <a class="dropdown-item" href="javascript:;" onclick="largeModal('{{ route('superadmin.service_update', ['id' => $service->id]) }}', '{{ get_phrase("Update service") }}')">{{ get_phrase('Edit') }}</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('superadmin.service_remove', ['id' => $service->id]) }}', 'undefined')">{{ get_phrase('Delete') }}</a>

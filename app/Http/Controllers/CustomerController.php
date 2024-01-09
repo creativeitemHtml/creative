@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\{Setting, Package, Subscription, ElementProduct, User, ElementProductComment, ElementProductPayment, ElementDownload, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, ElementCategory, Service};
+use App\Models\{Setting, Package, Subscription, ElementProduct, User, ElementProductComment, ElementProductPayment, ElementDownload, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, ElementCategory, ServicePackage};
 use Illuminate\Support\Facades\Hash;
 use Stripe;
 use Illuminate\Support\Facades\Mail;
@@ -1133,7 +1133,7 @@ class CustomerController extends Controller
             $STRIPE_SECRET = $stripe_keys->secret_live_key;
         }
 
-        $service_details = Service::find($service_id);
+        $service_details = ServicePackage::find($service_id);
 
         $purchase_data['user_id'] = auth()->user()->id;
         $purchase_data['service_id'] = $service_id;
@@ -1212,13 +1212,13 @@ class CustomerController extends Controller
             $stripe_payment_response = json_encode($stripe_transaction_keys);
 
 
-            $service_Details = Service::find($purchase_data['service_id']);
+            $service_Details = ServicePackage::find($purchase_data['service_id']);
 
 
             $project_details['title'] = $service_Details->name;
-            $feature_list = json_decode($service_Details->feature_list, true);
+            $services = json_decode($service_Details->services, true);
             $htmlText = '';
-            foreach ($feature_list as $key => $value) {
+            foreach ($services as $key => $value) {
                 $htmlText .= $key . '. ' . $value . '<br>';
             }
             $project_details['description'] = $htmlText;

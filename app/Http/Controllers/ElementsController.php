@@ -27,7 +27,7 @@ class ElementsController extends Controller
             $res[$key]['interval'] = $package->interval;   
             $res[$key]['interval_period'] = $package->interval_period;
 
-            $packages_features = json_decode($package->feature_list); 
+            $packages_features = json_decode($package->services); 
             $res[$key]['packages_features'] = $packages_features;
 
 
@@ -105,7 +105,7 @@ class ElementsController extends Controller
             $res[$key]['interval'] = $package->interval;
             $res[$key]['interval_period'] = $package->interval_period;
 
-            $packages_features = json_decode($package->feature_list); 
+            $packages_features = json_decode($package->services); 
             $res[$key]['packages_features'] = $packages_features;
 
 
@@ -155,7 +155,7 @@ class ElementsController extends Controller
         $res['interval'] = $package->interval;
         $res['interval_period'] = $package->interval_period;
 
-        $package_features = json_decode($package->feature_list); 
+        $package_features = json_decode($package->services); 
         $res['package_features'] = $package_features;
 
 
@@ -401,7 +401,7 @@ class ElementsController extends Controller
             $res[$key]['interval'] = $package->interval;
             $res[$key]['interval_period'] = $package->interval_period;
 
-            $packages_features = json_decode($package->feature_list); 
+            $packages_features = json_decode($package->services); 
             $res[$key]['packages_features'] = $packages_features;
 
 

@@ -30,6 +30,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/services/service-checkout/{service_id}', 'service_buy_now')->name('service_buy_now');
     Route::any('/services/purchase-service/{service_id}', 'purchase_service')->name('purchase_service');
 
+    Route::get('/hire-us', 'hire_us')->name('hire_us');
+
     Route::get('/terms-and-condition', 'terms_and_condition')->name('terms_and_condition');
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy_policy');
     Route::get('/refund-policy', 'refund_policy')->name('refund_policy');
