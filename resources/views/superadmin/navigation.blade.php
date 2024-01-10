@@ -8,6 +8,7 @@ $element_products_count = DB::table('element_products')->count();
 $subscription_count = DB::table('subscriptions')->count();
 $blog_count = DB::table('blogs')->count();
 
+isset($dashboard)           ? "" : $dashboard = "";
 isset($product)             ? "" : $product = "";
 isset($product_type)        ? "" : $product_type = "";
 isset($tag)                 ? "" : $tag ="";
@@ -210,6 +211,16 @@ isset($service)             ? "" : $service = "";
                             <h5 class="tab_title">{{ get_phrase('Superadmin Panel') }}</h5>
                             <div class="l_sidebarMenu l_sidebarMenu-2">
                             <ul class="nav-links accordion-menu">
+                                <li class="nav-links-li-2 {{ $dashboard.'-submenu' }}">
+                                    <a href="{{ route('superadmin.dashboard') }}" class="nav-item d-flex align-items-center">
+                                        <div class="sidebar_icon">
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 10.0588V1.91406C0 1.37915 0.185287 0.926453 0.555878 0.555908C0.926468 0.185303 1.37918 0 1.91403 0H7.94118V10.0588H0ZM10.0588 0H16.086C16.6208 0 17.0735 0.185303 17.4441 0.555908C17.8147 0.926453 18 1.38031 18 1.91742V5.82355H10.0588V0ZM10.0588 18V7.94116H18V16.0859C18 16.6208 17.8147 17.0735 17.4441 17.4441C17.0735 17.8147 16.6208 18 16.086 18H10.0588ZM0 12.1765H7.94118V18H1.91403C1.37918 18 0.926468 17.8147 0.555878 17.4441C0.185287 17.0735 0 16.6197 0 16.0826V12.1765ZM1.58821 8.47058H6.35297V1.5882H1.91403C1.81902 1.5882 1.74095 1.61877 1.67986 1.67987C1.61876 1.74097 1.58821 1.81903 1.58821 1.91406V8.47058ZM11.647 4.23535H16.4118V1.91406C16.4118 1.81903 16.3812 1.74097 16.3201 1.67987C16.259 1.61877 16.181 1.5882 16.086 1.5882H11.647V4.23535ZM11.647 9.52942V16.4118H16.086C16.181 16.4118 16.259 16.3812 16.3201 16.3201C16.3812 16.2591 16.4118 16.181 16.4118 16.0859V9.52942H11.647ZM1.58821 13.7646V16.0859C1.58821 16.181 1.61876 16.2591 1.67986 16.3201C1.74095 16.3812 1.81902 16.4118 1.91403 16.4118H6.35297V13.7646H1.58821Z" fill="#676C7D"/>
+                                            </svg>                                                   
+                                        </div>
+                                        <span class="link-name">{{ get_phrase('Dashboard') }}</span>
+                                    </a>
+                                </li>
                                 <li class="nav-links-li-2 {{ $product.'-submenu' }}">
                                     <a href="{{ route('superadmin.products') }}" class="nav-item d-flex align-items-center">
                                         <div class="sidebar_icon">

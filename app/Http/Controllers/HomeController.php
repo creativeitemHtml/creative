@@ -237,6 +237,62 @@ class HomeController extends Controller
         ])->withViewData(['seo' => $seo]);
     }
 
+    public function purchase_custom_service(Request $request) 
+    {
+
+        // print_r($request->selectedServices);
+        // die();
+
+        if(auth()->user()) {
+            return redirect()->route('customer.service_custom_purchase', ['selected_services' => $request->selectedServices]);
+        } else {
+            $this->validate($request, [
+                'email' => 'required|email',
+            ]);
+
+            if(!empty($request->email)) {
+                $name = strstr($request->email, '@', true);
+
+                $check_email = User::where('email', $request->email)->first();
+
+                if(!empty($check_email)){
+                    // $user = $check_email;
+                    return redirect()->back()->with('info', 'This email already exists. Please login or provide new email address');
+                } else {
+                    $password = random(8);
+
+                    $user = User::create([
+                        'name' => $name,
+                        'email' => $request->email,
+                        'role_id' => '6',
+                        'password' => Hash::make($password)
+                    ]);
+
+                    $pin = rand(100000, 999999);
+
+                    DB::table('password_resets')
+                        ->insert(
+                            [
+                                'email' => $request->email, 
+                                'token' => $pin
+                            ]
+                        );
+
+                    Mail::to($request->email)->send(new VerifyEmailWithPassword($pin, $user, $password));
+
+                    // $token = $user->createToken('myapptoken')->plainTextToken;
+                }
+
+                relogin_user($user->id);
+
+                return redirect()->route('customer.service_custom_purchase', ['selected_services' => $request->selectedServices]);
+
+            } else {
+                return redirect()->back()->with('error', 'Fill all the required field');
+            }
+        }
+    }
+
     public function hire_us()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
@@ -281,7 +337,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function purchase_service(Request $request, $service_id="")
+    public function purchase_service_package(Request $request, $service_id="")
     {
         if(auth()->user()) {
             return redirect()->route('customer.service_purchase', ['service_id' => $service_id]);

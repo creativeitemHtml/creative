@@ -48,25 +48,25 @@
                         <!-- Login Profile Html -->
                         <div class="main-menu-profile">
                             <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <h4 class="userName">David Malan</h4>
-                                <img src="{{ asset('assets/img/user.png') }}" alt="" />
+                                <h4 class="userName">{{ auth()->user()->name }}</h4>
+                                <img src="{{ get_user_image(auth()->user()->id) }}" alt="" />
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <span></span>
                                 <li>
-                                    <a class="dropdown-item active" href="#">
-                                    <span><img src="{{ asset('assets/img/icon/downloads.svg') }}" alt=""/></span>
-                                    Dashboard</a>
+                                    <a class="dropdown-item active" href="{{ route('superadmin.dashboard') }}">
+                                        <span><img src="{{ asset('assets/img/icon/dashboard-2.svg') }}" alt=""/></span>
+                                        Dashboard
+                                    </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                    <span><img src="{{ asset('assets/img/icon/downloads.svg') }}" alt=""/></span>
-                                    Dashboard</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                    <span><img src="{{ asset('assets/img/icon/downloads.svg') }}" alt=""/></span>
-                                    Dashboard</a>
+                                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        <span><img src="{{ asset('assets/img/icon/downloads.svg') }}" alt=""/></span>
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </div>

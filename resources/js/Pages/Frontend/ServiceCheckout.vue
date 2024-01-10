@@ -17,7 +17,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('purchase_service', { service_id: props.selected_service.id }));
+    form.post(route('purchase_service_package', { service_id: props.selected_service.id }));
 };
 </script>
 

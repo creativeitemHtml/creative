@@ -1,7 +1,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
-import { defineProps, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const user = usePage().props.auth.user;
 
@@ -12,10 +12,13 @@ const props = defineProps({
 const form = useForm({
   name: user ? user.name : '',
   email: user ? user.email : '',
+  selectedServices: '',
 });
 
 const submit = () => {
-    form.post(route('purchase_service', { service_id: props.selected_service.id }));
+    form.selectedServices = props.selectedServices;
+    // console.log(form.selectedServices);
+    form.post(route('purchase_custom_service'));
 };
 
 const totalPrice = computed(() => {
@@ -33,7 +36,8 @@ const totalPrice = computed(() => {
 </style>
 
 <template>
-  <button type="button" class="eCheck-price buy-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Buy Now</button>
+  <div class="eCheck-price">
+  <button type="button" class="buy-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Buy Now</button></div>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -48,7 +52,7 @@ const totalPrice = computed(() => {
             <div class="container">
               <!-- Billing address & Order summary -->
               <div class="billing-order-wrap">
-                <form>
+                <form @submit.prevent="submit">
                   <div class="row">
                     <div class="col-lg-8">
                       <div class="billing-address bd-all bd-r-5 px-25 py-25">

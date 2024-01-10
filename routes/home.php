@@ -26,9 +26,10 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/docs/{product_slug}/{article_slug?}', 'documentation_details')->name('documentation_details');
 
     Route::get('/services', 'services')->name('services');
+    Route::any('/services/purchase-custom-service', 'purchase_custom_service')->name('purchase_custom_service');
     Route::post('/project-submit', 'project_submit')->name('project_submit');
     Route::get('/services/service-checkout/{service_id}', 'service_buy_now')->name('service_buy_now');
-    Route::any('/services/purchase-service/{service_id}', 'purchase_service')->name('purchase_service');
+    Route::any('/services/purchase-service/{service_id}', 'purchase_service_package')->name('purchase_service_package');
 
     Route::get('/hire-us', 'hire_us')->name('hire_us');
 

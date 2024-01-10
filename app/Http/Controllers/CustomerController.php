@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\{Setting, Package, Subscription, ElementProduct, User, ElementProductComment, ElementProductPayment, ElementDownload, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, ElementCategory, ServicePackage};
+use App\Models\{Setting, Package, Subscription, ElementProduct, User, ElementProductComment, ElementProductPayment, ElementDownload, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, ElementCategory, ServicePackage, Service};
 use Illuminate\Support\Facades\Hash;
 use Stripe;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +15,31 @@ use PDF;
 
 class CustomerController extends Controller
 {
+    public function dashboard() 
+    {
+        $total_projects = Project::where('user_id', auth()->user()->id)->count();
+
+        $subscriptions = Subscription::where('user_id', auth()->user()->id)->get();
+
+        // Initialize a variable to store the total paid amount
+        $totalPaidAmount = 0;
+    
+        // Loop through each subscription and add the paid amount to the total
+        foreach ($subscriptions as $subscription) {
+            // Convert the paid_amount from string to float
+            $paidAmount = intVal($subscription->paid_amount);
+    
+            // Add the converted paid amount to the total
+            $totalPaidAmount += $paidAmount;
+        }
+    
+
+        return Inertia::render('Backend/Customer/Dashboard', [
+            'totalPaidAmount' => $totalPaidAmount,
+            'total_projects' => $total_projects,
+        ]);
+    }
+
     public function subscription_details()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
@@ -1255,5 +1280,165 @@ class CustomerController extends Controller
         $purchase_data = $this->string_to_array($purchase_data);
 
         return redirect()->route('service_buy_now', ['service_id' => $purchase_data['service_id']])->with('warning', 'Service Purchase failed.');
+    }
+
+    public function service_custom_purchase(Request $request)
+    {
+        $selected_services = $request->selected_services;
+
+        $global_system_currency = get_settings('system_currency');
+
+        $stripe = get_settings('stripe');
+        $stripe_keys = json_decode($stripe);
+
+        $STRIPE_KEY;
+        $STRIPE_SECRET;
+
+        if ($stripe_keys->mode == "test") {
+            $STRIPE_KEY = $stripe_keys->test_key;
+            $STRIPE_SECRET = $stripe_keys->test_secret_key;
+        } elseif ($stripe_keys->mode == "live") {
+            $STRIPE_KEY = $stripe_keys->public_live_key;
+            $STRIPE_SECRET = $stripe_keys->secret_live_key;
+        }
+
+        $total_price = 0;
+
+        foreach ($selected_services as $service) {
+            $price = intval($service['price']);
+            $total_price += $price;
+        }
+
+        $selectedServiceIds = array_column($selected_services, 'id');
+
+        $purchase_data['user_id'] = auth()->user()->id;
+        $purchase_data['selected_service_ids'] = implode(',', $selectedServiceIds);
+        $purchase_data['price'] = $total_price;
+        $purchase_data['payment_method'] = 'stripe';
+
+        $purchase_data = implode(' ', array_map(function ($key, $value) {
+            return "$key:$value";
+        }, array_keys($purchase_data), $purchase_data));
+
+        $success_url = 'service_custom_purchase_success_payment';
+        $cancel_url = 'service_custom_purchase_fail_payment';
+
+        try {
+
+            Stripe\Stripe::setApiKey($STRIPE_SECRET);
+
+            $session = \Stripe\Checkout\Session::create([
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => $global_system_currency,
+                        'product_data' => [
+                            'name' => 'Custom Services',
+                        ],
+                        'unit_amount' => $total_price * 100,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route($success_url, ['purchase_data' => $purchase_data, 'response' => 'check $selectedServiceIds to get the response ']) . '?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => route($cancel_url, ['purchase_data' => $purchase_data, 'response' => 'check $selectedServiceIds to get the response ']) . '?session_id={CHECKOUT_SESSION_ID}',
+            ]);
+
+            return Inertia::location($session->url);
+
+        } catch (\Exception$e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    public function service_custom_purchase_success_payment(Request $request, $purchase_data, $response)
+    {
+        $purchase_data = $this->string_to_array($purchase_data);
+
+        if ($purchase_data['payment_method'] == 'stripe') {
+            $stripe = get_settings('stripe');
+            $stripe_keys = json_decode($stripe);
+            $STRIPE_KEY;
+            $STRIPE_SECRET;
+
+            if ($stripe_keys->mode == "test") {
+                $STRIPE_KEY = $stripe_keys->test_key;
+                $STRIPE_SECRET = $stripe_keys->test_secret_key;
+            } elseif ($stripe_keys->mode == "live") {
+                $STRIPE_KEY = $stripe_keys->public_live_key;
+                $STRIPE_SECRET = $stripe_keys->secret_live_key;
+            }
+
+            $stripe_api_response_session_id = $request->all();
+            $stripe = new \Stripe\StripeClient($STRIPE_SECRET);
+            $session_response = $stripe->checkout->sessions->retrieve($stripe_api_response_session_id['session_id'], []);
+            
+            $stripe_payment_intent = $session_response['payment_intent'];
+            $stripe_session_id = $stripe_api_response_session_id['session_id'];
+
+            $stripe_transaction_keys = array();
+            $stripe_response['payment_intent'] = $stripe_payment_intent;
+            $stripe_response['session_id'] = $stripe_session_id;
+            $stripe_transaction_keys = $stripe_response;
+            $stripe_payment_response = json_encode($stripe_transaction_keys);
+
+            $selectedServiceIds = explode(',', $purchase_data['selected_service_ids']);
+
+            $service_details = [];
+
+            // Loop through each selected service id
+            foreach ($selectedServiceIds as $serviceId) {
+                // Assuming Service model has a 'name' attribute
+                $service = Service::find($serviceId);
+
+                if ($service) {
+                    $service_details[] = [
+                        'id' => $service->id,
+                        'name' => $service->name,
+                        // Add other attributes you need
+                    ];
+                }
+            }
+
+            $htmlText = '';
+
+            foreach ($service_details as $key => $service) {
+                $htmlText .= $key + 1 . '. ' . $service['name'] . '<br>';
+                // You can add other details from $service if needed
+            }
+            
+            $project_details['title'] = 'Custom Service';
+            $project_details['description'] = $htmlText;
+            $project_details['budget_estimation'] = '$0 - '.currency($purchase_data['price']);
+            $project_details['timeline'] = '4 Weeks';
+            $project_details['user_id'] = auth()->user()->id;
+            $project_details['status'] = 'active';
+            $project_details['completion_progress'] = 0;
+            $project_details['paid_amount'] = $purchase_data['price'];
+            
+            $project_details['attachment_name'] = json_encode(array());
+            $project_details['attachment'] = json_encode(array());
+
+            $project = Project::create($project_details);
+
+
+            $milestone_details['status'] = 1;
+            $milestone_details['amount'] = $project->paid_amount;
+            $milestone_details['user_id'] = $project->user_id;
+            $milestone_details['project_id'] = $project->id;
+            $milestone_details['payment_method'] = 'stripe';
+            $milestone_details['transaction_keys'] = $stripe_payment_response;
+
+            $payment_details = PaymentMilestone::create($milestone_details);
+
+            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Service Payment successful');
+
+            // Mail::to(auth()->user()->email)->send(new PurchaseInvoice($status));
+        }
+    }
+
+    public function service_custom_purchase_fail_payment()
+    {
+        return redirect()->route('services')->with('warning', 'Custom Service Purchase failed.');
     }
 }

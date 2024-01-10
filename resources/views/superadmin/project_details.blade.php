@@ -62,7 +62,7 @@
             <div class="meeting-link d-flex justify-content-between align-items-center flex-wrap g-10">
                 <h3 class="fz-16-m-black-2">{{ get_phrase('Online Meeting') }}</h3>
                 <div class="link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create Meeting">
-                    <a href="javascript:;" onclick="defaultModal('{{ route('superadmin.create_project_meeting', ['id' => $project_details->id]) }}', 'Create a Meeting')"><i class="fa-solid fa-plus"></i></a>
+                    <a href="javascript:;" onclick="defaultModal('{{ route('superadmin.create_project_meeting', ['id' => $project_details->id]) }}', 'Create a Meeting')"><img src="{{ asset('assets/img/icon/plus-white.svg') }}" alt=""></a>
                 </div>
             </div>
             <!-- Meeting History -->
@@ -148,7 +148,7 @@
             <div class="project-item-title meeting-link">
                 <h3 class="title">{{ get_phrase('Payment Milestones') }}</h3>
                 <div class="link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create Milestone">
-                    <a href="javascript:;" onclick="defaultModal('{{ route('superadmin.create_payment_milestone', ['id' => $project_details->id]) }}', 'Create a Milestone')"><i class="fa-solid fa-plus"></i></a>
+                    <a href="javascript:;" onclick="defaultModal('{{ route('superadmin.create_payment_milestone', ['id' => $project_details->id]) }}', 'Create a Milestone')"><img src="{{ asset('assets/img/icon/plus-white.svg') }}" alt=""></a>
                 </div>
             </div>
             <!-- Table -->
@@ -188,7 +188,7 @@
                                 <!-- Dropdown -->
                                 <div class="payfile-option">
                                     <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <img src="{{ asset('assets/img/icon/three-dots-vertical.svg') }}" alt="">
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         @if($milestone->status == 1)

@@ -146,7 +146,7 @@ const formatDate = (timestamp) => {
                   </div>
                 </div>
                 <!-- Billing History -->
-                <div v-if="current_subscription.paid_amount != 0 && subscriptions.length > 0" class="col-md-6">
+                <div v-if="subscriptions.length > 0 && current_subscription.paid_amount != 0" class="col-md-6">
                   <div class="project-item-2">
                     <!-- Title -->
                     <div class="project-item-2-title">

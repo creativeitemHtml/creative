@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::controller(CustomerController::class)->middleware('auth', 'customer', 'cors')->group(function () {
 
+    Route::get('/customer/dashboard', 'dashboard')->name('customer.dashboard');
+
     Route::get('/customer/projects/{param?}', 'projects')->name('customer.projects');
     Route::get('/customer/project_details/{id}', 'project_details')->name('customer.project_details');
     Route::any('/customer/project_create', 'project_create')->name('customer.project_create');
@@ -58,6 +60,11 @@ Route::controller(CustomerController::class)->middleware('auth', 'customer', 'co
     Route::get('/customer/service-purchase/{service_id}', 'service_purchase')->name('customer.service_purchase');
     Route::get('/customer/service-purchase/success/{purchase_data}/{response}', 'service_purchase_success_payment')->name('service_purchase_success_payment');
     Route::get('/customer/service-purchase/fail/{purchase_data}/{response}', 'service_purchase_fail_payment')->name('service_purchase_fail_payment');
+
+    //Service Custom payment
+    Route::any('/customer/service-custom-purchase', 'service_custom_purchase')->name('customer.service_custom_purchase');
+    Route::get('/customer/service-custom-purchase/success/{purchase_data}/{response}', 'service_custom_purchase_success_payment')->name('service_custom_purchase_success_payment');
+    Route::get('/customer/service-custom-purchase/fail', 'service_custom_purchase_fail_payment')->name('service_custom_purchase_fail_payment');
 
     //Download
     Route::get('/customer/creative-elements/download-link/{product_id}', 'download_link_generate')->name('customer.download_link_generate');

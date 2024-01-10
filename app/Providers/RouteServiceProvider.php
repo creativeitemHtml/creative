@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/superadmin/dashboard';
-    public const HOME_TWO = '/customer/creative-elements/subscription';
+    public const HOME_TWO = '/customer/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
