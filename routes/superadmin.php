@@ -80,7 +80,10 @@ Route::controller(SuperadminController::class)->middleware('auth', 'superadmin')
     Route::get('superadmin/remove/attachment/{project_id}/{key}', 'remove_attachment')->name('remove.project_attachment');
     Route::any('superadmin/upload/attachment/{project_id}', 'upload_attachment')->name('upload.project_attachment');
 
-    Route::any('superadmin/user_create', 'user_create')->name('superadmin.user_create');
+    Route::get('superadmin/user-list', 'user_list')->name('superadmin.user_list');
+    Route::any('superadmin/user-create', 'user_create')->name('superadmin.user_create');
+    Route::any('superadmin/user-edit/{id}', 'user_edit')->name('superadmin.user_edit');
+    Route::any('superadmin/user-remove/{id}', 'user_remove')->name('superadmin.user_remove');
 
     Route::get('superadmin/price-manager', 'package_list')->name('package_list');
     Route::any('superadmin/package-create', 'package_create')->name('package_create');

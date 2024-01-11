@@ -1545,6 +1545,25 @@ class SuperadminController extends Controller
         return redirect('/superadmin/project_details/'.$project_id)->with('message', 'Attachment updated successfully');
     }
 
+    public function user_list(Request $request)
+    {
+        $page_data['users'] = array();
+
+        if(!empty($request->all())) {
+            $role_details = RolesAndPermission::where('slug', $request->role)->first();
+
+            $page_data['users'] = User::where('role_id', $role_details->id)->paginate(10);
+        }
+
+        $page_data['roles'] = RolesAndPermission::all();
+        $page_data['selected_role'] = $request->role;
+        $page_data['page_title'] = 'User List';
+        $page_data['user_list']='active';
+        $page_data['file_name'] = 'user_list';
+        return view('superadmin.navigation', $page_data);
+
+    }
+
     public function user_create(Request $request)
     {
         $page_data = array();
@@ -1575,6 +1594,44 @@ class SuperadminController extends Controller
         $page_data['user_create']='active';
         $page_data['file_name'] = 'user_create';
         return view('superadmin.navigation', $page_data);
+    }
+
+    public function user_edit(Request $request, $user_id = "")
+    {
+        $page_data = array();
+
+        if(!empty($request->all())) {
+            $validated = $request->validate([
+                'name' => 'required',
+                'role_id' => 'required'
+            ]);
+
+            $data = $request->all();
+
+            $page_data['name'] = $data['name'];
+            $page_data['role_id'] = $data['role_id'];
+
+            User::where('id', $user_id)->update($page_data);
+
+            return redirect()->back()->with('message', 'User updated successfully');
+
+        }
+
+        $page_data['user_details'] = User::find($user_id);
+
+        $page_data['roles'] = RolesAndPermission::all();
+        $page_data['page_title'] = 'User Edit';
+        $page_data['user_create']='active';
+        $page_data['file_name'] = 'user_edit';
+        return view('superadmin.navigation', $page_data);
+    }
+
+    public function user_remove($id="")
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('message', 'User removed successfully');
     }
 
     public function seo_settings()

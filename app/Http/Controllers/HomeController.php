@@ -208,34 +208,34 @@ class HomeController extends Controller
         ]);
     }
 
-    public function services()
-    {
-        // $service_details = ServicePackage::first();
+    // public function services()
+    // {
+    //     // $service_details = ServicePackage::first();
 
-        $seo = seo();
-        $uniqueProductIds = ServicePackage::distinct()->pluck('product_id');
-        $products = Product::whereIn('id', $uniqueProductIds)->get();
+    //     $seo = seo();
+    //     $uniqueProductIds = ServicePackage::distinct()->pluck('product_id');
+    //     $products = Product::whereIn('id', $uniqueProductIds)->get();
 
-        // $active_package['id'] = $service_details->id;
-        // $active_package['name'] = $service_details->name;
-        // $active_package['product_id'] = $service_details->product_id;
-        // $active_package['product_slug'] = $service_details->servicePackage_to_product->slug;
-        // $active_package['price'] = $service_details->price;
-        // $active_package['discounted_price'] = $service_details->discounted_price != null ? $service_details->discounted_price : 0;
+    //     // $active_package['id'] = $service_details->id;
+    //     // $active_package['name'] = $service_details->name;
+    //     // $active_package['product_id'] = $service_details->product_id;
+    //     // $active_package['product_slug'] = $service_details->servicePackage_to_product->slug;
+    //     // $active_package['price'] = $service_details->price;
+    //     // $active_package['discounted_price'] = $service_details->discounted_price != null ? $service_details->discounted_price : 0;
 
-        // $service_features = json_decode($service_details->services); 
-        // $active_package['service_features'] = $service_features;
+    //     // $service_features = json_decode($service_details->services); 
+    //     // $active_package['service_features'] = $service_features;
 
 
-        // $active_package['int_val'] = 'one time';
-        // $active_package['interval_period_text'] = 'You will get the following';
-        // $active_package['services'] = Service::where('product_id', $service_details->product_id)->get();
+    //     // $active_package['int_val'] = 'one time';
+    //     // $active_package['interval_period_text'] = 'You will get the following';
+    //     // $active_package['services'] = Service::where('product_id', $service_details->product_id)->get();
 
-        return Inertia::render('Frontend/Service', [
-            'seo' => $seo,
-            'products' => $products,
-        ])->withViewData(['seo' => $seo]);
-    }
+    //     return Inertia::render('Frontend/Service', [
+    //         'seo' => $seo,
+    //         'products' => $products,
+    //     ])->withViewData(['seo' => $seo]);
+    // }
 
     public function purchase_custom_service(Request $request) 
     {
@@ -293,7 +293,7 @@ class HomeController extends Controller
         }
     }
 
-    public function hire_us()
+    public function services()
     {
         $element_categories = ElementCategory::where('parent_id', NULL)->orderBy('order', 'asc')->get();
         $seo = seo();

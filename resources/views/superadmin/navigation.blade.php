@@ -17,6 +17,7 @@ isset($blog)                ? "" : $blog = "";
 isset($ad_network)          ? "" : $ad_network = "";
 isset($project) 		    ? "" : $project = "";
 isset($project_create) 	    ? "" : $project_create = "";
+isset($user_list) 	    ? "" : $user_list = "";
 isset($user_create) 	    ? "" : $user_create = "";
 isset($seo) 	            ? "" : $seo = "";
 isset($element_product)     ? "" : $element_product = "";
@@ -361,15 +362,19 @@ isset($service)             ? "" : $service = "";
                                     </a>
                                 </li>
 
-                                <li class="nav-links-li-2 {{ $user_create.'-submenu' }}">
-                                    <a href="{{ route('superadmin.user_create') }}" class="nav-item d-flex align-items-center">
+                                <li class="nav-links-li-2 {{ request()->is('superadmin/user-list') || request()->is('superadmin/user-create') ? 'active-submenu':'' }}">
+                                    <a href="javascript:void(0);" class="nav-item nav-item-have-sub d-flex align-items-center">
                                         <div class="sidebar_icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                                                 <path d="M754.986-410.001q-12.755 0-22.37-9.625Q723-429.25 723-442v-86.001h-86q-12.75 0-22.375-9.628Q605-547.258 605-560.013q0-12.756 9.625-22.371 9.625-9.615 22.375-9.615h86V-678q0-12.75 9.629-22.375 9.629-9.624 22.384-9.624 12.756 0 22.371 9.624 9.615 9.625 9.615 22.375v86.001H873q12.749 0 22.374 9.628 9.625 9.629 9.625 22.384 0 12.756-9.625 22.371-9.625 9.615-22.374 9.615h-86.001V-442q0 12.75-9.629 22.374-9.628 9.625-22.384 9.625ZM357-493.309q-59.75 0-99.874-40.124-40.125-40.125-40.125-99.874 0-59.75 40.125-99.874Q297.25-773.306 357-773.306q59.749 0 99.874 40.125 40.124 40.124 40.124 99.874 0 59.749-40.124 99.874-40.125 40.124-99.874 40.124ZM93.183-187.694q-15.394 0-26.788-11.394-11.394-11.395-11.394-27.036v-53.939q0-29.937 16.462-54.475 16.461-24.538 43.153-37.348 59.308-27.729 120.653-41.767Q296.615-427.691 358-427.691q61.384 0 122.73 14.538 61.346 14.538 120.653 41.593 26.692 12.484 42.654 37.022 15.961 24.538 15.961 54.475v53.939q0 15.641-11.394 27.036-11.394 11.394-26.788 11.394H93.183ZM119-251.693h477v-28.179q0-11.898-6.539-21.244t-17.616-12.885q-50.692-23.461-104.749-36.577Q413.039-363.693 358-363.693q-55.04 0-109.097 13.115-54.057 13.116-104.749 36.577-12.077 4.539-18.616 13.385Q119-291.77 119-279.872v28.179Zm238-305.614q33 0 54.5-21.5t21.5-54.5q0-33-21.5-54.5t-54.5-21.5q-33 0-54.5 21.5t-21.5 54.5q0 33 21.5 54.5t54.5 21.5Zm0-76Zm1 269.614Z" fill="#676C7D"/>
-                                            </svg>
+                                            </svg> 
                                         </div>
-                                        <span class="link-name">{{ get_phrase('Create User') }}</span>
+                                        <span class="link-name">{{ get_phrase('Users') }}</span>
                                     </a>
+                                    <ul class="sideBar-sub" style="{{ request()->is('superadmin/user-list') || request()->is('superadmin/user-create') ? 'display: block;':'' }}">
+                                        <li><a href="{{ route('superadmin.user_list') }}" class="{{ $user_list }}">{{ get_phrase('User List') }}</a></li>
+                                        <li><a href="{{ route('superadmin.user_create') }}" class="{{ $user_create }}">{{ get_phrase('Create User') }}</a></li>
+                                    </ul>
                                 </li>
 
                                 <li class="nav-links-li-2 {{ request()->is('superadmin/system-settings') || request()->is('superadmin/sitemap') || request()->is('superadmin/seo_settings') ? 'active-submenu':'' }}">
