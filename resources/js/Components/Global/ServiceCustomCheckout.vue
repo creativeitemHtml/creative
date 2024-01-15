@@ -27,17 +27,10 @@ const totalPrice = computed(() => {
 
 </script>
 
-<style>
-  .eCheck-price button {
-    border-color: #0A7EFB !important;
-    background-color: #0A7EFB;
-    color: #fff;
-  }
-</style>
-
 <template>
   <div class="eCheck-price">
-  <button type="button" class="buy-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Buy Now</button></div>
+    <button type="button" class="buy-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Buy Now</button>
+  </div>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -127,12 +120,19 @@ const totalPrice = computed(() => {
           <!-- End Checkout Wraper -->
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Submit</button>
-        </div>
       </div>
     </div>
   </div>
 </template>
-  
+
+
+<style scoped>
+  .btn-close{
+    background-color: #ffffff !important;
+  }
+
+  .modal-title {
+    font-weight: 700;
+    color: #212534;
+  }
+</style>
