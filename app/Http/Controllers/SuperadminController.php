@@ -1221,6 +1221,7 @@ class SuperadminController extends Controller
             $param = "active";
         }
         $page_data = array();
+
         $page_data['projects'] = Project::where('status', $param)->paginate(10);
         $page_data['page_title'] = 'Projects';
         $page_data['project'] = 'active';
@@ -1270,7 +1271,6 @@ class SuperadminController extends Controller
             $page_data['user_id'] = $data['user_id'];
             $page_data['status'] = 'pending';
             $page_data['completion_progress'] = 0;
-            $page_data['paid_amount'] = 0;
             
             if(!empty($data['attachment']))
             {
@@ -1337,7 +1337,6 @@ class SuperadminController extends Controller
             $page_data['user_id'] = $project_details->user_id;
             $page_data['status'] = $data['status'];
             $page_data['completion_progress'] = $data['completion_progress'];
-            $page_data['paid_amount'] = $project_details->paid_amount;
             
             if(!empty($data['attachment']))
             {
@@ -1428,12 +1427,14 @@ class SuperadminController extends Controller
 
         if(!empty($request->all())) {
             $validated = $request->validate([
+                'title' => 'required',
                 'status' => 'required',
                 'amount' => 'required',
             ]);
 
             $data = $request->all();
 
+            $page_data['title'] = $data['title'];
             $page_data['status'] = $data['status'];
             $page_data['amount'] = $data['amount'];
             $page_data['user_id'] = $project_details->user_id;

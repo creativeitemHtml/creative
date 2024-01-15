@@ -24,7 +24,7 @@ const handleThumbnailChange = (event) => {
 };
 
 const submit = () => {
-    form.post(route('customer.project_edit', { 'id': props.project_details.id }));
+    // form.post(route('customer.project_edit', { 'id': props.project_details.id }));
 };
 
 // $(document).ready(function () {

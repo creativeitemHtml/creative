@@ -14,7 +14,7 @@ class PaymentMilestone extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'project_id', 'user_id', 'amount', 'payment_method', 'transaction_keys', 'status' ];
+    protected $fillable = [ 'id', 'title', 'project_id', 'user_id', 'amount', 'payment_method', 'transaction_keys', 'status' ];
 
     public function paymentMilestone_to_user()
     {

@@ -112,12 +112,12 @@ const props = defineProps({
                                                             View Details
                                                         </Link>
                                                     </li>
-                                                    <li>
-                                                        <Link class="dropdown-item" :href="route('customer.project_edit', { 'id': project.id })">Edit</Link>
+                                                    <!-- <li>
+                                                        <Link class="dropdown-item" :href="">Edit</Link>
                                                     </li>
                                                     <li>
-                                                        <Link class="dropdown-item" :href="route('customer.project_remove', { 'id': project.id })">Delete</Link>
-                                                    </li>
+                                                        <Link class="dropdown-item" :href="">Delete</Link>
+                                                    </li> -->
                                                 </ul>
                                             </div>
                                         </div>

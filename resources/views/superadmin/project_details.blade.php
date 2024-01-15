@@ -1,6 +1,6 @@
-<div class="admin_main_right p-30 bd-r-5">
+<div class="admin_main_right p-30 mb-30 bd-r-5">
     <div class="title-btn-menu-wrap d-flex justify-content-between align-items-center flex-wrap g-10 pb-30">
-        <h4 class="fz-20-sb-black">{{ $project_details->title }}</h4>
+        <h4 class="fz-20-sb-black">{{ $project_details->title. '('.$project_details->created_at->format('d F, Y').')' }}</h4>
         <div class="d-flex align-items-center flex-wrap g-20">
             <a href="{{ route('superadmin.project_edit', ['id' => $project_details->id]) }}" class="new-project-btn new-project-btn-desktop"> {{ get_phrase('Edit Project') }}</a>
             <a href="{{ route('superadmin.projects') }}" class="new-project-btn new-project-btn-desktop"> {{ get_phrase('Back') }}</a>
@@ -76,9 +76,9 @@
                                 </p>
                                 <p class="media">{{ ucfirst($meeting->medium) }}</p>
                             </div>
-                            <div class="project-item-dropdown">
+                            <div class="payfile-option">
                                 <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <img src="{{ asset('public/assets/img/icon/three-dots-vertical.svg') }}" alt="">
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item" href="{{ $meeting->link }}" target="_blank">{{ get_phrase('Join') }}</a>
@@ -168,19 +168,17 @@
                     <tr>
                         <td>
                             <div class="min-w">
+                            <p class="fz-15-sb-black">{{ $milestone->title }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="min-w">
                             <p class="fz-15-sb-black">{{ currency($milestone->amount) }}</p>
                             </div>
                         </td>
                         <td>
                             <div class="min-w">
                             <p class="status-btn {{ $status_colour }}">{{ get_phrase($status) }}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="min-w">
-                            <a href="#" class="payfile-download">
-                                <img src="{{ asset('assets/img/icon/download.svg') }}" alt="" />
-                            </a>
                             </div>
                         </td>
                         <td>

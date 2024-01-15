@@ -68,7 +68,7 @@
                         </td>
                         <td>
                             <div class="min-w-100">
-                                <p class="fz-15-m-black">{{ currency($project->paid_amount) }}</p>
+                                <p class="fz-15-m-black">{{ currency($project->getTotalPaidAmount()) }}</p>
                             </div>
                         </td>
                         <td>

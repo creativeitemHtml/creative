@@ -53,7 +53,7 @@ $(document).ready(function() {
                                     <li><Link :href="route('customer.downloads')" :class="{ 'active': route().current('customer.downloads') }">Downloads</Link></li>
                                 </ul>
                             </li>
-                            <li class="nav-links-li-2" :class="{ 'active-submenu': route().current('customer.projects') || route().current('customer.project_create') || route().current('customer.project_edit') || route().current('customer.project_details') || route().current('customer.milestone_invoice') }">
+                            <li class="nav-links-li-2" :class="{ 'active-submenu': route().current('customer.projects') || route().current('customer.project_create') || route().current('customer.project_details') || route().current('customer.milestone_invoice') }">
                                 <Link :href="route('customer.projects')" class="nav-item d-flex align-items-center">
                                     <div class="sidebar_icon">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -16,4 +16,7 @@
     <link href="{{ asset('public/assets/css/element-user.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/assets/css/custom.css') }}" rel="stylesheet" />
 
+    <!--Toaster css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/toastr.min.css') }}" />
+
     <title>CREATIVEITEM</title>

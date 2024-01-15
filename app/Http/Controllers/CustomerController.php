@@ -32,6 +32,12 @@ class CustomerController extends Controller
             // Add the converted paid amount to the total
             $totalPaidAmount += $paidAmount;
         }
+
+        Request::session()->flash('toast', [
+            'title'   => 'Saved',
+            'message' => 'Your awesome model was successfully saved.',
+            'type'    => 'success'
+        ]);
     
 
         return Inertia::render('Backend/Customer/Dashboard', [
@@ -777,6 +783,12 @@ class CustomerController extends Controller
         $projects = [];
 
         $projects = Project::where('user_id', auth()->user()->id)->where('status', $param)->get();
+
+        foreach($projects as $project) 
+        {
+            $project['paid_amount'] = $project->getTotalPaidAmount();
+        }
+
         $tab = $param;
         $active = Project::where('user_id', auth()->user()->id)->where('status', 'active')->count();
         $pending = Project::where('user_id', auth()->user()->id)->where('status', 'pending')->count();
@@ -830,7 +842,6 @@ class CustomerController extends Controller
             $page_data['user_id'] = auth()->user()->id;
             $page_data['status'] = 'pending';
             $page_data['completion_progress'] = 0;
-            $page_data['paid_amount'] = 0;
             
             if(!empty($data['attachment']))
             {
@@ -861,73 +872,72 @@ class CustomerController extends Controller
         return Inertia::render('Backend/Customer/ProjectAdd');
     }
 
-    public function project_edit(Request $request, $id = "")
-    {
-        $page_data = array();
+    // public function project_edit(Request $request, $id = "")
+    // {
+    //     $page_data = array();
 
-        $project_details = Project::find($id);
+    //     $project_details = Project::find($id);
 
-        $attachments = json_decode($project_details->attachment);
-        $attachments_name = json_decode($project_details->attachment_name);
+    //     $attachments = json_decode($project_details->attachment);
+    //     $attachments_name = json_decode($project_details->attachment_name);
 
-        if(!empty($request->all())) {
-            $validated = $request->validate([
-                'title' => 'required',
-                'description' => 'required',
-                'budget_estimation' => 'required',
-                'timeline' => 'required'
-            ]);
+    //     if(!empty($request->all())) {
+    //         $validated = $request->validate([
+    //             'title' => 'required',
+    //             'description' => 'required',
+    //             'budget_estimation' => 'required',
+    //             'timeline' => 'required'
+    //         ]);
 
-            $data = $request->all();
+    //         $data = $request->all();
 
-            $page_data['title'] = $data['title'];
-            $page_data['description'] = $data['description'];
-            $page_data['budget_estimation'] = $data['budget_estimation'];
-            $page_data['timeline'] = $data['timeline'];
-            $page_data['user_id'] = auth()->user()->id;
-            $page_data['status'] = $project_details->status;
-            $page_data['completion_progress'] = $project_details->completion_progress;
-            $page_data['paid_amount'] = $project_details->paid_amount;
+    //         $page_data['title'] = $data['title'];
+    //         $page_data['description'] = $data['description'];
+    //         $page_data['budget_estimation'] = $data['budget_estimation'];
+    //         $page_data['timeline'] = $data['timeline'];
+    //         $page_data['user_id'] = auth()->user()->id;
+    //         $page_data['status'] = $project_details->status;
+    //         $page_data['completion_progress'] = $project_details->completion_progress;
             
-            if(!empty($data['attachment']))
-            {
-                array_push($attachments_name, $data['attachment']->getClientOriginalName());
-                $page_data['attachment_name'] = json_encode($attachments_name);
+    //         if(!empty($data['attachment']))
+    //         {
+    //             array_push($attachments_name, $data['attachment']->getClientOriginalName());
+    //             $page_data['attachment_name'] = json_encode($attachments_name);
 
-                if (!File::exists(public_path('uploads/projects'))) {
-                    File::makeDirectory(public_path('uploads/projects'));
-                }
+    //             if (!File::exists(public_path('uploads/projects'))) {
+    //                 File::makeDirectory(public_path('uploads/projects'));
+    //             }
 
-                $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
+    //             $attachment = time().'-'.random(2).'.'.$data['attachment']->extension();
     
-                $data['attachment']->move(public_path('uploads/projects/'), $attachment);
+    //             $data['attachment']->move(public_path('uploads/projects/'), $attachment);
     
-                array_push($attachments, $attachment);
-                $page_data['attachment'] = json_encode($attachments);
+    //             array_push($attachments, $attachment);
+    //             $page_data['attachment'] = json_encode($attachments);
 
-            } else {
-                $page_data['attachment_name'] = $project_details->attachment_name;
-                $page_data['attachment'] = $project_details->attachment;
-            }
+    //         } else {
+    //             $page_data['attachment_name'] = $project_details->attachment_name;
+    //             $page_data['attachment'] = $project_details->attachment;
+    //         }
 
-            Project::where('id', $id)->update($page_data);
+    //         Project::where('id', $id)->update($page_data);
 
-            return redirect('/customer/project_details/'.$id)->with('message', 'Project updated successfully');
+    //         return redirect('/customer/project_details/'.$id)->with('message', 'Project updated successfully');
 
-        }
+    //     }
 
-        return Inertia::render('Backend/Customer/ProjectEdit', [
-            'project_details' => $project_details,
-        ]);
-    }
+    //     return Inertia::render('Backend/Customer/ProjectEdit', [
+    //         'project_details' => $project_details,
+    //     ]);
+    // }
 
-    public function project_remove($id="")
-    {
-        $meeting = Project::where('user_id', auth()->user()->id)->where('id', $id)->first();
-        $meeting->delete();
+    // public function project_remove($id="")
+    // {
+    //     $meeting = Project::where('user_id', auth()->user()->id)->where('id', $id)->first();
+    //     $meeting->delete();
 
-        return redirect()->back()->with('message', 'Project removed successfully');
-    }
+    //     return redirect()->back()->with('message', 'Project removed successfully');
+    // }
 
     public function project_payment($milestone_id = "")
     {
@@ -1252,7 +1262,6 @@ class CustomerController extends Controller
             $project_details['user_id'] = auth()->user()->id;
             $project_details['status'] = 'pending';
             $project_details['completion_progress'] = 0;
-            $project_details['paid_amount'] = $purchase_data['price'];
             
             $project_details['attachment_name'] = json_encode(array());
             $project_details['attachment'] = json_encode(array());
@@ -1261,7 +1270,7 @@ class CustomerController extends Controller
 
 
             $milestone_details['status'] = 1;
-            $milestone_details['amount'] = $project->paid_amount;
+            $milestone_details['amount'] = $purchase_data['price'];
             $milestone_details['user_id'] = $project->user_id;
             $milestone_details['project_id'] = $project->id;
             $milestone_details['payment_method'] = 'stripe';
@@ -1414,7 +1423,6 @@ class CustomerController extends Controller
             $project_details['user_id'] = auth()->user()->id;
             $project_details['status'] = 'active';
             $project_details['completion_progress'] = 0;
-            $project_details['paid_amount'] = $purchase_data['price'];
             
             $project_details['attachment_name'] = json_encode(array());
             $project_details['attachment'] = json_encode(array());
@@ -1423,7 +1431,7 @@ class CustomerController extends Controller
 
 
             $milestone_details['status'] = 1;
-            $milestone_details['amount'] = $project->paid_amount;
+            $milestone_details['amount'] = $purchase_data['price'];
             $milestone_details['user_id'] = $project->user_id;
             $milestone_details['project_id'] = $project->id;
             $milestone_details['payment_method'] = 'stripe';

@@ -20,8 +20,8 @@ Route::controller(CustomerController::class)->middleware('auth', 'customer', 'co
     Route::get('/customer/projects/{param?}', 'projects')->name('customer.projects');
     Route::get('/customer/project_details/{id}', 'project_details')->name('customer.project_details');
     Route::any('/customer/project_create', 'project_create')->name('customer.project_create');
-    Route::any('/customer/project_edit/{id}', 'project_edit')->name('customer.project_edit');
-    Route::any('/customer/project_remove/{id}', 'project_remove')->name('customer.project_remove');
+    // Route::any('/customer/project_edit/{id}', 'project_edit')->name('customer.project_edit');
+    // Route::any('/customer/project_remove/{id}', 'project_remove')->name('customer.project_remove');
     Route::get('/customer/download/attachment/{project_id}/{key}', 'download_attachment')->name('customer.download_attachment');
     Route::get('/customer/remove/attachment/{project_id}/{key}', 'remove_attachment')->name('customer.remove_attachment');
     Route::any('/customer/upload/attachment/{project_id}', 'upload_attachment')->name('customer.upload_attachment');
