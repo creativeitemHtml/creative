@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 
 const props = defineProps({
     feature: Object,
-    modalId: Object
+    modalId: String
 });
 
 const user = usePage().props.auth.user;
@@ -112,19 +112,3 @@ const submit = () => {
         </div>
     </div>
 </template>
-
-<style scoped>
-    .btn-close{
-        background-color: #ffffff !important;
-    }
-
-    .modal-title {
-        font-weight: 700;
-        color: #212534;
-    }
-
-    .buy-btn{
-        background-color: #F2F7FF;
-    }
-
-</style>

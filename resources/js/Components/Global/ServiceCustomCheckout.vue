@@ -124,15 +124,3 @@ const totalPrice = computed(() => {
     </div>
   </div>
 </template>
-
-
-<style scoped>
-  .btn-close{
-    background-color: #ffffff !important;
-  }
-
-  .modal-title {
-    font-weight: 700;
-    color: #212534;
-  }
-</style>

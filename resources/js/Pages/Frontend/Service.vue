@@ -325,13 +325,5 @@ onMounted(() => {
     <!-- End Faqs -->
 
     
-    <Footer :elementCategories="element_categories"/>
+    <Footer />
 </template>
-
-<style scoped>
-
-  .service-feature{
-    font-weight: 700;
-  }
-
-</style>

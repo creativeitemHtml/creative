@@ -59,16 +59,3 @@ const toggleAccordion = (service) => {
     </div>
   </div>
 </template>
-
-
-<style scoped>
-  .need-text {
-    background: #fff;
-    border: none;
-  }
-
-  .modal-title {
-    font-weight: 700;
-    color: #212534;
-  }
-</style>
