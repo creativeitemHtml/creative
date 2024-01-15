@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\{Setting, Package, Subscription, ElementProduct, User, ElementProductComment, ElementProductPayment, ElementDownload, Project, OnlineMeeting, PaymentMilestone, RolesAndPermission, ElementCategory, ServicePackage, Service};
 use Illuminate\Support\Facades\Hash;
@@ -32,13 +34,6 @@ class CustomerController extends Controller
             // Add the converted paid amount to the total
             $totalPaidAmount += $paidAmount;
         }
-
-        Request::session()->flash('toast', [
-            'title'   => 'Saved',
-            'message' => 'Your awesome model was successfully saved.',
-            'type'    => 'success'
-        ]);
-    
 
         return Inertia::render('Backend/Customer/Dashboard', [
             'totalPaidAmount' => $totalPaidAmount,
@@ -253,7 +248,7 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function profile_update(Request $request)
+    public function profile_update(Request $request): RedirectResponse
     {
         $page_data = array();
 
@@ -295,9 +290,9 @@ class CustomerController extends Controller
 
                 User::where('id', auth()->user()->id)->update($page_data);
 
-                return redirect()->route('customer.profile')->with('message', 'Account information updated successfully');
+                return Redirect::route('customer.profile')->with('success', 'Account information updated successfully');
             } else {
-                return redirect()->route('customer.profile')->with('error', 'Email already exists');
+                return Redirect::route('customer.profile')->with('error', 'Email already exists');
             }
 
 

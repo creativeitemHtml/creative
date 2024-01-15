@@ -2,6 +2,7 @@
 import Header from '../../../Components/Global/Header.vue';
 import Footer from '../../../Components/Global/Footer.vue'
 import Breadcrumb from '../../../Components/Backend/Breadcrumb.vue'
+import Toast from '@/Components/Global/Toast.vue';
 import MobileOffcanvas from '../../../Components/Backend/MobileOffcanvas.vue'
 import Navigation from '../../../Components/Backend/Navigation.vue'
 import { Link } from '@inertiajs/vue3';
@@ -18,9 +19,12 @@ const props = defineProps({
 
 <template>
     <Header/>
+    <div v-if="$page.props.flash" class="absolute top-8 right-10 z-10">
+        <Toast />
+    </div>
     <Breadcrumb/>
     <MobileOffcanvas/>
-
+    
     <section class="elements-section elements-section-2 breadcrumb-under">
       <div class="container">
         <div class="row justify-content-center">

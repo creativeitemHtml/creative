@@ -44,9 +44,9 @@ onMounted(() => {
   
 });
 
-// $(document).ready(function () {
-//   $('.service-select select').niceSelect();
-// });
+$(document).ready(function () {
+  $(".niceSelect").niceSelect();
+});
 
 </script>
 
@@ -112,7 +112,7 @@ onMounted(() => {
                     <input type="email" class="form-control eForm-control" id="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" v-model="form.email" />
                   </div>
                   <div class="pForm-wrap service-select">
-                    <select class="nice-select" id="budget_estimation" name="budget_estimation" v-model="form.budget_estimation">
+                    <select class="enForm-select enForm-nice-select niceSelect" id="budget_estimation" name="budget_estimation" v-model="form.budget_estimation">
                       <option value="">Select Budget</option>
                       <option value="$500 - $1000">$500 - $1000</option>
                       <option value="$1000 - $3000">$1000 - $3000</option>
@@ -121,7 +121,7 @@ onMounted(() => {
                     </select>
                   </div>
                   <div class="pForm-wrap service-select">
-                    <select class="nice-select" id="timeline" name="timeline" v-model="form.timeline">
+                    <select class="enForm-select enForm-nice-select niceSelect" id="timeline" name="timeline" v-model="form.timeline">
                       <option value="">Select Title</option>
                       <option value="2 Weeks">2 Weeks</option>
                       <option value="4 Weeks">4 Weeks</option>

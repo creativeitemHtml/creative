@@ -6,6 +6,7 @@ import MobileOffcanvas from '../../../Components/Backend/MobileOffcanvas.vue'
 import Navigation from '../../../Components/Backend/Navigation.vue'
 import { Link } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import Toast from '@/Components/Global/Toast.vue';
 
 const props = defineProps({
     totalPaidAmount: Object,
@@ -54,6 +55,7 @@ const props = defineProps({
 
 <template>
     <Header/>
+    <Toast v-if="$page.props.flash" />
     <Breadcrumb/>
     <MobileOffcanvas/>
 

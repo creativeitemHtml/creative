@@ -5,6 +5,7 @@ import Breadcrumb from '../../../Components/Backend/Breadcrumb.vue'
 import MobileOffcanvas from '../../../Components/Backend/MobileOffcanvas.vue'
 import Navigation from '../../../Components/Backend/Navigation.vue'
 import { Link, useForm, usePage } from '@inertiajs/vue3';
+import Toast from '@/Components/Global/Toast.vue';
 
 const props = defineProps({
     element_categories: Array,
@@ -45,6 +46,7 @@ const submitPass = () => {
 
 <template>
     <Header/>
+    <Toast v-if="$page.props.flash" />
     <Breadcrumb/>
     <MobileOffcanvas/>
 
