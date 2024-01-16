@@ -947,7 +947,29 @@ class SuperadminController extends Controller
             $data['discounted_price'] = $request->discounted_price;
             $data['visibility'] = $request->visibility;
 
-            $data['services'] = json_encode(array_filter($request->features));
+            // $data['services'] = json_encode(array_filter($request->features));
+
+            $features = $request->features;
+            $notes = $request->notes;
+
+            $services = [];
+
+            // Zip features and notes, then filter out null values
+            $filteredData = array_filter(array_map(null, $features, $notes), function ($item) {
+                return $item['0'] !== null && $item['1'] !== null;
+            });
+
+            foreach ($filteredData as $item) {
+                $services[] = [
+                    'feature' => $item['0'],
+                    'note' => $item['1'],
+                ];
+            }
+
+            $data['services'] = json_encode($services);
+
+            // print_r($data['services']);
+            // die();
 
             ServicePackage::create($data);
 
@@ -970,7 +992,26 @@ class SuperadminController extends Controller
             $data['discounted_price'] = $request->discounted_price;
             $data['visibility'] = $request->visibility;
 
-            $data['services'] = json_encode(array_filter($request->features));
+            // $data['services'] = json_encode(array_filter($request->features));
+
+            $features = $request->features;
+            $notes = $request->notes;
+
+            $services = [];
+
+            // Zip features and notes, then filter out null values
+            $filteredData = array_filter(array_map(null, $features, $notes), function ($item) {
+                return $item['0'] !== null && $item['1'] !== null;
+            });
+
+            foreach ($filteredData as $item) {
+                $services[] = [
+                    'feature' => $item['0'],
+                    'note' => $item['1'],
+                ];
+            }
+
+            $data['services'] = json_encode($services);
 
             ServicePackage::where('id', $id)->update($data);
 
@@ -1288,8 +1329,8 @@ class SuperadminController extends Controller
                 array_push($attachements, $attachment);
                 $page_data['attachment'] = json_encode($attachements);
             } else {
-                $page_data['attachment_name'] = json_encode(array("thumbnail.png"));
-                $page_data['attachment'] = json_encode(array("thumbnail.png"));
+                $page_data['attachment_name'] = json_encode(array());
+                $page_data['attachment'] = json_encode(array());
             }
 
             // print_r($page_data);

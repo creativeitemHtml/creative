@@ -2,6 +2,7 @@
 import Header from '@/Components/Global/Header.vue';
 import Footer from '@/Components/Global/Footer.vue';
 import InputError from '@/Components/InputError.vue';
+import Toast from '@/Components/Global/Toast.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import { useReCaptcha } from "vue-recaptcha-v3";
 import { onMounted, onBeforeUnmount } from 'vue'
@@ -64,6 +65,7 @@ const submit = () => {
 
 <template>
     <Header />
+    <Toast v-if="$page.props.flash" />
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}

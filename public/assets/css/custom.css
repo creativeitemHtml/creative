@@ -385,3 +385,19 @@ form :where(i, p) {
     font-weight: 700;
     color: #212534;
 }
+
+/* Nav Link & Sidebar */
+
+.nav-link {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.nav-links-li-2 .link-name{
+    font-size: 16px;
+}
+
+.sideBar-sub a {
+    font-size: 15px;
+    line-height: 16px;
+}

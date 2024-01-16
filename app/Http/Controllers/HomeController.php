@@ -257,7 +257,7 @@ class HomeController extends Controller
 
                 if(!empty($check_email)){
                     // $user = $check_email;
-                    return redirect()->back()->with('info', 'This email already exists. Please login or provide new email address');
+                    return redirect()->route('login')->with('info', 'This email already exists. Please login or provide new email address');
                 } else {
                     $password = random(8);
 

@@ -4,6 +4,7 @@ import Footer from '../../Components/Global/Footer.vue'
 import ServiceCheckout from '../../Components/Global/ServiceCheckout.vue'
 import ServiceCustomCheckout from '../../Components/Global/ServiceCustomCheckout.vue'
 import ServiceHelpModal from '../../Components/Global/ServiceHelpModal.vue'
+import ServicePackageHelpModal from '../../Components/Global/ServicePackageHelpModal.vue'
 import { onMounted, ref, watch } from 'vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
@@ -99,7 +100,7 @@ onMounted(() => {
               <h2 class="fz-34-sb-black pb-15">Get Our Services</h2>
               <p class="fz-16-m-black-2">It is a long established fact that a reader will be distracted by the readable of a page when looking at its layout. </p>
               <div class="btn-control justify-content-center align-items-center d-flex">
-                <a href="#" class="active">Ready Plans</a>
+                <Link :href="route('services')" class="active">Ready Plans</Link>
                 <Link :href="route('hire_us')" class="">New Project</Link>
               </div>
             </div>
@@ -190,20 +191,20 @@ onMounted(() => {
                           <span>${{ feature.discounted_price }} <del class="del_text">${{ feature.price }}</del></span>
                           <ul class="plan">
                             <li class="d-flex align-items-center" v-for="(service_feature, index) in feature.service_features" :key="service_feature.id">
-                              <svg v-if="pos == 0 || index != 1" width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <svg v-if="pos == 0 || index != 0" width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.79844 13C6.49844 13 6.29844 12.9 6.09844 12.7L1.19844 7.49997C0.798438 7.09997 0.798438 6.49997 1.19844 6.09997C1.59844 5.69997 2.19844 5.69997 2.59844 6.09997L6.69844 10.5L15.0984 1.29997C15.3984 0.899971 16.0984 0.79997 16.4984 1.09997C16.8984 1.39997 16.9984 2.09997 16.6984 2.49997L16.5984 2.59997L7.49844 12.6C7.39844 12.9 7.09844 13 6.79844 13Z" fill="#02BC7D"/>
                               </svg>
-                              <p v-if="pos == 0 || index != 1">{{ service_feature }}</p>
-                              <p v-else class="service-feature">{{ service_feature }}</p>
+                              <p v-if="pos == 0 || index != 0">{{ service_feature.feature }}</p>
+                              <p v-else class="service-feature">{{ service_feature.feature }}</p>
                             </li>
                           </ul>
                           <ServiceCheckout :feature="feature" :modalId="'exampleModal' + feature.id" />
-                          <a href="#" class="need-text">Need Help?</a>
+                          <ServicePackageHelpModal :services="feature.service_features" :modalId=" 'serviceModal' + feature.id" />
                       </div>
                     </div>
                   </div>
-                  <p class="package-title mt-3">or, customize your package</p>
-                  <div class="eg_row">
+                  <p v-if="services.length > 0" class="package-title mt-3">or, customize your package</p>
+                  <div v-if="services.length > 0" class="eg_row">
                     <p class="epack">Service List:</p>
                     <div class="row">
                       <div class="col-lg-4 col-md-6 col-sm-6 right-border">

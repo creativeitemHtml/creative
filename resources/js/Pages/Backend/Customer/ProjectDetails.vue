@@ -100,7 +100,7 @@ const formatDateWithTime = (timestamp) => {
                         </div>
                         <div class="col-md-6">
                             <!-- Discussion -->
-                            <div class="project-item mb-30">
+                            <div v-if="online_meetings.length > 0" class="project-item mb-30">
                                 <!-- Title -->
                                 <div class="project-item-title">
                                     <h3 class="title">Discussion</h3>

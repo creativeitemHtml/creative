@@ -54,8 +54,20 @@ $(document).ready(function () {
     <Header/>
 
     <!-- Start Main Content -->
-    <section class="position-relative pt-80 mb-110">
+    <section class="position-relative pt-30 mb-110">
       <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="text-center pb-60">
+              <h2 class="fz-34-sb-black pb-15">Get Our Services</h2>
+              <p class="fz-16-m-black-2">It is a long established fact that a reader will be distracted by the readable of a page when looking at its layout. </p>
+              <div class="btn-control justify-content-center align-items-center d-flex">
+                <Link :href="route('services')" class="">Ready Plans</Link>
+                <Link :href="route('hire_us')" class="active">New Project</Link>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row align-items-center">
           <!-- Link & Hire us -->
           <div class="col-lg-7">

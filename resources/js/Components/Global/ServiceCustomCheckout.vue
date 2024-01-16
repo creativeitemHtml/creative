@@ -7,7 +7,7 @@ const user = usePage().props.auth.user;
 
 const props = defineProps({
   selectedServices: Array
-});
+});  
 
 const form = useForm({
   name: user ? user.name : '',
@@ -19,6 +19,7 @@ const submit = () => {
     form.selectedServices = props.selectedServices;
     // console.log(form.selectedServices);
     form.post(route('purchase_custom_service'));
+    $('#exampleModal').modal('hide');
 };
 
 const totalPrice = computed(() => {

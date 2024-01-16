@@ -8,7 +8,7 @@
 .add-field {
     cursor: pointer;
     height: 50px;
-    width: 50px;
+    width: 100px;
     border-radius: 5px;
     font-size: 20px;
     background: #0d6efd;
@@ -20,7 +20,7 @@
 .remove-field {
     cursor: pointer;
     height: 50px;
-    width: 50px;
+    width: 100px;
     border-radius: 5px;
     font-size: 20px;
     background: #ee406b;
@@ -71,19 +71,12 @@
         </select>
     </div>
 
-    <!-- <div class="pForm-wrap mt-2" id="featureList">
-        <label>{{ get_phrase('Feature List') }}</label>
-        <div class="feature-list">
-            <input type="text" name="features[]" class="form-control" placeholder="Feature Value">
-            <button type="button" class="add-field">+</button>
-        </div>
-    </div> -->
-
     <div class="pForm-wrap mt-2" id="featureList">
         <label class="enForm-label">{{ get_phrase('Feature Fields') }}</label>
         <div class="feature-list">
             <div class="input-row">
                 <input type="text" name="features[]" class="form-control enForm-control" placeholder="Feature Value">
+                <input type="text" name="notes[]" class="form-control enForm-control" placeholder="Notes">
                 <button type="button" class="add-field">+</button>
             </div>
             <p id="warningText" class="text-warning"></p>
@@ -96,35 +89,37 @@
 </form>
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    $('#featureList').on('click', '.add-field', function() {
-        var inputValue = $(this).closest('.input-row').find('input').val();
+        $('#featureList').on('click', '.add-field', function() {
+            var featureValue = $(this).closest('.input-row').find('input[name="features[]"]').val();
+            var notesValue = $(this).closest('.input-row').find('input[name="notes[]"]').val();
 
-        if (inputValue.trim() === '') {
-            $('#warningText').text('Please enter a value before adding.');
-            return;
-        }
+            if (featureValue.trim() === '' || notesValue.trim() === '') {
+                $('#warningText').text('Please enter values for both Feature and Notes before adding.');
+                return;
+            }
 
-        $('#warningText').text(''); // Clear the warning text
+            $('#warningText').text(''); // Clear the warning text
 
-        var fieldHTML = `
-            <div class="input-row mt-3">
-                <input type="text" name="features[]" class="form-control enForm-control" value="${inputValue}" readonly>
-                <button type="button" class="remove-field">-</button>
-            </div>
-        `;
-        $('.feature-list').append(fieldHTML);
+            var fieldHTML = `
+                <div class="input-row mt-3">
+                    <input type="text" name="features[]" class="form-control enForm-control" value="${featureValue}">
+                    <input type="text" name="notes[]" class="form-control enForm-control" value="${notesValue}">
+                    <button type="button" class="remove-field">-</button>
+                </div>
+            `;
+            $('.feature-list').append(fieldHTML);
 
-        // Clear the input field
-        $(this).closest('.input-row').find('input').val('');
-        // $(this).prop('disabled', true);
+            // Clear the input fields
+            $(this).closest('.input-row').find('input[name="features[]"]').val('');
+            $(this).closest('.input-row').find('input[name="notes[]"]').val('');
+        });
+
+        $('#featureList').on('click', '.remove-field', function() {
+            $(this).closest('.input-row').remove();
+        });
+
     });
-
-    $('#featureList').on('click', '.remove-field', function() {
-        $(this).closest('.input-row').remove();
-    });
-
-});
 </script>
 

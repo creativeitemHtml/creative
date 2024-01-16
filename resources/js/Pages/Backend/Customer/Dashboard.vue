@@ -77,7 +77,7 @@ const props = defineProps({
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <Link :href="route('customer.subscription_details')" class="col-lg-6">
                                 <div class="dashboard_col">
                                     <div class="card color_2">
                                         <div class="card-head">
@@ -89,8 +89,8 @@ const props = defineProps({
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
+                            </Link>
+                            <Link :href="route('customer.projects')" class="col-lg-6">
                                 <div class="dashboard_col">
                                     <div class="card color_3">
                                         <div class="card-head">
@@ -102,7 +102,7 @@ const props = defineProps({
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
 
                     </div>

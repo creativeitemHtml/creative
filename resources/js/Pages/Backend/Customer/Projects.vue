@@ -107,24 +107,7 @@ const props = defineProps({
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="adminTable-action">
-                                            <div class="btn-group">
-                                                <button type="button"  class="dropdown-btn dropdown-toggle"  data-bs-toggle="dropdown"  aria-expanded="false">Actions</button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li>
-                                                        <Link class="dropdown-item" :href="route('customer.project_details', { id: project.id })">
-                                                            View Details
-                                                        </Link>
-                                                    </li>
-                                                    <!-- <li>
-                                                        <Link class="dropdown-item" :href="">Edit</Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link class="dropdown-item" :href="">Delete</Link>
-                                                    </li> -->
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <Link :href="route('customer.project_details', { id: project.id })" class="ciBtn ciBtn-primary">View details</Link>
                                     </td>
                                 </tr>
                             </tbody>
