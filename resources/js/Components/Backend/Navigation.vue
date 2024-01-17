@@ -13,7 +13,7 @@ $(document).ready(function() {
             <!-- Admin Info -->
             <div class="admin_user_info d-flex flex-lg-column align-items-center">
                 <div class="user_img">
-                    <img v-if="$page.props.auth.user.photo === 'NULL'" :src=" $page.props.base.url + '/public/assets/img/user.png'" alt="" />
+                    <img v-if="$page.props.auth.user.thumbnail === 'NULL'" :src=" $page.props.base.url + '/public/assets/img/user.png'" alt="" />
                     <img v-else :src=" $page.props.base.url + '/public/uploads/thumbnails/users/' + $page.props.auth.user.thumbnail" alt="" />
                 </div>
                 <div class="user_details d-flex flex-column align-items-lg-center">
