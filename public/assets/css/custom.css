@@ -460,3 +460,10 @@ span.model-title-value {
   line-height: 24px;
   color: #212534;
 }
+
+/* project-view-btn */
+
+.project-view-btn{
+    width: 110px;
+    font-weight: bold;
+}

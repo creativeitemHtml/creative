@@ -290,7 +290,7 @@ const support = () => {
                 <div v-if="$page.props.auth.user" class="main-menu-profile">
                   <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <h4 class="userName">{{ $page.props.auth.user.name }}</h4>
-                    <img v-if="$page.props.auth.user.thumbnail === 'NULL'" :src=" $page.props.base.url + '/public/assets/img/user.png'" alt="" />
+                    <img v-if="!$page.props.auth.user.thumbnail" :src=" $page.props.base.url + '/public/assets/img/user.png'" alt="" />
                     <img v-else :src=" $page.props.base.url + '/public/uploads/thumbnails/users/' + $page.props.auth.user.thumbnail" alt="" />
                   </button>
                   <ul v-if="$page.props.auth.user.role_id === 6" class="dropdown-menu dropdown-menu-end">

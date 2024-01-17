@@ -107,8 +107,7 @@ const props = defineProps({
                                         </div>
                                     </td>
                                     <td>
-                                        <Link :href="route('customer.project_details', { id: project.id })" class="ciBtn ciBtn-primary">View details</Link>
-                                        <!-- style="width: 110px; font-weight: bold;" -->
+                                        <Link :href="route('customer.project_details', { id: project.id })" class="ciBtn ciBtn-primary project-view-btn">View details</Link>
                                     </td>
                                 </tr>
                             </tbody>
