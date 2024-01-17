@@ -1283,7 +1283,7 @@ class CustomerController extends Controller
     {
         $purchase_data = $this->string_to_array($purchase_data);
 
-        return redirect()->route('service_buy_now', ['service_id' => $purchase_data['service_id']])->with('warning', 'Service Purchase failed.');
+        return redirect()->route('services')->with('warning', 'Service Purchase failed.');
     }
 
     public function service_custom_purchase(Request $request)

@@ -26,13 +26,13 @@ const oddServices = props.feature.service_features.filter((service, index) => in
       <div class="modal-content">
         <div class="modal-header pe-0">
           <div class="row justify-content-between w-100">
-            <div class="col-9 d-flex align-items-center">
+            <div class="col-9 d-flex">
               <h1 class="modal-title">{{ feature.name }} Package :</h1>
               <span v-if="feature.name == 'Pro'" class="model-title-value"> Included Basic Packages</span>
               <span v-else-if="feature.name == 'Business'" class="model-title-value"> Included Professional & Business Packages</span>
               <span v-else class="model-title-value"></span>
             </div>
-            <div class="col-3 d-xl-flex text-sm-center align-items-center justify-content-between p-0 ps-4">
+            <div class="col-3 d-xl-flex text-sm-center align-items-center justify-content-end p-0 ps-4">
               <h1 class="modal-title">${{ feature.discounted_price }}</h1>
               <ServiceCheckout :feature="feature" :isModal="true" :modalId="'exampleModal' + feature.id" />
               <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
