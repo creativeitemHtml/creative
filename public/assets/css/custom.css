@@ -401,3 +401,61 @@ form :where(i, p) {
     font-size: 15px;
     line-height: 16px;
 }
+
+/* Help modal */
+
+.service-help-item {
+    border: 0.0625rem solid #e6eaee !important;
+    border-radius: 0.625rem !important;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+}
+.service-help-header {
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    color: #212534;
+    padding: 16px 1rem;
+}
+.service-help-txt{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #212534;
+  padding-bottom: 10px;
+}
+.service-help-item .service-help-body {
+    position: relative;
+    padding: .5rem 1rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.service-help-item .service-help-body::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    width: 94.25%;
+    background-color: #e6eaee;
+}
+
+.modal-title{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #212534;
+}
+
+span.model-title-value {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #212534;
+}

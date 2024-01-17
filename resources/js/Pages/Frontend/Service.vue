@@ -97,8 +97,8 @@ onMounted(() => {
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="text-center pb-60">
-              <h2 class="fz-34-sb-black pb-15">Get Our Services</h2>
-              <p class="fz-16-m-black-2">It is a long established fact that a reader will be distracted by the readable of a page when looking at its layout. </p>
+              <h2 class="fz-34-sb-black pb-15">Your Vision, Our Software: Ready or Custom Plans</h2>
+              <p class="fz-16-m-black-2">Start your software journey with our ready plans, offering the flexibility to mix and match services, or start anew with a customized project guided by our expert team. </p>
               <div class="btn-control justify-content-center align-items-center d-flex">
                 <Link :href="route('services')" class="active">Ready Plans</Link>
                 <Link :href="route('hire_us')" class="">New Project</Link>
@@ -254,6 +254,76 @@ onMounted(() => {
       </div>
     </section>
     <!-- New Service End -->
+
+    <!-- Start Faqs -->
+    <section class="faq">
+      <div class="container">
+        <!-- Title -->
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="text-center pb-60">
+              <h2 class="fz-34-sb-black pb-15">Faqs</h2>
+              <p class="fz-16-m-black-2">Here are some helpful answers to your common questions and queries regarding our services</p>
+            </div>
+          </div>
+        </div>
+        <!-- Faqs Items -->
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-12">
+              <div class="faq-img">
+                <img :src=" $page.props.base.url + '/public/assets/img/product-item/faq-img.png'" alt="...">
+              </div>
+          </div>
+          <div class="col-lg-9 col-md-12">
+            <div class="faq-wrap">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Can I use Creative elements templates for my clients?</button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">Lorem Ipsum available, but the majority have suffered alteration some injected humour randomised words which do look slightly believable If you are going to use a passage</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Do you provide documentation and support?</button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">Lorem Ipsum available, but the majority have suffered alteration some injected humour randomised words which do look slightly believable If you are going to use a passage</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How long do I have support access?</button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">Lorem Ipsum available, but the majority have suffered alteration some injected humour randomised words which do look slightly believable If you are going to use a passage</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">What payment methods do you accept?</button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">Lorem Ipsum available, but the majority have suffered alteration some injected humour randomised words which do look slightly believable If you are going to use a passage</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">What happens after my subscription runs out?</button>
+                  </h2>
+                  <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">Lorem Ipsum available, but the majority have suffered alteration some injected humour randomised words which do look slightly believable If you are going to use a passage</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Faqs -->
 
     
     <Footer />
