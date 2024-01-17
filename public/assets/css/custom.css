@@ -389,11 +389,12 @@ form :where(i, p) {
 /* Nav Link & Sidebar */
 
 .nav-link {
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .nav-links-li-2 .link-name{
+    font-weight: 600;
     font-size: 16px;
 }
 

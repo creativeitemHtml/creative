@@ -199,7 +199,8 @@ onMounted(() => {
                             </li>
                           </ul>
                           <ServiceCheckout :feature="feature" :modalId="'exampleModal' + feature.id" />
-                          <ServicePackageHelpModal :services="feature.service_features" :modalId=" 'serviceModal' + feature.id" />
+                          <ServicePackageHelpModal :feature="feature" :modalId=" 'serviceModal' + feature.id" />
+                          <!-- <ServicePackageHelpModal :services="feature.service_features" :modalId=" 'serviceModal' + feature.id" /> -->
                       </div>
                     </div>
                   </div>

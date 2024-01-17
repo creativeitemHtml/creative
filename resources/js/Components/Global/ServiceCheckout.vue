@@ -5,7 +5,8 @@ import { ref, computed } from 'vue'
 
 const props = defineProps({
     feature: Object,
-    modalId: String
+    modalId: String,
+    isModal: Boolean
 });
 
 const user = usePage().props.auth.user;
@@ -22,7 +23,8 @@ const submit = () => {
 </script>
 
 <template>
-    <button type="button" class="buy-btn" :data-bs-toggle="'modal'" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Buy Now</button>
+    <button v-if="isModal == true" type="button" class="ciBtn ciBtn-primary" :data-bs-toggle="'modal'" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Buy Now</button>
+    <button v-else type="button" class="buy-btn" :data-bs-toggle="'modal'" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Buy Now</button>
 
     <div :id="modalId" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">

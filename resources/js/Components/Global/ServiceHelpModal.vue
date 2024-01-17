@@ -8,6 +8,9 @@ const toggleAccordion = (service) => {
   service.isOpen = !service.isOpen;
 };
 
+const evenServices = props.services.filter((service, index) => index % 2 === 1);
+const oddServices = props.services.filter((service, index) => index % 2 === 0);
+
 </script>
 
 <template>
@@ -19,43 +22,30 @@ const toggleAccordion = (service) => {
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="serviceHelpLabel">Service Details</h1>
+          <h1 class="modal-title">Custom Services :</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- Start Checkout Wraper -->
-          {{ $page.props.services }}
-          <section class="faq">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 col-md-12">
-                        <div class="faq-img">
-                            <img :src=" $page.props.base.url + '/public/assets/img/product-item/faq-img.png'" alt="...">
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-12">
-                        <div class="faq-wrap">
-                          <div class="accordion" id="accordionExample">
-                              <div class="accordion-item" v-for="service in services" :key="service.id">
-                                <h2 class="accordion-header" :id="'heading' + service.id">
-                                  <button class="accordion-button" :class="{ collapsed: service.isOpen }" type="button" :data-bs-toggle="'#collapse' + service.id" :aria-expanded="!service.isOpen" :aria-controls="'collapse' + service.id" @click="toggleAccordion(service)">
-                                    {{ service.name }}
-                                  </button>
-                                </h2>
-                                <div :id="'collapse' + service.id" class="accordion-collapse collapse" :class="{ show: !service.isOpen }" :aria-labelledby="'heading' + service.id" data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">{{ service.note }}</div>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="row justify-content-center">
+            <h2 class="service-help-txt">Service Details</h2>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12">
+              <div class="service-help-item" v-for="service in oddServices" :key="service.id">
+                <h2 class="service-help-header">{{ service.name }}</h2>
+                <div class="service-help-body">{{ service.note }}</div>
+              </div>
             </div>
-          </section>
-          <!-- End Checkout Wraper -->
-
+            <div class="col-lg-6 col-md-12">
+              <div class="service-help-item" v-for="service in evenServices" :key="service.id">
+                <h2 class="service-help-header">{{ service.name }}</h2>
+                <div class="service-help-body">{{ service.note }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
