@@ -671,7 +671,7 @@
 }
 .package-plan .need-text{
     visibility: visible;
-    
+    opacity: 0;
     transition: .5s;
 }
 .need-text {

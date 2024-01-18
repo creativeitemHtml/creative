@@ -74,10 +74,20 @@ onMounted(() => {
   $("meta[property='og:description']").attr("content", props.seo.og_description);
   $("meta[property='og:image']").attr("content", props.seo.og_image);
 
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+  setTimeout(function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  }, 3000);
+
+
+
+
+  // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  // var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  //   return new bootstrap.Tooltip(tooltipTriggerEl)
+  // })
   
 });
 
@@ -121,7 +131,7 @@ const notify = (type, message) => {
           <div class="col-lg-12">
             <div class="text-center pb-60">
               <h2 class="fz-34-sb-black pb-15">Ready Services For Your Website</h2>
-              <p class="fz-16-m-black-2">Select package or choose from our services to meet your needs. </p>
+              <p class="fz-16-m-black-2">Select any package or choose from our services to meet your needs. </p>
               <div class="btn-control justify-content-center align-items-center d-flex">
                 <Link :href="route('services')" class="active">Ready Plans</Link>
                 <Link :href="route('hire_us')" class="">New Project</Link>
@@ -201,8 +211,8 @@ const notify = (type, message) => {
                           <div class="most d-flex">
                             <h4>{{ feature.name }}</h4>
                             <span v-if="feature.name == 'Pro'">Most Popular</span>
-                            <a @click="openServicePackageHelpModal('serviceModal' + feature.id)" style="cursor: pointer;">
-                              <img :src=" $page.props.base.url + '/public/assets/img/icon/help.svg'" alt="" title="Zendesk">
+                            <a @click="openServicePackageHelpModal('serviceModal' + feature.id)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Learn More" style="cursor: pointer;">
+                              <img :src=" $page.props.base.url + '/public/assets/img/icon/help.svg'" alt="" >
                             </a>
                           </div>
                           <span>${{ feature.discounted_price }} <del class="del_text">${{ feature.price }}</del></span>
