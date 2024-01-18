@@ -60,7 +60,7 @@ $(document).ready(function () {
           <div class="col-lg-12">
             <div class="text-center pb-60">
               <h2 class="fz-34-sb-black pb-15">Get Our Services</h2>
-              <p class="fz-16-m-black-2">It is a long established fact that a reader will be distracted by the readable of a page when looking at its layout. </p>
+              <p class="fz-16-m-black-2">From crafting projects from scratch, to tailoring existing systems to meet your vision; every custom enterprise solution is at your fingertip. </p>
               <div class="btn-control justify-content-center align-items-center d-flex">
                 <Link :href="route('services')" class="">Ready Plans</Link>
                 <Link :href="route('hire_us')" class="active">New Project</Link>

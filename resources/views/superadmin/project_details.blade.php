@@ -22,19 +22,18 @@
             </div>
         </div>
         <div class="project-item">
-            <!-- Title -->
-            <div class="project-item-title meeting-link mb-2">
-                <h3 class="title">{{ get_phrase('Project Price') }}</h3>
+            <div class="project-price-deadline mb-10 d-flex flex-wrap g-10 align-items-center justify-content-between">
+                <h4 class="fz-15-sb-black">{{ get_phrase('Project Price') }}</h4>
+                @if(isset($project_details->project_price))
+                <p class="price-deadline">{{ currency($project_details->project_price) }}</p>
+                @endif
             </div>
-            @if(isset($project_details->project_price))
-            <p class="status-up p-2 mb-2" style="font-weight: 700;">{{ currency($project_details->project_price) }}</p>
-            @endif
-            <div class="project-item-title meeting-link mb-2">
-                <h3 class="title">{{ get_phrase('Project Deadline') }}</h3>
+            <div class="project-price-deadline d-flex flex-wrap g-10 align-items-center justify-content-between">
+                <h4 class="fz-15-sb-black">{{ get_phrase('Project Deadline') }}</h4>
+                @if(isset($project_details->project_deadline))
+                <p class="price-deadline">{{ date('d M Y', $project_details->project_deadline) }}</p>
+                @endif
             </div>
-            @if(isset($project_details->project_deadline))
-            <p class="status-down p-2" style="font-weight: 700;">{{ date('d M Y', $project_details->project_deadline) }}</p>
-            @endif
         </div>
     </div>
     <div class="col-sm-6 project-items">

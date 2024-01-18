@@ -777,7 +777,7 @@ class CustomerController extends Controller
 
         $projects = [];
 
-        $projects = Project::where('user_id', auth()->user()->id)->where('status', $param)->get();
+        $projects = Project::where('user_id', auth()->user()->id)->where('status', $param)->orderBy('id', 'DESC')->get();
 
         foreach($projects as $project) 
         {

@@ -1263,7 +1263,7 @@ class SuperadminController extends Controller
         }
         $page_data = array();
 
-        $page_data['projects'] = Project::where('status', $param)->paginate(10);
+        $page_data['projects'] = Project::where('status', $param)->orderBy('id', 'DESC')->paginate(10);
         $page_data['page_title'] = 'Projects';
         $page_data['project'] = 'active';
         $page_data['tab'] = $param;

@@ -27,9 +27,19 @@ const submit = () => {
   form.post(route('customer.upload_attachment', { 'project_id': props.project_details.id }));
 };
 
-const formatDate = (date) => {
-  const options = { year: 'numeric', month: 'short', day: '2-digit' };
-  return new Date(date).toLocaleDateString(undefined, options);
+const formatDate = (timestamp) => {
+    // Check if the date is null
+    if (timestamp === null) {
+        return null; // or return an empty string, depending on your requirements
+    }
+
+    const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+    const options = {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
 const formatDateWithTime = (timestamp) => {
@@ -94,7 +104,7 @@ const formatDateWithTime = (timestamp) => {
                                 </div>
                                 <div class="project-price-deadline d-flex flex-wrap g-10 align-items-center justify-content-between">
                                     <h4 class="fz-15-sb-black">Project Deadline:</h4>
-                                    <p class="price-deadline">{{ formatDate(project_details.created_at) }}</p>
+                                    <p class="price-deadline">{{ formatDate(project_details.project_deadline) }}</p>
                                 </div>
                             </div>
                         </div>

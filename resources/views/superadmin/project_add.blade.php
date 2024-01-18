@@ -30,11 +30,7 @@
 
             <div class="pForm-wrap">
                 <label for="user_id" class="enForm-label">{{ get_phrase('Assign A User') }}</label>
-                <select
-                    class="enForm-select enForm-nice-select"
-                    id="user_id"
-                    name="user_id"
-                >
+                <select class="chzn-select" id="user_id" name="user_id">
                     <option value="">{{ get_phrase('Select a user') }}</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>

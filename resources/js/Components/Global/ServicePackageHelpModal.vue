@@ -18,7 +18,7 @@ const oddServices = props.feature.service_features.filter((service, index) => in
 
 <template>
   <div class="d-flex justify-content-center">
-    <button type="button" class="need-text" data-bs-toggle="modal" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Need Help?</button>
+    <button type="button" class="need-text" data-bs-toggle="modal" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Learn More</button>
   </div>
 
   <div :id="modalId" class="modal fade" tabindex="-1" aria-labelledby="serviceHelpLabel" aria-hidden="true">

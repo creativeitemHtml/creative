@@ -15,7 +15,7 @@ const oddServices = props.services.filter((service, index) => index % 2 === 0);
 
 <template>
   <div class="d-flex justify-content-center">
-    <button type="button" class="need-text" data-bs-toggle="modal" data-bs-target="#serviceHelp" data-bs-whatever="@mdo">Need Help?</button>
+    <button type="button" class="need-text" data-bs-toggle="modal" data-bs-target="#serviceHelp" data-bs-whatever="@mdo">Learn More</button>
   </div>
 
   <div class="modal fade" id="serviceHelp" tabindex="-1" aria-labelledby="serviceHelpLabel" aria-hidden="true">

@@ -25,6 +25,9 @@ import '../../public/assets/css/lms-main.css';
 import '../../public/assets/css/custom.css';
 import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
 
+import VueToast from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Creativeitem';
 const captcheKey = '6LdAAcInAAAAAHLH_eG-CZ_COygmBCgWvY2rayUg';
 
@@ -35,6 +38,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VueToast)
             .use(VueReCaptcha, { 
                 siteKey: captcheKey, 
                 loaderOptions: {

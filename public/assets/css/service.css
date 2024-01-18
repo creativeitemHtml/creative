@@ -493,9 +493,10 @@
 	color: #fff !important;
 	line-height: 20px;
 	position: absolute;
-	right: 0;
+	left: 43px;
 	top: 0;
     transition: .5s;
+    width: 85px;
 }
 .most {
 	justify-content: space-between;
@@ -604,14 +605,12 @@
 .support ul {
 	display: flex;
     flex-wrap: wrap;
-	gap: 16px;
+	gap: 10px;
 }
 .support ul li a{
     height: 32px;
-    width: 32px;
     line-height: 32px;
     border-radius: 50%;
-    background-color: #0A66C2;
     display: inline-block;
     text-align: center;
 }
@@ -671,8 +670,8 @@
 	border-radius: 12px;
 }
 .package-plan .need-text{
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
+    
     transition: .5s;
 }
 .need-text {

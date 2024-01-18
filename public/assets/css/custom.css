@@ -367,7 +367,7 @@ form :where(i, p) {
 /* ServiceHelperModal component */
 
 .need-text {
-    background: #fff;
+    background: none;
     border: none;
 }
 
@@ -494,4 +494,8 @@ span.model-title-value {
 .cus-label p{
     font-size: 16px;
     color: #0A7EFB;
+}
+
+.ml-65{
+    margin-left: 65px;
 }

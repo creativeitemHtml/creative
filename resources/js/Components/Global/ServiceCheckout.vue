@@ -3,6 +3,9 @@ import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
 
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
 const props = defineProps({
     feature: Object,
     modalId: String,
@@ -17,9 +20,29 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('purchase_service_package', { service_id: props.feature.id }));
-    $('#' + props.modalId).modal('hide');
+    if(form.email != '') {
+        form.post(route('purchase_service_package', { service_id: props.feature.id }));
+        $('#' + props.modalId).modal('hide');
+    } else {
+        notify('info', 'Please provide a email address');
+    }
 };
+
+const options = {
+    // 'position': toast.POSITION.TOP_CENTER,
+    'autoClose': 2000,
+    'closeOnClick': true,
+    'type': 'default'
+}
+
+const notify = (type, message) => {
+
+  //Setting for type of notificatiob. e.g error, warning, success or info
+  options['type'] = type;
+
+  toast(message, options);
+}
+
 
 </script>
 

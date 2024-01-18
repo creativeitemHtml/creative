@@ -3,6 +3,9 @@ import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
 
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
 const user = usePage().props.auth.user;
 
 const props = defineProps({
@@ -16,24 +19,38 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.selectedServices = props.selectedServices;
-    // console.log(form.selectedServices);
-    form.post(route('purchase_custom_service'));
-    $('#exampleModal').modal('hide');
+    if(form.email != '') {
+        form.selectedServices = props.selectedServices;
+        form.post(route('purchase_custom_service'));
+        $('#customCheckoutModal').modal('hide');
+    } else {
+        notify('info', 'Please provide a email address');
+    }
 };
 
 const totalPrice = computed(() => {
   return props.selectedServices.reduce((total, service) => total + parseFloat(service.price), 0);
 });
 
+const options = {
+    // 'position': toast.POSITION.TOP_CENTER,
+    'autoClose': 2000,
+    'closeOnClick': true,
+    'type': 'default'
+}
+
+const notify = (type, message) => {
+
+  //Setting for type of notificatiob. e.g error, warning, success or info
+  options['type'] = type;
+
+  toast(message, options);
+}
+
 </script>
 
 <template>
-  <div class="eCheck-price">
-    <button type="button" class="buy-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Buy Now</button>
-  </div>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="customCheckoutModal" tabindex="-1" aria-labelledby="customCheckoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
