@@ -121,7 +121,7 @@ const notify = (type, message) => {
           <div class="col-lg-12">
             <div class="text-center pb-60">
               <h2 class="fz-34-sb-black pb-15">Ready Services For Your Website</h2>
-              <p class="fz-16-m-black-2">Serlect package or choose from our services to meet your needs. </p>
+              <p class="fz-16-m-black-2">Select package or choose from our services to meet your needs. </p>
               <div class="btn-control justify-content-center align-items-center d-flex">
                 <Link :href="route('services')" class="active">Ready Plans</Link>
                 <Link :href="route('hire_us')" class="">New Project</Link>
