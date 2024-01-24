@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::controller(SuperadminController::class)->middleware('auth', 'superadmin')->group(function () {
-
+    Route::get('superadmin/redirect', 'redirect')->name('superadmin.redirect');
     Route::get('superadmin/dashboard', 'dashboard')->name('superadmin.dashboard');
     Route::get('superadmin/products', 'products')->name('superadmin.products');
     Route::get('superadmin/product-type', 'product_type')->name('superadmin.product_type');

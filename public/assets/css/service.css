@@ -690,44 +690,50 @@
 .faq{
     margin-bottom: 75px;
 }
-.faq-wrap .accordion-item {
+.faq-wraps .accordion-item {
     border: 0.0625rem solid #e6eaee !important;
     border-radius: 0.625rem !important;
-    margin-bottom: 1.25rem;
+    margin-bottom: 10px;
     overflow: hidden;
 }
-.faq-wrap .accordion-button, 
-.faq-wrap .accordion-button:not(.collapsed) {
+.faq-wraps .accordion-button, 
+.faq-wraps .accordion-button:not(.collapsed) {
     background-color: transparent;
     box-shadow: none;
-    font-size: 1.125rem;
+    font-size: 16px;
     font-weight: 700;
     line-height: 25px;
     color: #212534;
-    padding: 1.5rem;
+    padding: 17px;
 }
-.faq-wrap .accordion-button::after {
+.faq-wraps .accordion-button::after {
     background-image: url(../img/icon/minus.svg);
 }
-.faq-wrap .accordion-button.collapsed::after {
+.faq-wraps .accordion-button.collapsed::after {
     background-image: url(../img/icon/add.svg);
 }
-.faq-wrap .accordion-item:has(:not(.show)) .accordion-body {
+.faq-wraps .accordion-item:has(:not(.show)) .accordion-body {
     position: relative;
-    padding: 1.25rem 1.5rem 1.5rem;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #010101e8;
 }
-.faq-wrap .accordion-item:has(:not(.show)) .accordion-body::before {
+.faq-wraps .accordion-item:has(:not(.show)) .accordion-body::before {
     position: absolute;
     content: "";
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     height: 1px;
-    width: 91.25%;
+    width: 100%;
     background-color: #e6eaee;
 }
 
-
+.small-show{
+    display: none;
+}
 /* Responsive Css */
 @media screen and (max-width: 1024px){
     .hire-us-content .hire-info .item::before {
@@ -767,6 +773,12 @@
     }
     .eCheck-price{
         text-align: center;
+    }
+    .small-show{
+        display: block;
+    }
+    .large-show{
+        display: none;
     }
 }
 @media screen and (max-width: 575px){

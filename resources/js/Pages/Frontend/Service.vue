@@ -164,38 +164,40 @@ const notify = (type, message) => {
                   </div>
               </div>
 
-              <div class="support">
-                <h4>Contact For Support</h4>
-                  <ul>
-                    <li>
-                      <a href="http://support.creativeitem.com/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Zendesk">
-                        <img :src=" $page.props.base.url + '/public/assets/img/icon/zendesk-service.svg'" alt="" >
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://wa.link/izd8dl" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Whatsapp">
-                        <img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp-service.svg'" alt="" >
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://t.me/creativeitem_elements" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram">
-                        <img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-service.svg'" alt="" >
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://m.me/creativeitemApps" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger">
-                        <img :src=" $page.props.base.url + '/public/assets/img/icon/messenger-service.svg'" alt="" >
-                      </a>
-                    </li>
-                  </ul>
-              </div>
+              <div class="large-show">
+                    <div class="support">
+                    <h4>Contact For Support</h4>
+                      <ul>
+                        <li>
+                          <a href="http://support.creativeitem.com/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Zendesk">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/zendesk-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://wa.link/izd8dl" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Whatsapp">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://t.me/creativeitem_elements" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://m.me/creativeitemApps" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/messenger-service.svg'" alt="" >
+                          </a>
+                        </li>
+                      </ul>
+                  </div>
 
-              <div class="support video-sup d-flex align-items-center">
-                  <a href=""><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
-                  </svg>
-                  </a>
-                  <h4>How it Works!</h4>
+                  <div class="support video-sup d-flex align-items-center">
+                      <a href=""><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                      </svg>
+                      </a>
+                      <h4>How it Works!</h4>
+                  </div>
               </div>
 
             </div>
@@ -235,7 +237,7 @@ const notify = (type, message) => {
                   <div v-if="services.length > 0" class="eg_row">
                     <p class="epack ml-65">Service List:</p>
                     <div class="row">
-                      <div class="col-lg-1 col-md-6 col-sm-6">
+                      <div class="col-lg-1">
                       </div>
                       <div class="col-lg-4 col-md-6 col-sm-6 right-border">
                         <div class="eCheck">
@@ -281,6 +283,43 @@ const notify = (type, message) => {
                 
               </div>                    
             </div>
+
+            <div class="small-show tab-left">
+                    <div class="support">
+                    <h4>Contact For Support</h4>
+                      <ul>
+                        <li>
+                          <a href="http://support.creativeitem.com/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Zendesk">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/zendesk-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://wa.link/izd8dl" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Whatsapp">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://t.me/creativeitem_elements" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-service.svg'" alt="" >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://m.me/creativeitemApps" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger">
+                            <img :src=" $page.props.base.url + '/public/assets/img/icon/messenger-service.svg'" alt="" >
+                          </a>
+                        </li>
+                      </ul>
+                  </div>
+
+                  <div class="support video-sup d-flex align-items-center">
+                      <a href=""><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                      </svg>
+                      </a>
+                      <h4>How it Works!</h4>
+                  </div>
+              </div>
+
           </div>
         </div>
       </div>
@@ -292,7 +331,7 @@ const notify = (type, message) => {
       <div class="container">
         <!-- Title -->
         <div class="row justify-content-center">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div class="text-center pb-60">
               <h2 class="fz-34-sb-black pb-15">Faqs</h2>
               <p class="fz-16-m-black-2">Here are some helpful answers to your common questions and queries regarding our services</p>
@@ -307,7 +346,7 @@ const notify = (type, message) => {
               </div>
           </div>
           <div class="col-lg-9 col-md-12">
-            <div class="faq-wrap">
+            <div class="faq-wraps">
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">

@@ -10,9 +10,14 @@ use Validator;
 use Response;
 use PDF;
 use File;
+use Inertia\Inertia;
 
 class SuperadminController extends Controller
 {
+    function redirect(){
+        return Inertia::location(url('/superadmin/dashboard'));
+    }
+    
     function dashboard()
     {
         $page_data = array();

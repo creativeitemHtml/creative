@@ -499,3 +499,16 @@ span.model-title-value {
 .ml-65{
     margin-left: 65px;
 }
+
+
+@media screen and (max-width: 992px){
+    .bar-controls .btn-close {
+        position: absolute;
+        top: 4px;
+        right: 5px;
+    }
+    .bar-controls {
+        justify-content: flex-start !important;
+        padding-left: 0 !important;
+    }
+}
