@@ -16,13 +16,8 @@
                         <div>
                            <div>
                                  <!-- Logo -->
-                                <div style="display: flex; align-items: center; justify-content: space-between; " >
-                                    <div style="flex-grow:1;">
-                                        <a style=" text-decoration: none; display: inline-block; width: 100%; text-align: center;" href="#"><img style="width:150px; margin: auto;" src="https://creativeitem.com/public/assets/image/logo-2.png" alt="logo image"></a>
-                                    </div>
-                                    <div style="flex-shrink:0;">
-                                      <p style="font-size: 15px; font-weight: 500; color: #7B7F84;">{{ date('d m, Y') }}</p>
-                                    </div>
+                                <div style="text-align:center;" >
+                                    <a style="text-align:center; text-decoration: none; display: inline-block; width: 100%; text-align: center;" href="https://creativeitem.com"><img style="width:150px; margin: auto;" src="https://creativeitem.com/public/assets/image/logo-2.png" alt="logo image"></a>
                                 </div>
                                 <div class="feature-item" style="margin-top:30px; ">
                                      <div class="feature-text">
@@ -30,12 +25,8 @@
                                      </div>
                                      <div style="display: flex; justify-content: space-between; align-items: center;">
                                          <div>
-                                            <p style="font-size: 15px; color: #7B7F84;">{{ date('d m, Y') }}</p>
-                                            <p style="font-size: 15px; color: #7B7F84;">Order ID: 2024-{{ $subscription_details->id }}</p>
-                                         </div>
-                                         <div>
-                                            <p style="color: #0C141D; font-size: 17px;">Username</p>
-                                            <p style="font-size: 15px; color: #7B7F84;">{{ $user->name }}</p>
+                                            <p style="color: #0C141D; font-size: 17px;">Date: {{ date('d m, Y') }}</p>
+                                            <p style="color: #0C141D; font-size: 17px;">Order ID: 2024-{{ $subscription_details->id }}</p>
                                          </div>
                                      </div>
                                 </div>
@@ -47,11 +38,15 @@
                     <td>
                         <table style="border:1px solid #E4E7EC; margin-top: 15px;" cellpadding="20" cellspacing="0" width="600" id="emailContainer">
                             <tr style="background-color: #E4E7EC;">
-                               <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Deliverable</p></th>
+                                <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Name</p></th>
+                                <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Package</p></th>
                                 <th><p style="margin: 0; font-size: 16px; color: #0C141D;">price</p></th>
                                 <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Amount</p></th>
                             </tr>
                             <tr>
+                                <td style="text-align: center; padding:16px 0 ; border-bottom: 1px solid #E4E7EC;">
+                                    <p style="margin: 0;  color: #0C141D; font-size: 15px;">{{ $user->name }}</p>
+                                </td>
                                 <td style="text-align: center; padding:16px 0 ; border-bottom: 1px solid #E4E7EC;">
                                     <p style="margin: 0;  color: #0C141D; font-size: 15px;">{{ $subscription_details->subscription_to_package->name }}</p>
                                 </td>
