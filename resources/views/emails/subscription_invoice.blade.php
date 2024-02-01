@@ -18,7 +18,7 @@
                                  <!-- Logo -->
                                 <div style="display: flex; align-items: center; justify-content: space-between; " >
                                     <div class="logo">
-                                        <a style=" text-decoration: none; display: inline-block; width: 100%; text-align: center;" href="#"><img style="width:150px; margin: auto;" src="https://creativeitem.com/publi/assets/image/logo-2.png" alt="logo image"></a>
+                                        <a style=" text-decoration: none; display: inline-block; width: 100%; text-align: center;" href="#"><img style="width:150px; margin: auto;" src="https://creativeitem.com/public/assets/image/logo-2.png" alt="logo image"></a>
                                     </div>
                                     <p style="font-size: 15px; font-weight: 500; color: #7B7F84;">{{ date('d m, Y') }}</p>
                                 </div>
@@ -88,10 +88,10 @@
                 </tr>
                 <tr>
                     <td style="text-align:center; padding-bottom: 20px;">                                
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/publi/assets/image/icon-linkedin.png"></a>    
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/publi/assets/image/icon-dribbble.png"></a>    
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/publi/assets/image/icon-facebook.png"></a>   
-                        <a href="#" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/publi/assets/image/icon-twitter.png"></a>                           
+                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-linkedin.png"></a>    
+                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-dribbble.png"></a>    
+                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-facebook.png"></a>   
+                        <a href="#" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-twitter.png"></a>                           
                     </td>
                 </tr>
                 <tr>
