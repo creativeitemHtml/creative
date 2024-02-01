@@ -512,3 +512,25 @@ span.model-title-value {
         padding-left: 0 !important;
     }
 }
+
+
+.ci-pagination .page-item:first-child .page-link ,
+.ci-pagination .page-item:last-child .page-link {
+    background: #0a7efb;
+    padding: 0px !important;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    width: 72px;
+    height: 20px;
+}
+.ci-pagination .page-item:first-child ,
+.ci-pagination .page-item:last-child {
+    background: #0a7efb;
+    padding: 6px 10px !important;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    width: 90px;
+    text-align: center;
+}

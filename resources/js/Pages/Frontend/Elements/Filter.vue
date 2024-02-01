@@ -6,6 +6,7 @@ import Footer from '../../../Components/Global/Footer.vue'
 import { Link, useForm } from '@inertiajs/vue3';
 import { ref, computed, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3'
+import Pagination from '../../../Components/Pagination.vue'
 
 // Define props using the defineProps() function
 const props = defineProps({
@@ -13,6 +14,7 @@ const props = defineProps({
     selected_category: String,
     element_categories: Array,
     element_products: Array,
+    pagination: Object,
     selected_license: String,
     selected_tag: String,
     tags: Array,
@@ -342,74 +344,9 @@ const initializeState = () => {
                 </div>
               </div>
               <!-- Pagination -->
-              <!-- <div class="web-ui-pagination pt-60">
-                <nav>
-                  <ul class="pagination ci-pagination ci-pagination-1">
-                    <li class="page-item">
-                      <a class="page-link previous" href="#">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="6"
-                          height="12"
-                          viewBox="0 0 8.414 14.828"
-                        >
-                          <path
-                            id="Path_460"
-                            data-name="Path 460"
-                            d="M15,6,9,12l6,6"
-                            transform="translate(-8 -4.586)"
-                            fill="none"
-                            stroke="#797c8b"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link active" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">16</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link next" href="#">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="6"
-                          height="12"
-                          viewBox="0 0 8.414 14.828"
-                        >
-                          <path
-                            id="Path_462"
-                            data-name="Path 462"
-                            d="M9,6l6,6L9,18"
-                            transform="translate(-7.586 -4.586)"
-                            fill="none"
-                            stroke="#797c8b"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div> -->
+              <div class="web-ui-pagination pt-60">
+                <Pagination class="mt-6" :links="pagination.links" />
+              </div>
             </div>
           </div>
         </div>

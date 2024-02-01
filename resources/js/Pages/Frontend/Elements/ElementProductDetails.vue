@@ -2,6 +2,7 @@
 import Header from '../../../Components/Global/Header.vue';
 import ElementHeader from '../../../Components/Global/ElementHeader.vue';
 import Footer from '../../../Components/Global/Footer.vue';
+import ElementCheckout from '../../../Components/Elements/ElementCheckout.vue'
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
 import { ref, onMounted, computed } from 'vue';
@@ -36,6 +37,10 @@ const countLikes = computed(() => {
       return 0;
     }
 });
+
+const openModal = () => {
+  $('#exampleModal').modal('show');
+};
 
 onMounted(() => {
   // Assuming `selected_product.preview_thumbnails` is a JSON string
@@ -326,9 +331,14 @@ $(document).ready(function () {
                     Download
                   </a>
                   <div v-else>
-                    <Link :href="route('element_buy_now', { product_id: selected_product.id })" class="el-btn-buy mb-12">
+
+                    <a @click="openModal" type="button" class="el-btn-buy mb-12" data-bs-whatever="@mdo">Buy Now Plan</a>
+                    
+                    <ElementCheckout :element="selected_product" />
+
+                    <!-- <Link :href="route('element_buy_now', { product_id: selected_product.id })" class="el-btn-buy mb-12">
                       Buy Now
-                    </Link>
+                    </Link> -->
                     <span class="seperate">or</span>
                     <Link :href="route('elements_package_pricing')" class="el-btn-subscribe mb-20">Subscribe</Link>
                   </div>
@@ -339,9 +349,14 @@ $(document).ready(function () {
                 </div>
                 <div v-else class="elitem-price p-30 bd-r-10 box-shadow-13 mb-30">
                   <h4 class="price">Price : <span>${{ selected_product.price }} USD</span></h4>
-                  <Link :href="route('element_buy_now', { product_id: selected_product.id })" class="el-btn-buy mb-12">
+
+                  <a @click="openModal" type="button" class="el-btn-buy mb-12" data-bs-whatever="@mdo">Buy Now</a>
+                    
+                  <ElementCheckout :element="selected_product" />
+
+                  <!-- <Link :href="route('element_buy_now', { product_id: selected_product.id })" class="el-btn-buy mb-12">
                     Buy Now
-                  </Link>
+                  </Link> -->
                   <span class="seperate">or</span>
                   <Link :href="route('elements_package_pricing')" class="el-btn-subscribe mb-20">Subscribe</Link>
                   <div class="elitem-allFile">

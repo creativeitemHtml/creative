@@ -2,8 +2,9 @@
 import Header from '../../../Components/Global/Header.vue';
 import ElementHeader from '../../../Components/Global/ElementHeader.vue';
 import Footer from '../../../Components/Global/Footer.vue'
+import ElementPackageCheckout from '../../../Components/Elements/ElementPackageCheckout.vue'
 import { Link } from '@inertiajs/vue3';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 // Define props using the defineProps() function
 const props = defineProps({
@@ -11,6 +12,13 @@ const props = defineProps({
     element_categories: Array,
     seo: Object,
 });
+
+const selectedPackage = ref('');
+
+const openModal = (pack) => {
+  selectedPackage.value = pack;
+  $('#exampleModal').modal('show');
+};
 
 onMounted(() => {
   $(document).prop('title', props.seo.meta_title);
@@ -72,7 +80,9 @@ onMounted(() => {
                     </li>
                 </ul>
               </div>
-              <Link :href="route('element_checkout', { id: pack.id })" class="pricing-n-btn text-18">Upgrade Plan</Link>
+              <a @click="() => openModal(pack)" type="button" class="pricing-n-btn text-18" data-bs-whatever="@mdo">Upgrade Plan</a>
+              <ElementPackageCheckout :packages="packages" :selected_package="selectedPackage" />
+              <!-- <Link :href="route('element_checkout', { id: pack.id })" class="pricing-n-btn text-18">Upgrade Plan</Link> -->
             </div>
           </div>
         </div>

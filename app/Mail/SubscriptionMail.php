@@ -13,16 +13,16 @@ class SubscriptionMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $pin, $user;
+    public $subscription_details, $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($pin, $user)
+    public function __construct($subscription_details, $user)
     {
-        $this->pin = $pin;
+        $this->subscription_details = $subscription_details;
         $this->user = $user;
     }
 
@@ -33,7 +33,7 @@ class SubscriptionMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email Verification')
-                    ->view('emails.verify_email');
+        return $this->subject('Subscription email')
+                    ->view('emails.subscription_invoice');
     }
 }

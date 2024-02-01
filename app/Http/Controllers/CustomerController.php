@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Stripe;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseInvoice;
+use App\Mail\SubscriptionMail;
 use File;
 use PDF;
 
@@ -490,7 +491,10 @@ class CustomerController extends Controller
                     'date_added' => $session_response['created'],
                 ]);
 
-                // Mail::to(auth()->user()->email)->send(new SubscriptionMail($sub_details));
+                $user = User::find($sub_details->user_id);
+
+                Mail::to(auth()->user()->email)->send(new SubscriptionMail($sub_details, $user));
+                Mail::to('zohantesting015@gmail.com')->send(new SubscriptionMail($sub_details, $user));
 
                 return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
 
@@ -534,6 +538,12 @@ class CustomerController extends Controller
                     'expire_date' => $subscription_response->current_period_end,
                 ]);
 
+                $user = User::find($status->user_id);
+
+                Mail::to(auth()->user()->email)->send(new SubscriptionMail($status, $user));
+                Mail::to('zohantesting015@gmail.com')->send(new SubscriptionMail($status, $user));
+
+
                 return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
             }
         }
@@ -544,7 +554,9 @@ class CustomerController extends Controller
     {
         $user_data = $this->string_to_array($user_data);
 
-        return redirect()->route('element_checkout', ['id' => $user_data['package_id']])->with('warning', 'Subscription failed.');
+        return redirect()->back()->with('warning', 'Subscription failed.');
+
+        // return redirect()->route('element_checkout', ['id' => $user_data['package_id']])->with('warning', 'Subscription failed.');
     }
 
     public function string_to_array($user_data)
@@ -670,6 +682,7 @@ class CustomerController extends Controller
             ]);
 
             Mail::to(auth()->user()->email)->send(new PurchaseInvoice($status));
+            Mail::to('project@creativeitem.com')->send(new PurchaseInvoice($status));
 
             return redirect()->route('customer.purchase_history')->with('message', 'Payment successfully');
         }
@@ -679,7 +692,7 @@ class CustomerController extends Controller
     {
         $purchase_data = $this->string_to_array($purchase_data);
 
-        return redirect()->route('element_buy_now', ['product_id' => $purchase_data['element_product_id']])->with('warning', 'Purchase failed.');
+        return redirect()->back()->with('warning', 'Purchase failed.');
     }
 
     public function download_link_generate($product_id="")

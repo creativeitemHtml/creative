@@ -275,7 +275,7 @@ class ElementsController extends Controller
             $selected_license = $filter['license'];
         }
 
-        $element_products = $query->get();
+        $element_products = $query->paginate(10);
 
         if(count($element_products) > 0) {
 
@@ -289,12 +289,11 @@ class ElementsController extends Controller
                 $res[$key]['price'] = $element->price;
                 $res[$key]['like'] = $element->like;
                 $res[$key]['thumbnail'] = element_server_url($element->product_id, $element->product_to_elementCategory->slug).$element->thumbnail;
-                
             }
 
-            $element_products = $res;
+            $transformedData = $res;
         } else {
-            $element_products = [];
+            $transformedData = [];
         }
 
         if(!empty($slug) && $slug != 'free-items'){
@@ -311,7 +310,8 @@ class ElementsController extends Controller
             'selected_category_details' => $selected_category_details,
             'selected_category' => $selected_category,
             'selected_license' => $selected_license,
-            'element_products' => $element_products,
+            'element_products' => $transformedData,
+            'pagination' => $element_products,
             'selected_tag' => $selected_tag,
             'tags' => $tags,
             'seo' => $seo,
@@ -360,6 +360,8 @@ class ElementsController extends Controller
         }
 
         $seo = seo($selected_product, 'element');
+
+        $selected_product->thumbnail = element_server_url($selected_product->product_id, $selected_product->product_to_elementCategory->slug).$selected_product->thumbnail;
 
 
         return Inertia::render('Frontend/Elements/ElementProductDetails', [
