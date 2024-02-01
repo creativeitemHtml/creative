@@ -105,7 +105,7 @@ class ElementsController extends Controller
             $res[$key]['interval'] = $package->interval;
             $res[$key]['interval_period'] = $package->interval_period;
 
-            $packages_features = json_decode($package->services); 
+            $packages_features = json_decode($package->feature_list); 
             $res[$key]['packages_features'] = $packages_features;
 
 

@@ -25,8 +25,8 @@
                                      </div>
                                      <div style="display: flex; justify-content: space-between; align-items: center;">
                                          <div>
-                                            <p style="color: #0C141D; font-size: 17px;">Date: {{ date('d m, Y') }}</p>
-                                            <p style="color: #0C141D; font-size: 17px;">Order ID: 2024-{{ $subscription_details->id }}</p>
+                                            <p style="color: #0C141D; font-size: 16px;">Date: {{ date('d m, Y') }}</p>
+                                            <p style="color: #0C141D; font-size: 16px;">Order ID: 2024-{{ $subscription_details->id }}</p>
                                          </div>
                                      </div>
                                 </div>
@@ -51,16 +51,17 @@
                                     <p style="margin: 0;  color: #0C141D; font-size: 15px;">{{ $subscription_details->subscription_to_package->name }}</p>
                                 </td>
                                 <td style="text-align: center; padding: 16px 0 ; border-bottom: 1px solid #E4E7EC;">
-                                    <p style="margin: 0; font-size: 15px; color: #7B7F84;">${{ $subscription_details->paid_amount }}</p>
+                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $subscription_details->paid_amount }}</p>
                                 </td>
                                 <td style="text-align: center; padding: 16px  0; border-bottom: 1px solid #E4E7EC;">
-                                    <p style="margin: 0; font-size: 15px; color: #7B7F84;">${{ $subscription_details->paid_amount }}</p>
+                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $subscription_details->paid_amount }}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align: center; padding: 16px 0 ;">
                                     <p style="margin: 0; color: #0C141D; font-size: 15px;">Total</p>
                                 </td>
+                                <td style="text-align: center; padding: 16px 0 ;"> </td>
                                 <td style="text-align: center; padding: 16px 0 ;"> </td>
                                 <td style="text-align: center; padding: 16px 0 ;">
                                     <p style="margin: 0; font-size: 16px; font-weight: 500; color: #007BFF;">${{ $subscription_details->paid_amount }}</p>
@@ -78,17 +79,17 @@
                 <tr>
                     <td style="font-size: 13px; text-align:center; padding: 0 10px 10px 10px; font-weight: 500; color: #A1A5B7; font-family:Arial,Helvetica,sans-serif">
                         <p style="color:#181C32; font-size: 16px; font-weight: 600; margin-bottom:9px">It’s all about customers!</p>
-                        <p style="margin-bottom:2px; font-family:Arial,Helvetica,sans-serif">Call our customer care number: +31 6 3344 55 56</p>
-                        <p style="margin-bottom:4px; font-family:Arial,Helvetica,sans-serif">You may reach us at <a href="#" rel="noopener" target="_blank" style="text-decoration:none; font-weight: 600; font-family:Arial,Helvetica,sans-serif">creativeitem.com</a>.</p>
+                        <p style="margin-bottom:2px; font-family:Arial,Helvetica,sans-serif">Call our customer care number: +8801518626568</p>
+                        <p style="margin-bottom:4px; font-family:Arial,Helvetica,sans-serif">You may reach us at <a href="https://creativeitem.com" rel="noopener" target="_blank" style="text-decoration:none; font-weight: 600; font-family:Arial,Helvetica,sans-serif">creativeitem.com</a>.</p>
                         <p>We serve Sun-Thus, 10AM- 6PM</p>                                
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:center; padding-bottom: 20px;">                                
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-linkedin.png"></a>    
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-dribbble.png"></a>    
-                        <a href="#" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-facebook.png"></a>   
-                        <a href="#" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-twitter.png"></a>                           
+                        <a href="https://bd.linkedin.com/company/creativeitem" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-linkedin.png"></a>    
+                        <a href="https://dribbble.com/creativeitem" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-dribbble.png"></a>    
+                        <a href="https://www.facebook.com/CreativeitemApps/" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-facebook.png"></a>   
+                        <a href="https://twitter.com/creativeitem" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-twitter.png"></a>                           
                     </td>
                 </tr>
                 <tr>
