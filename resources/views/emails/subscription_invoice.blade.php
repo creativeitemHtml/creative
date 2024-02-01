@@ -13,14 +13,16 @@
             <tbody>
                 <tr>
                     <td>
-                        <div class="inner-content">
-                           <div class="inner-content-top">
+                        <div>
+                           <div>
                                  <!-- Logo -->
                                 <div style="display: flex; align-items: center; justify-content: space-between; " >
-                                    <div class="logo">
+                                    <div style="flex-grow:1;">
                                         <a style=" text-decoration: none; display: inline-block; width: 100%; text-align: center;" href="#"><img style="width:150px; margin: auto;" src="https://creativeitem.com/public/assets/image/logo-2.png" alt="logo image"></a>
                                     </div>
-                                    <p style="font-size: 15px; font-weight: 500; color: #7B7F84;">{{ date('d m, Y') }}</p>
+                                    <div style="flex-shrink:0;">
+                                      <p style="font-size: 15px; font-weight: 500; color: #7B7F84;">{{ date('d m, Y') }}</p>
+                                    </div>
                                 </div>
                                 <div class="feature-item" style="margin-top:30px; ">
                                      <div class="feature-text">
