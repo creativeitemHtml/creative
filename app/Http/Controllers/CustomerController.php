@@ -325,7 +325,7 @@ class CustomerController extends Controller
         $data['password'] = Hash::make($request->new_password);
         User::where('id', auth()->user()->id)->update($data);
 
-        return redirect()->back()->with('message', get_phrase('Password changed successfully'));
+        return redirect()->back()->with('success', get_phrase('Password changed successfully'));
     }
 
     public function subscription_purchase($package_id) 
@@ -347,7 +347,7 @@ class CustomerController extends Controller
 
             // Mail::to(auth()->user()->email)->send(new SubscriptionMail($sub_details));
 
-            return redirect()->route('customer.element_checkout_success')->with('message', 'Registration done. You are subscrive to free package.');
+            return redirect()->route('customer.element_checkout_success')->with('success', 'Registration done. You are subscrive to free package.');
         }
 
         $global_system_currency = get_settings('system_currency');
@@ -498,7 +498,7 @@ class CustomerController extends Controller
                 Mail::to(auth()->user()->email)->send(new SubscriptionMail($sub_details, $user));
                 Mail::to('project@creativeitem.com')->send(new SubscriptionMail($sub_details, $user));
 
-                return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
+                return redirect()->route('customer.element_checkout_success')->with('success', 'Subscription done Successfull');
 
             } else {
 
@@ -546,7 +546,7 @@ class CustomerController extends Controller
                 Mail::to('project@creativeitem.com')->send(new SubscriptionMail($status, $user));
 
 
-                return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
+                return redirect()->route('customer.element_checkout_success')->with('success', 'Subscription done Successfull');
             }
         }
 
@@ -688,7 +688,7 @@ class CustomerController extends Controller
             Mail::to(auth()->user()->email)->send(new PurchaseInvoice($purchase_details, $user));
             Mail::to('project@creativeitem.com')->send(new PurchaseInvoice($purchase_details, $user));
 
-            return redirect()->route('customer.purchase_history')->with('message', 'Payment successfully');
+            return redirect()->route('customer.purchase_history')->with('success', 'Payment successfully');
         }
     }
 
@@ -877,7 +877,7 @@ class CustomerController extends Controller
 
             Project::create($page_data);
 
-            return redirect()->route('customer.projects')->with('message', 'Project created successfully');
+            return redirect()->route('customer.projects')->with('success', 'Project created successfully');
 
         }
 
@@ -1052,7 +1052,7 @@ class CustomerController extends Controller
 
             $payment_details = PaymentMilestone::find($payment_data['milestone_id']);
 
-            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Payment successfully');
+            return redirect('customer/project_details/'.$payment_details->project_id)->with('success', 'Payment successfully');
         }
     }
 
@@ -1118,7 +1118,7 @@ class CustomerController extends Controller
 
         Project::where('id', $project_id)->update($page_data);
 
-        return redirect('/customer/project_details/'.$project_id)->with('message', 'Attachment removed successfully');
+        return redirect('/customer/project_details/'.$project_id)->with('success', 'Attachment removed successfully');
 
     }
 
@@ -1158,7 +1158,7 @@ class CustomerController extends Controller
 
         Project::where('id', $project_id)->update($page_data);
 
-        return redirect('/customer/project_details/'.$project_id)->with('message', 'Attachment updated successfully');
+        return redirect('/customer/project_details/'.$project_id)->with('success', 'Attachment updated successfully');
     }
 
     public function service_purchase($service_id = "")
@@ -1295,7 +1295,7 @@ class CustomerController extends Controller
             Mail::to(auth()->user()->email)->send(new ServiceInvoice($payment_details, $user));
             Mail::to('project@creativeitem.com')->send(new ServiceInvoice($payment_details, $user));
 
-            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Service Payment successful');
+            return redirect('customer/project_details/'.$payment_details->project_id)->with('success', 'Service Payment successful');
 
         }
     }

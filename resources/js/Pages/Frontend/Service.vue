@@ -60,6 +60,12 @@ const fetchData = async (slug) => {
 
 };
 
+const flash = ref(usePage().props.flash);
+
+watch(() => usePage().props.flash, (newFlash) => {
+  flash.value = newFlash;
+});
+
 onMounted(() => {
 
   fetchData('academy-lms');
@@ -89,11 +95,23 @@ onMounted(() => {
   // var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   //   return new bootstrap.Tooltip(tooltipTriggerEl)
   // })
+
+  flash.value = usePage().props.flash;
   
 });
 
 const serviceVideo = () => {
   $('#serviceVideoModal').modal('show');
+};
+
+
+
+const openCustomCheckoutModal = () => {
+  if(selectedServices.value.length > 0) {
+    $('#customCheckoutModal').modal('show');
+  } else {
+    notify('info', 'First select a service');
+  }
 };
 
 const openServicePackageHelpModal = (modelId) => {
@@ -119,7 +137,12 @@ const notify = (type, message) => {
 
 <template>
     <Header/>
-
+    <div v-if="(flash.success || flash.info || flash.warning || flash.error) != null" class="absolute top-8 right-10 z-10">
+        <CustomeToast v-if="flash.success" :type="'success'" :message="flash.success" />
+        <CustomeToast v-else-if="flash.info" :type="'info'" :message="flash.info" />
+        <CustomeToast v-else-if="flash.warning" :type="'warning'" :message="flash.warning" />
+        <CustomeToast v-else-if="flash.error" :type="'error'" :message="flash.error" />
+    </div>
     <!-- New Service Start -->
     <section class="eService pt-30">
       <div class="container">

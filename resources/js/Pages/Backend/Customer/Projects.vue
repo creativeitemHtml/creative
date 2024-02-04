@@ -2,10 +2,11 @@
 import Header from '../../../Components/Global/Header.vue';
 import Footer from '../../../Components/Global/Footer.vue'
 import Breadcrumb from '../../../Components/Backend/Breadcrumb.vue'
-import Toast from '@/Components/Global/Toast.vue';
 import MobileOffcanvas from '../../../Components/Backend/MobileOffcanvas.vue'
 import Navigation from '../../../Components/Backend/Navigation.vue'
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import CustomeToast from '@/Components/Global/CustomeToast.vue';
+import { ref, onMounted, watch } from 'vue';
 
 const props = defineProps({
     projects: Array,
@@ -15,12 +16,27 @@ const props = defineProps({
     archive: String,
 });
 
+const flash = ref(usePage().props.flash);
+
+// Watch for changes in props.flash
+watch(() => usePage().props.flash, (newFlash) => {
+  flash.value = newFlash;
+});
+
+onMounted(() => {
+  // Set initial value on mount
+  flash.value = usePage().props.flash;
+});
+
 </script>
 
 <template>
     <Header/>
-    <div v-if="$page.props.flash" class="absolute top-8 right-10 z-10">
-        <Toast />
+    <div v-if="(flash.success || flash.info || flash.warning || flash.error) != null" class="absolute top-8 right-10 z-10">
+        <CustomeToast v-if="flash.success" :type="'success'" :message="flash.success" />
+        <CustomeToast v-else-if="flash.info" :type="'info'" :message="flash.info" />
+        <CustomeToast v-else-if="flash.warning" :type="'warning'" :message="flash.warning" />
+        <CustomeToast v-else-if="flash.error" :type="'error'" :message="flash.error" />
     </div>
     <Breadcrumb/>
     <MobileOffcanvas/>

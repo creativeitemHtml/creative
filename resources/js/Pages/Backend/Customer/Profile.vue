@@ -5,7 +5,8 @@ import Breadcrumb from '../../../Components/Backend/Breadcrumb.vue'
 import MobileOffcanvas from '../../../Components/Backend/MobileOffcanvas.vue'
 import Navigation from '../../../Components/Backend/Navigation.vue'
 import { Link, useForm, usePage } from '@inertiajs/vue3';
-import Toast from '@/Components/Global/Toast.vue';
+import CustomeToast from '@/Components/Global/CustomeToast.vue';
+import { ref, onMounted, watch } from 'vue';
 
 const props = defineProps({
     element_categories: Array,
@@ -42,11 +43,28 @@ const submitPass = () => {
     });
 };
 
+const flash = ref(usePage().props.flash);
+
+// Watch for changes in props.flash
+watch(() => usePage().props.flash, (newFlash) => {
+  flash.value = newFlash;
+});
+
+onMounted(() => {
+  // Set initial value on mount
+  flash.value = usePage().props.flash;
+});
+
 </script>
 
 <template>
     <Header/>
-    <Toast v-if="$page.props.flash" />
+    <div v-if="(flash.success || flash.info || flash.warning || flash.error) != null" class="absolute top-8 right-10 z-10">
+        <CustomeToast v-if="flash.success" :type="'success'" :message="flash.success" />
+        <CustomeToast v-else-if="flash.info" :type="'info'" :message="flash.info" />
+        <CustomeToast v-else-if="flash.warning" :type="'warning'" :message="flash.warning" />
+        <CustomeToast v-else-if="flash.error" :type="'error'" :message="flash.error" />
+    </div>
     <Breadcrumb/>
     <MobileOffcanvas/>
 

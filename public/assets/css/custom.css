@@ -513,7 +513,7 @@ span.model-title-value {
     }
 }
 
-
+/* Frontend pagination */
 .ci-pagination .page-item:first-child .page-link ,
 .ci-pagination .page-item:last-child .page-link {
     background: #0a7efb;
@@ -533,4 +533,14 @@ span.model-title-value {
     color: #fff;
     width: 90px;
     text-align: center;
+}
+
+/* Toast Custom */
+
+.toast-custom {
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 15px;
+    z-index: 999; /* Adjust the z-index to ensure it's above other content */
 }
