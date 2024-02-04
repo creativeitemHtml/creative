@@ -275,7 +275,7 @@ class ElementsController extends Controller
             $selected_license = $filter['license'];
         }
 
-        $element_products = $query->paginate(10);
+        $element_products = $query->paginate(12);
 
         if(count($element_products) > 0) {
 

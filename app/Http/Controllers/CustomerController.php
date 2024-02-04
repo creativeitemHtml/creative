@@ -12,6 +12,8 @@ use Stripe;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseInvoice;
 use App\Mail\SubscriptionMail;
+use App\Mail\ServiceInvoice;
+use App\Mail\ServiceCustomInvoice;
 use File;
 use PDF;
 
@@ -494,7 +496,7 @@ class CustomerController extends Controller
                 $user = User::find($sub_details->user_id);
 
                 Mail::to(auth()->user()->email)->send(new SubscriptionMail($sub_details, $user));
-                Mail::to('zohantesting015@gmail.com')->send(new SubscriptionMail($sub_details, $user));
+                Mail::to('project@creativeitem.com')->send(new SubscriptionMail($sub_details, $user));
 
                 return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
 
@@ -541,7 +543,7 @@ class CustomerController extends Controller
                 $user = User::find($status->user_id);
 
                 Mail::to(auth()->user()->email)->send(new SubscriptionMail($status, $user));
-                Mail::to('zohantesting015@gmail.com')->send(new SubscriptionMail($status, $user));
+                Mail::to('project@creativeitem.com')->send(new SubscriptionMail($status, $user));
 
 
                 return redirect()->route('customer.element_checkout_success')->with('message', 'Subscription done Successfull');
@@ -671,7 +673,7 @@ class CustomerController extends Controller
             $stripe_transaction_keys = $stripe_response;
             $stripe_payment_response = json_encode($stripe_transaction_keys);
 
-            $status = ElementProductPayment::create([
+            $purchase_details = ElementProductPayment::create([
                 'element_product_id' => $purchase_data['element_product_id'],
                 'user_id' => $purchase_data['user_id'],
                 'payment_method' => $purchase_data['payment_method'],
@@ -681,8 +683,10 @@ class CustomerController extends Controller
                 'date_added' => strtotime(date('d-M-Y H:i:s')),
             ]);
 
-            Mail::to(auth()->user()->email)->send(new PurchaseInvoice($status));
-            Mail::to('project@creativeitem.com')->send(new PurchaseInvoice($status));
+            $user = User::find($purchase_details->user_id);
+
+            Mail::to(auth()->user()->email)->send(new PurchaseInvoice($purchase_details, $user));
+            Mail::to('project@creativeitem.com')->send(new PurchaseInvoice($purchase_details, $user));
 
             return redirect()->route('customer.purchase_history')->with('message', 'Payment successfully');
         }
@@ -1257,12 +1261,11 @@ class CustomerController extends Controller
 
             $service_Details = ServicePackage::find($purchase_data['service_id']);
 
-
             $project_details['title'] = $service_Details->name;
             $services = json_decode($service_Details->services, true);
             $htmlText = '';
             foreach ($services as $key => $value) {
-                $htmlText .= $key . '. ' . $value . '<br>';
+                $htmlText .= $key . '. ' . $value['feature'] . '<br>';
             }
             $project_details['description'] = $htmlText;
             $project_details['budget_estimation'] = '$0 - '.currency($service_Details->discounted_price);
@@ -1281,14 +1284,19 @@ class CustomerController extends Controller
             $milestone_details['amount'] = $purchase_data['price'];
             $milestone_details['user_id'] = $project->user_id;
             $milestone_details['project_id'] = $project->id;
+            $milestone_details['service_package_id'] = $service_Details->id;
             $milestone_details['payment_method'] = 'stripe';
             $milestone_details['transaction_keys'] = $stripe_payment_response;
 
             $payment_details = PaymentMilestone::create($milestone_details);
 
+            $user = User::find($project->user_id);
+
+            Mail::to(auth()->user()->email)->send(new ServiceInvoice($payment_details, $user));
+            Mail::to('project@creativeitem.com')->send(new ServiceInvoice($payment_details, $user));
+
             return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Service Payment successful');
 
-            // Mail::to(auth()->user()->email)->send(new PurchaseInvoice($status));
         }
     }
 
@@ -1372,6 +1380,9 @@ class CustomerController extends Controller
     {
         $purchase_data = $this->string_to_array($purchase_data);
 
+        // print_r($purchase_data);
+        // die();
+
         if ($purchase_data['payment_method'] == 'stripe') {
             $stripe = get_settings('stripe');
             $stripe_keys = json_decode($stripe);
@@ -1447,9 +1458,12 @@ class CustomerController extends Controller
 
             $payment_details = PaymentMilestone::create($milestone_details);
 
-            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Service Payment successful');
+            $user = User::find($project->user_id);
 
-            // Mail::to(auth()->user()->email)->send(new PurchaseInvoice($status));
+            Mail::to(auth()->user()->email)->send(new ServiceCustomInvoice($payment_details, $user));
+            Mail::to('project@creativeitem.com')->send(new ServiceCustomInvoice($payment_details, $user));
+
+            return redirect('customer/project_details/'.$payment_details->project_id)->with('message', 'Service Payment successful');
         }
     }
 

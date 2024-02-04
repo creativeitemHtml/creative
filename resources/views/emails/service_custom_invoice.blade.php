@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creativeitem.com | Payment </title>
+    <title>Creativeitem.com | Service Payment </title>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
 </head>
 <body style="margin:0; padding:0; font-family: 'Cabin', sans-serif;">
@@ -21,12 +21,12 @@
                                 </div>
                                 <div class="feature-item" style="margin-top:30px; ">
                                      <div class="feature-text">
-                                        <p style="color:#0C141D; font-size: 24px; font-weight:600">Your Service Invoice</p>
+                                        <p style="color:#0C141D; font-size: 24px; font-weight:600">Service Payment Invoice</p>
                                      </div>
                                      <div style="display: flex; justify-content: space-between; align-items: center;">
                                          <div>
                                             <p style="color: #0C141D; font-size: 16px;">Date: {{ date('d m, Y') }}</p>
-                                            <p style="color: #0C141D; font-size: 16px;">Purchase ID: 2024-{{ $purchase_details->id }}</p>
+                                            <p style="color: #0C141D; font-size: 16px;">Service ID: 2024-{{ $purchase_details->id }}</p>
                                          </div>
                                      </div>
                                 </div>
@@ -39,7 +39,7 @@
                         <table style="border:1px solid #E4E7EC; margin-top: 15px;" cellpadding="20" cellspacing="0" width="600" id="emailContainer">
                             <tr style="background-color: #E4E7EC;">
                                 <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Name</p></th>
-                                <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Element</p></th>
+                                <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Type</p></th>
                                 <th><p style="margin: 0; font-size: 16px; color: #0C141D;">price</p></th>
                                 <th><p style="margin: 0; font-size: 16px; color: #0C141D;">Amount</p></th>
                             </tr>
@@ -48,13 +48,13 @@
                                     <p style="margin: 0;  color: #0C141D; font-size: 15px;">{{ $user->name }}</p>
                                 </td>
                                 <td style="text-align: center; padding:16px 0 ; border-bottom: 1px solid #E4E7EC;">
-                                    <p style="margin: 0;  color: #0C141D; font-size: 15px;">{{ $purchase_details->payment_to_elementProduct->title }}</p>
+                                    <p style="margin: 0;  color: #0C141D; font-size: 15px;">Custom Service</p>
                                 </td>
                                 <td style="text-align: center; padding: 16px 0 ; border-bottom: 1px solid #E4E7EC;">
-                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $purchase_details->paid_amount }}</p>
+                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $purchase_details->amount }}</p>
                                 </td>
                                 <td style="text-align: center; padding: 16px  0; border-bottom: 1px solid #E4E7EC;">
-                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $purchase_details->paid_amount }}</p>
+                                    <p style="margin: 0; font-size: 15px; color: #0C141D;">${{ $purchase_details->amount }}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -64,7 +64,7 @@
                                 <td style="text-align: center; padding: 16px 0 ;"> </td>
                                 <td style="text-align: center; padding: 16px 0 ;"> </td>
                                 <td style="text-align: center; padding: 16px 0 ;">
-                                    <p style="margin: 0; font-size: 16px; font-weight: 500; color: #007BFF;">${{ $purchase_details->paid_amount }}</p>
+                                    <p style="margin: 0; font-size: 16px; font-weight: 500; color: #007BFF;">${{ $purchase_details->amount }}</p>
                                 </td>
                             </tr>
                         </table>

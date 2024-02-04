@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PurchaseInvoice extends Mailable
+class ServiceCustomInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,7 +33,7 @@ class PurchaseInvoice extends Mailable
      */
     public function build()
     {
-        return $this->subject('Purchase Invoice')
-                    ->view('emails.purchase_invoice');
+        return $this->subject('Service Purchase Invoice')
+                    ->view('emails.service_custom_invoice');
     }
 }

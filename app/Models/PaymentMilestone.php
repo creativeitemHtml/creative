@@ -14,7 +14,7 @@ class PaymentMilestone extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'title', 'project_id', 'user_id', 'amount', 'payment_method', 'transaction_keys', 'status' ];
+    protected $fillable = [ 'id', 'title', 'project_id', 'service_package_id', 'user_id', 'amount', 'payment_method', 'transaction_keys', 'status' ];
 
     public function paymentMilestone_to_user()
     {
@@ -24,5 +24,10 @@ class PaymentMilestone extends Model
     public function PaymentMilestone_to_project()
     {
         return $this->belongsTo(Project::class,'project_id','id');
+    }
+
+    public function paymentMilestone_to_service()
+    {
+        return $this->belongsTo(ServicePackage::class,'service_package_id','id');
     }
 }

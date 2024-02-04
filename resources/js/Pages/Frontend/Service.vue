@@ -5,6 +5,7 @@ import ServiceCheckout from '../../Components/Global/ServiceCheckout.vue'
 import ServiceCustomCheckout from '../../Components/Global/ServiceCustomCheckout.vue'
 import ServiceHelpModal from '../../Components/Global/ServiceHelpModal.vue'
 import ServicePackageHelpModal from '../../Components/Global/ServicePackageHelpModal.vue'
+import ServiceVideoModal from '../../Components/Global/ServiceVideoModal.vue'
 import { onMounted, ref, watch } from 'vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
@@ -91,12 +92,8 @@ onMounted(() => {
   
 });
 
-const openCustomCheckoutModal = () => {
-  if(selectedServices.value.length > 0) {
-    $('#customCheckoutModal').modal('show');
-  } else {
-    notify('info', 'First select a service');
-  }
+const serviceVideo = () => {
+  $('#serviceVideoModal').modal('show');
 };
 
 const openServicePackageHelpModal = (modelId) => {
@@ -192,9 +189,10 @@ const notify = (type, message) => {
                   </div>
 
                   <div class="support video-sup d-flex align-items-center">
-                      <a href=""><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
-                      </svg>
+                     <a @click="serviceVideo" type="button" data-bs-whatever="@mdo">
+                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                        </svg>
                       </a>
                       <h4>How it Works!</h4>
                   </div>
@@ -312,19 +310,20 @@ const notify = (type, message) => {
                   </div>
 
                   <div class="support video-sup d-flex align-items-center">
-                      <a href=""><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
-                      </svg>
+                      <a @click="serviceVideo" type="button" data-bs-whatever="@mdo">
+                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                        </svg>
                       </a>
                       <h4>How it Works!</h4>
                   </div>
               </div>
-
           </div>
         </div>
       </div>
     </section>
     <!-- New Service End -->
+    <ServiceVideoModal />
 
     <!-- Start Faqs -->
     <section class="faq">
