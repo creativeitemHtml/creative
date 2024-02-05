@@ -6,11 +6,9 @@ import ServiceCustomCheckout from '../../Components/Global/ServiceCustomCheckout
 import ServiceHelpModal from '../../Components/Global/ServiceHelpModal.vue'
 import ServicePackageHelpModal from '../../Components/Global/ServicePackageHelpModal.vue'
 import ServiceVideoModal from '../../Components/Global/ServiceVideoModal.vue'
-import { onMounted, ref, watch } from 'vue';
+import CustomeToast from '../../Components/Global/CustomeToast.vue'
+import { onMounted, ref, watch, onBeforeUnmount } from 'vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
-
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
 
 const page = usePage()
 
@@ -89,28 +87,24 @@ onMounted(() => {
   }, 3000);
 
 
-
-
-  // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  // var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  //   return new bootstrap.Tooltip(tooltipTriggerEl)
-  // })
-
   flash.value = usePage().props.flash;
-  
 });
 
-const serviceVideo = () => {
-  $('#serviceVideoModal').modal('show');
+const stop = () => {
+  const player = new Plyr('#player2');
+  player.destroy();
 };
 
-
+const showToast = ref(false);
 
 const openCustomCheckoutModal = () => {
+  showToast.value = false;
   if(selectedServices.value.length > 0) {
     $('#customCheckoutModal').modal('show');
   } else {
-    notify('info', 'First select a service');
+    setTimeout(() => {
+        showToast.value = true;
+    }, 100);
   }
 };
 
@@ -118,26 +112,12 @@ const openServicePackageHelpModal = (modelId) => {
   $('#' + modelId).modal('show');
 }
 
-const options = {
-    // 'position': toast.POSITION.TOP_CENTER,
-    'autoClose': 2000,
-    'closeOnClick': true,
-    'type': 'default'
-}
-
-const notify = (type, message) => {
-
-  //Setting for type of notificatiob. e.g error, warning, success or info
-  options['type'] = type;
-
-  toast(message, options);
-}
-
 </script>
 
 <template>
     <Header/>
-    <div v-if="(flash.success || flash.info || flash.warning || flash.error) != null" class="absolute top-8 right-10 z-10">
+    <CustomeToast v-if="showToast" :type="'info'" :message="'First select a service'" />
+    <div class="absolute top-8 right-10 z-10">
         <CustomeToast v-if="flash.success" :type="'success'" :message="flash.success" />
         <CustomeToast v-else-if="flash.info" :type="'info'" :message="flash.info" />
         <CustomeToast v-else-if="flash.warning" :type="'warning'" :message="flash.warning" />
@@ -211,14 +191,16 @@ const notify = (type, message) => {
                       </ul>
                   </div>
 
-                  <div class="support video-sup d-flex align-items-center">
-                     <a @click="serviceVideo" type="button" data-bs-whatever="@mdo">
-                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
-                        </svg>
-                      </a>
-                      <h4>How it Works!</h4>
-                  </div>
+                  <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
+                    <div class="support video-sup d-flex align-items-center">
+                      <span>
+                          <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                          </svg>
+                        </span>
+                        <h4>How it Works!</h4>
+                    </div>
+                  </a>
               </div>
 
             </div>
@@ -306,41 +288,43 @@ const notify = (type, message) => {
             </div>
 
             <div class="small-show tab-left">
-                    <div class="support">
-                    <h4>Contact For Support</h4>
-                      <ul>
-                        <li>
-                          <a href="http://support.creativeitem.com/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Zendesk">
-                            <img :src=" $page.props.base.url + '/public/assets/img/icon/zendesk-service.svg'" alt="" >
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://wa.link/izd8dl" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Whatsapp">
-                            <img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp-service.svg'" alt="" >
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://t.me/creativeitem_elements" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram">
-                            <img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-service.svg'" alt="" >
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://m.me/creativeitemApps" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger">
-                            <img :src=" $page.props.base.url + '/public/assets/img/icon/messenger-service.svg'" alt="" >
-                          </a>
-                        </li>
-                      </ul>
-                  </div>
-
-                  <div class="support video-sup d-flex align-items-center">
-                      <a @click="serviceVideo" type="button" data-bs-whatever="@mdo">
-                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
-                        </svg>
-                      </a>
-                      <h4>How it Works!</h4>
-                  </div>
+              <div class="support">
+                <h4>Contact For Support</h4>
+                <ul>
+                  <li>
+                    <a href="http://support.creativeitem.com/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Zendesk">
+                      <img :src=" $page.props.base.url + '/public/assets/img/icon/zendesk-service.svg'" alt="" >
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://wa.link/izd8dl" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Whatsapp">
+                      <img :src=" $page.props.base.url + '/public/assets/img/icon/whatsapp-service.svg'" alt="" >
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://t.me/creativeitem_elements" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram">
+                      <img :src=" $page.props.base.url + '/public/assets/img/icon/telegram-service.svg'" alt="" >
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://m.me/creativeitemApps" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger">
+                      <img :src=" $page.props.base.url + '/public/assets/img/icon/messenger-service.svg'" alt="" >
+                    </a>
+                  </li>
+                </ul>
               </div>
+
+              <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
+                <div class="support video-sup d-flex align-items-center">
+                  <span>
+                      <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.77781 20C2.77645 19.9957 1.81729 19.5627 1.10956 18.7956C0.401841 18.0285 0.00298422 16.9894 0 15.9051V4.09073C1.68461e-05 3.37265 0.174588 2.66722 0.506167 2.04535C0.837746 1.42348 1.31465 0.907075 1.88895 0.548042C2.46325 0.189008 3.1147 -4.56059e-06 3.77784 0C4.44097 4.56076e-06 5.09243 0.189027 5.66672 0.548068L15.1113 6.45524C15.6855 6.8143 16.1624 7.33071 16.4939 7.95257C16.8255 8.57444 17 9.27985 17 9.9979C17 10.716 16.8255 11.4214 16.4939 12.0432C16.1624 12.6651 15.6855 13.1815 15.1113 13.5406L5.66672 19.4477C5.09294 19.8086 4.44136 19.9991 3.77781 20Z" fill="white"/>
+                      </svg>
+                    </span>
+                    <h4>How it Works!</h4>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -442,6 +426,28 @@ const notify = (type, message) => {
     </section>
     <!-- End Faqs -->
 
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal service-modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button @click="stop" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+          </div>
+          <div class="modal-body">
+            <div class="plyr__video-embed" id="player2">
+                <iframe
+                :src="`https://www.youtube.com/embed/XZePsCuSOtU?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`"
+                allowfullscreen
+                allowtransparency
+                allow="autoplay"
+                ></iframe>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
     
     <Footer />
 </template>

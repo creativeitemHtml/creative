@@ -36,13 +36,14 @@ onBeforeUnmount(() => {
             </div>                  
             <div class="alert-details">
                 <h4>Success!</h4>
-                <p>{{ message }}</p>
+                <p class="w-280">{{ message }}</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-
+        
+        <div v-else-if="type == 'info'" class="alert-area">
         <!-- Primary Info Alert Start here -->
-        <div v-else-if="type == 'info'" class="alert alert-primary d-flex align-items-center alert-dismissible fade show alert-2 alert-primary-2" role="alert">
+        <div class="alert alert-primary d-flex align-items-center alert-dismissible fade show alert-2 alert-primary-2" role="alert">
             <div class="alert-img d-flex align-items-center justify-content-between">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 20C11.9778 20 13.9112 19.4135 15.5557 18.3147C17.2002 17.2159 18.4819 15.6541 19.2388 13.8268C19.9957 11.9996 20.1937 9.98891 19.8079 8.0491C19.422 6.10929 18.4696 4.32746 17.0711 2.92894C15.6725 1.53041 13.8907 0.578004 11.9509 0.192152C10.0111 -0.193701 8.00043 0.00433284 6.17317 0.761209C4.3459 1.51809 2.78412 2.79981 1.6853 4.4443C0.58649 6.08879 0 8.02219 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20ZM10 4.167C10.2472 4.167 10.4889 4.24032 10.6945 4.37767C10.9 4.51502 11.0602 4.71024 11.1548 4.93865C11.2495 5.16706 11.2742 5.41839 11.226 5.66087C11.1778 5.90334 11.0587 6.12607 10.8839 6.30089C10.7091 6.4757 10.4863 6.59475 10.2439 6.64299C10.0014 6.69122 9.75005 6.66646 9.52165 6.57185C9.29324 6.47724 9.09801 6.31703 8.96066 6.11147C8.82331 5.90591 8.75 5.66423 8.75 5.417C8.75 5.08548 8.8817 4.76754 9.11612 4.53312C9.35054 4.2987 9.66848 4.167 10 4.167ZM9.167 8.333H10C10.4421 8.333 10.8661 8.50863 11.1787 8.82126C11.4914 9.13388 11.667 9.55789 11.667 10V15C11.667 15.2211 11.5792 15.4331 11.4229 15.5894C11.2666 15.7457 11.0546 15.8335 10.8335 15.8335C10.6124 15.8335 10.4004 15.7457 10.2441 15.5894C10.0878 15.4331 10 15.2211 10 15V10H9.167C8.94594 10 8.73394 9.91219 8.57763 9.75588C8.42131 9.59957 8.3335 9.38756 8.3335 9.1665C8.3335 8.94545 8.42131 8.73344 8.57763 8.57713C8.73394 8.42082 8.94594 8.333 9.167 8.333Z" fill="white"/>
@@ -50,10 +51,10 @@ onBeforeUnmount(() => {
             </div>                 
             <div class="alert-details">
                 <h4>Info!</h4>
-                <p>{{ message }}</p>
+                <p class="w-280">{{ message }}</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        </div></div>
 
         <!-- Warning Alert Start here -->
         <div v-else-if="type == 'warning'" class="alert alert-warning d-flex align-items-center alert-dismissible fade show alert-2 alert-warning-2" role="alert">
@@ -64,7 +65,7 @@ onBeforeUnmount(() => {
             </div>                 
             <div class="alert-details">
                 <h4>Warning</h4>
-                <p>{{ message }}</p>
+                <p class="w-280">{{ message }}</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -78,7 +79,7 @@ onBeforeUnmount(() => {
             </div>                 
             <div class="alert-details">
                 <h4>Something Went Wrong!</h4>
-                <p>{{ message }}</p>
+                <p class="w-280">{{ message }}</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

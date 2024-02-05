@@ -2,9 +2,7 @@
 import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
-
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
+import CustomeToast from '../../Components/Global/CustomeToast.vue'
 
 const props = defineProps({
     feature: Object,
@@ -13,6 +11,7 @@ const props = defineProps({
 });
 
 const user = usePage().props.auth.user;
+const showToast = ref(false);
 
 const form = useForm({
     name: user ? user.name : '',
@@ -24,24 +23,12 @@ const submit = () => {
         form.post(route('purchase_service_package', { service_id: props.feature.id }));
         $('#' + props.modalId).modal('hide');
     } else {
-        notify('info', 'Please provide a email address');
+        showToast.value = false;
+        setTimeout(() => {
+            showToast.value = true;
+        }, 100);
     }
 };
-
-const options = {
-    // 'position': toast.POSITION.TOP_CENTER,
-    'autoClose': 2000,
-    'closeOnClick': true,
-    'type': 'default'
-}
-
-const notify = (type, message) => {
-
-  //Setting for type of notificatiob. e.g error, warning, success or info
-  options['type'] = type;
-
-  toast(message, options);
-}
 
 
 </script>
@@ -51,6 +38,7 @@ const notify = (type, message) => {
     <button v-else type="button" class="buy-btn" :data-bs-toggle="'modal'" :data-bs-target="'#' + modalId" data-bs-whatever="@mdo">Buy Now</button>
 
     <div :id="modalId" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <CustomeToast v-if="showToast" :type="'info'" :message="'Please provide a email address'" />
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
