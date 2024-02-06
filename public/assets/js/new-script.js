@@ -573,12 +573,12 @@ new VenoBox({
 });
 
 // Player js 
-const player = new Plyr('#player');
-const player_2 = new Plyr('#player-2');
-const player_3 = new Plyr('#player-3');
-const player_4 = new Plyr('#player-4');
-const player_5 = new Plyr('#player-5');
-const player_6 = new Plyr('#player-6');
+// const player = new Plyr('#player');
+// const player_2 = new Plyr('#player-2');
+// const player_3 = new Plyr('#player-3');
+// const player_4 = new Plyr('#player-4');
+// const player_5 = new Plyr('#player-5');
+// const player_6 = new Plyr('#player-6');
 
 
 

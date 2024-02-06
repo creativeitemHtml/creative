@@ -14,6 +14,7 @@ const page = usePage()
 
 const service_packages = ref([])
 const services = ref([])
+let player = null
 
 const props = defineProps({
   seo: Object,
@@ -90,11 +91,6 @@ onMounted(() => {
   flash.value = usePage().props.flash;
 });
 
-const stop = () => {
-  const player = new Plyr('#player2');
-  player.destroy();
-};
-
 const showToast = ref(false);
 
 const openCustomCheckoutModal = () => {
@@ -111,6 +107,24 @@ const openCustomCheckoutModal = () => {
 const openServicePackageHelpModal = (modelId) => {
   $('#' + modelId).modal('show');
 }
+
+const serviceVideo = () => {
+  $('#staticBackdrop').modal('show');
+  player = new Plyr('#player2', {autoplay: true});
+}
+
+const stop = () => {
+  if (player) {
+    player.destroy();
+  }
+};
+
+onBeforeUnmount(() => {
+  // Make sure to destroy the player when the component is unmounted
+  if (player) {
+    player.destroy();
+  }
+});
 
 </script>
 
@@ -191,7 +205,7 @@ const openServicePackageHelpModal = (modelId) => {
                       </ul>
                   </div>
 
-                  <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
+                  <a @click="serviceVideo" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
                     <div class="support video-sup d-flex align-items-center">
                       <span>
                           <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -314,7 +328,7 @@ const openServicePackageHelpModal = (modelId) => {
                 </ul>
               </div>
 
-              <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
+              <a @click="serviceVideo" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="w-100">
                 <div class="support video-sup d-flex align-items-center">
                   <span>
                       <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -435,14 +449,7 @@ const openServicePackageHelpModal = (modelId) => {
             <button @click="stop" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
           </div>
           <div class="modal-body">
-            <div class="plyr__video-embed" id="player2">
-                <iframe
-                :src="`https://www.youtube.com/embed/XZePsCuSOtU?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`"
-                allowfullscreen
-                allowtransparency
-                allow="autoplay"
-                ></iframe>
-            </div>
+            <div id="player2" data-plyr-provider="youtube" data-plyr-embed-id="XZePsCuSOtU"></div>
           </div>
           
         </div>
