@@ -14,6 +14,7 @@ use App\Mail\PurchaseInvoice;
 use App\Mail\SubscriptionMail;
 use App\Mail\ServiceInvoice;
 use App\Mail\ServiceCustomInvoice;
+use App\Mail\MilestoneInvoice;
 use File;
 use PDF;
 
@@ -1051,6 +1052,11 @@ class CustomerController extends Controller
             ]);
 
             $payment_details = PaymentMilestone::find($payment_data['milestone_id']);
+
+            $user = User::find($payment_details->user_id);
+
+            Mail::to(auth()->user()->email)->send(new MilestoneInvoice($payment_details, $user));
+            Mail::to('project@creativeitem.com')->send(new MilestoneInvoice($payment_details, $user));
 
             return redirect('customer/project_details/'.$payment_details->project_id)->with('success', 'Payment successfully');
         }
