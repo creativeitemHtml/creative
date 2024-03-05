@@ -882,7 +882,7 @@ class CustomerController extends Controller
             $user = User::find($project_details->user_id);
 
             $route = route('customer.projects');
-            Mail::to($request->email)->send(new ProjectReport($project_details, $user, $route));
+            Mail::to(auth()->user()->email)->send(new ProjectReport($project_details, $user, $route));
 
             $route = route('superadmin.projects');
             Mail::to('project@creativeitem.com')->send(new ProjectReport($project_details, $user, $route));
