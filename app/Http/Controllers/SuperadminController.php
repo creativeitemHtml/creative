@@ -11,6 +11,8 @@ use Response;
 use PDF;
 use File;
 use Inertia\Inertia;
+use App\Mail\ProjectReport;
+use Illuminate\Support\Facades\Mail;
 
 class SuperadminController extends Controller
 {

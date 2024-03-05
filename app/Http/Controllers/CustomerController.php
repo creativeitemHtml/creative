@@ -15,6 +15,7 @@ use App\Mail\SubscriptionMail;
 use App\Mail\ServiceInvoice;
 use App\Mail\ServiceCustomInvoice;
 use App\Mail\MilestoneInvoice;
+use App\Mail\ProjectReport;
 use File;
 use PDF;
 
