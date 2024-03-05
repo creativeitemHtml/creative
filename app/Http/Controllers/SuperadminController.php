@@ -1315,7 +1315,7 @@ class SuperadminController extends Controller
             $page_data['budget_estimation'] = $data['budget_estimation'];
             $page_data['timeline'] = $data['timeline'];
             $page_data['user_id'] = $data['user_id'];
-            $page_data['status'] = 'pending';
+            $page_data['status'] = 'active';
             $page_data['completion_progress'] = 0;
             
             if(!empty($data['attachment']))
@@ -1341,7 +1341,15 @@ class SuperadminController extends Controller
             // print_r($page_data);
             // die();
 
-            Project::create($page_data);
+            $project_details = Project::create($page_data);
+
+            $user = User::find($project_details->user_id);
+
+            $route = route('customer.projects');
+            Mail::to($request->email)->send(new ProjectReport($project_details, $user, $route));
+
+            $route = route('superadmin.projects');
+            Mail::to('project@creativeitem.com')->send(new ProjectReport($project_details, $user, $route));
 
             return redirect()->route('superadmin.projects')->with('message', 'Project created successfully');
 

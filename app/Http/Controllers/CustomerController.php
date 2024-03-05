@@ -876,7 +876,15 @@ class CustomerController extends Controller
                 $page_data['attachment'] = json_encode(array());
             }
 
-            Project::create($page_data);
+            $project_details = Project::create($page_data);
+
+            $user = User::find($project_details->user_id);
+
+            $route = route('customer.projects');
+            Mail::to($request->email)->send(new ProjectReport($project_details, $user, $route));
+
+            $route = route('superadmin.projects');
+            Mail::to('project@creativeitem.com')->send(new ProjectReport($project_details, $user, $route));
 
             return redirect()->route('customer.projects')->with('success', 'Project created successfully');
 

@@ -79,17 +79,18 @@
                 <tr>
                     <td style="font-size: 13px; text-align:center; padding: 0 10px 10px 10px; font-weight: 500; color: #A1A5B7; font-family:Arial,Helvetica,sans-serif">
                         <p style="color:#181C32; font-size: 16px; font-weight: 600; margin-bottom:9px">It’s all about customers!</p>
-                        <p style="margin-bottom:2px; font-family:Arial,Helvetica,sans-serif">Call our customer care number: +8801518626568</p>
-                        <p style="margin-bottom:4px; font-family:Arial,Helvetica,sans-serif">You may reach us at <a href="https://creativeitem.com" rel="noopener" target="_blank" style="text-decoration:none; font-weight: 600; font-family:Arial,Helvetica,sans-serif">creativeitem.com</a>.</p>
+                        <p style="margin-bottom:2px; font-family:Arial,Helvetica,sans-serif">Message in WhatsApp: <a href="https://wa.link/izd8dl">https://wa.link/izd8dl</a></p>
+                        <p style="margin-bottom:4px; font-family:Arial,Helvetica,sans-serif">You may reach us at <a href="https://support.creativeitem.com" rel="noopener" target="_blank" style="text-decoration:none; font-weight: 600; font-family:Arial,Helvetica,sans-serif">https://support.creativeitem.com</a>.</p>
                         <p>We serve Sun-Thus, 10AM- 6PM</p>                                
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:center; padding-bottom: 20px;">                                
                         <a href="https://bd.linkedin.com/company/creativeitem" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-linkedin.png"></a>    
-                        <a href="https://dribbble.com/creativeitem" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-dribbble.png"></a>    
+                        <a href="https://www.instagram.com/creativeitem.developers/" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-instagram.png"></a>    
                         <a href="https://www.facebook.com/CreativeitemApps/" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-facebook.png"></a>   
-                        <a href="https://twitter.com/creativeitem" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-twitter.png"></a>                           
+                        <a href="https://twitter.com/creativeitem" style=" text-decoration: none; margin-right:10px"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-twitter.png"></a> 
+                        <a href="https://www.youtube.com/@Creativeitem" style=" text-decoration: none;"><img alt="Logo" src="https://creativeitem.com/public/assets/image/icon-youtube.png"></a>                           
                     </td>
                 </tr>
                 <tr>

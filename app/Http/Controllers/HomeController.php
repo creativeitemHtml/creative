@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyEmailWithPassword;
+use App\Mail\ProjectReport;
 use DB;
 use File;
 
@@ -483,7 +484,15 @@ class HomeController extends Controller
                 $page_data['attachment'] = json_encode(array());
             }
 
-            Project::create($page_data);
+            $project_details = Project::create($page_data);
+
+            $user = User::find($project_details->user_id);
+
+            $route = route('customer.projects');
+            Mail::to($request->email)->send(new ProjectReport($project_details, $user, $route));
+
+            $route = route('superadmin.projects');
+            Mail::to('project@creativeitem.com')->send(new ProjectReport($project_details, $user, $route));
 
             return redirect()->route('customer.projects')->with('message', 'Project created successfully');
         } else if(!empty($check_email)){
@@ -560,7 +569,13 @@ class HomeController extends Controller
                 $page_data['attachment'] = json_encode(array());
             }
 
-            Project::create($page_data);
+            $project_details = Project::create($page_data);
+
+            $route = route('customer.projects');
+            Mail::to($request->email)->send(new ProjectReport($project_details, $user, $route));
+
+            $route = route('superadmin.projects');
+            Mail::to('project@creativeitem.com')->send(new ProjectReport($project_details, $user, $route));
 
             return redirect()->route('customer.projects')->with('message', 'Project created successfully');
         }
